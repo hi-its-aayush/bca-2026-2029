@@ -2,6 +2,8 @@
 
 This repository tracks my full BCA journey — subjects, notes, projects, and progress.
 
+Link https://hi-its-aayush.github.io/bca-2026-2029/
+
 ## 📚 Structure
 - Year 1
 - Year 2
