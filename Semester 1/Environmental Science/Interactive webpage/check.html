@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BCA Study Portal | Ace Acharya</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* CSS Variables & Base Styles matched to your reference file */
+:root{--bg:#0b0e14;--sf:#111620;--sf2:#161c2a;--br:#1e2840;--ac:#00e5ff;--ac2:#7b61ff;--gr:#39ff14;--am:#ffc107;--rd:#ff4444;--tx:#c8d6f0;--td:#5a6a8a;--tb:#e8f0ff;--cb:#090c12;--sw:265px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;display:flex;justify-content:center;min-height:100vh;padding:40px 20px}
+
+#main{max-width:1000px;width:100%}
+.dh{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:40px;margin-bottom:30px;position:relative;overflow:hidden}
+.dh::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(123,97,255,.12),transparent 70%);pointer-events:none}
+.dh .dt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.dh h1{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--tb);line-height:1.2;margin-bottom:15px}
+.dh p{font-size:14px;color:var(--tx);max-width:600px;line-height:1.8}
+
+.ucg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.ucc{background:var(--sf);border:1px solid var(--br);border-radius:10px;padding:24px;text-decoration:none;transition:all .2s;display:block}
+.ucc:hover{border-color:var(--ac2);transform:translateY(-3px);background:var(--sf2)}
+.ucn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--td);margin-bottom:8px;text-transform:uppercase}
+.ucc h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--tb);margin-bottom:10px}
+.uct{font-size:12.5px;color:var(--td);line-height:1.5}
+.btn-launch{margin-top:15px;display:inline-block;font-size:11px;font-weight:700;color:var(--ac2);text-transform:uppercase;letter-spacing:1px}
+
+@media(max-width:768px){.dh{padding:25px}.dh h1{font-size:26px}}
+</style>
+</head>
+<body>
+
+<main id="main">
+  <div class="dh">
+    <div class="dt">// BCA Knowledge Base Wiki</div>
+    <h1>Bachelor of Computer Applications<br>Study Portal</h1>
+    <p>A centralized repository for semester coursework, interactive study materials, and technical documentation. Built and maintained by Ace Acharya as the course progresses.</p>
+  </div>
+
+  <div class="ucg">
+    <a href="Semester 1/C Programming/Interactive Website/index.html" class="ucc">
+      <div class="ucn">Semester 01 / DCA1102</div>
+      <h3>C Programming</h3>
+      <div class="uct">History, Flow of Control, Arrays, Strings, and Functions. Includes 14 units of interactive theory.</div>
+      <div class="btn-launch">Launch Module →</div>
+    </a>
+
+    <a href="Semester 1/Environmental Science/Interactive webpage/index.html" class="ucc">
+      <div class="ucn">Semester 01 / DCA1101</div>
+      <h3>Environmental Science</h3>
+      <div class="uct">Ecosystems, Biodiversity, Natural Resources, and Sustainability documentation.</div>
+      <div class="btn-launch">Launch Module →</div>
+    </a>
+
+    <a href="Semester 1/Introduction to Web Programming/Interactive Website/index.html" class="ucc">
+        <div class="ucn">Semester 01 / DCA1103</div>
+        <h3>Web Programming</h3>
+        <div class="uct">HTML5, CSS3, and modern web architecture fundamentals.</div>
+        <div class="btn-launch">Launch Module →</div>
+      </a>
+
+    </div>
+</main>
+
+</body>
+</html>

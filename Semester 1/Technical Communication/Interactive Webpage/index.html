@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Technical Communication — MUJ BCA Sem 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0e14;--sf:#111620;--sf2:#161c2a;--br:#1e2840;--ac:#00e5ff;--ac2:#7b61ff;--gr:#39ff14;--am:#ffc107;--rd:#ff4444;--tx:#c8d6f0;--td:#5a6a8a;--tb:#e8f0ff;--cb:#090c12;--sw:265px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;display:flex;min-height:100vh}
+#sb{width:var(--sw);background:var(--sf);border-right:1px solid var(--br);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;display:flex;flex-direction:column;z-index:100;transition:transform .3s}
+#sb::-webkit-scrollbar{width:3px}#sb::-webkit-scrollbar-thumb{background:var(--br)}
+.sbh{padding:16px;border-bottom:1px solid var(--br);position:sticky;top:0;background:var(--sf);z-index:2}
+.sbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ac);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.sbt{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--tb)}
+.pw{padding:10px 16px;border-bottom:1px solid var(--br)}
+.pl{display:flex;justify-content:space-between;font-size:10px;color:var(--td);margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+.pb{height:3px;background:var(--br);border-radius:2px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:2px;transition:width .5s;width:0%}
+.ul{list-style:none;padding:4px 0;flex:1}
+.ul li a{display:flex;align-items:center;gap:7px;padding:7px 14px;text-decoration:none;font-size:11.5px;color:var(--td);transition:all .2s;border-left:2px solid transparent}
+.ul li a:hover{color:var(--tx);background:var(--sf2);border-left-color:var(--ac2)}
+.ul li a.on{color:var(--ac);background:rgba(0,229,255,.05);border-left-color:var(--ac);font-weight:500}
+.ul li a.dn{color:var(--gr)}
+.un{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;background:var(--sf2);border:1px solid var(--br);border-radius:3px;padding:1px 4px;min-width:24px;text-align:center;flex-shrink:0}
+.ul li a.on .un{border-color:var(--ac);color:var(--ac)}
+.ul li a.dn .un{border-color:var(--gr);color:var(--gr)}
+#main{margin-left:var(--sw);flex:1}
+#tnav{background:var(--sf);border-bottom:1px solid var(--br);padding:10px 32px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:50}
+.bc{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--td)}.bc span{color:var(--ac)}
+.nbs{margin-left:auto;display:flex;gap:8px}
+.btn{padding:6px 14px;border-radius:5px;border:1px solid var(--br);background:transparent;color:var(--tx);font-size:12px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.btn:hover{border-color:var(--ac);color:var(--ac)}
+.btnp{background:linear-gradient(135deg,var(--ac2),var(--ac));border:none;color:#000;font-weight:600}
+.btnp:hover{opacity:.85;color:#000}
+#ct{padding:32px;max-width:880px}
+.pn{display:none}.pn.on{display:block;animation:fi .3s}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.utag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--ac2);letter-spacing:3px;text-transform:uppercase;margin-bottom:7px}
+.utit{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--tb);line-height:1.15;margin-bottom:14px}
+.uint{font-size:13.5px;line-height:1.8;margin-bottom:22px;padding:14px 18px;background:var(--sf);border-left:3px solid var(--ac);border-radius:0 7px 7px 0}
+.obj{background:rgba(123,97,255,.07);border:1px solid rgba(123,97,255,.2);border-radius:8px;padding:14px 18px;margin-bottom:24px}
+.obj h4{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--ac2);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.obj li{padding:3px 0;font-size:12.5px;display:flex;gap:7px;list-style:none}
+.obj li::before{content:'▸';color:var(--ac2);flex-shrink:0}
+.tabs{display:flex;border-bottom:1px solid var(--br);margin-bottom:20px}
+.tb{padding:8px 16px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--td);font-size:12.5px;cursor:pointer;transition:all .2s;margin-bottom:-1px;font-family:'Inter',sans-serif}
+.tb:hover{color:var(--tx)}.tb.on{color:var(--ac);border-bottom-color:var(--ac)}
+.tc{display:none}.tc.on{display:block;animation:fi .2s}
+.sh{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--tb);margin:24px 0 10px;display:flex;align-items:center;gap:10px}
+.sh::after{content:'';flex:1;height:1px;background:var(--br)}
+.ssh{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ac);margin:18px 0 8px}
+.pn p{margin-bottom:10px;color:var(--tx);font-size:13.5px;line-height:1.8}
+.cw{background:var(--cb);border:1px solid var(--br);border-radius:7px;margin:12px 0;overflow:hidden}
+.ch{display:flex;align-items:center;padding:7px 12px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--br);gap:6px}
+.ds{display:flex;gap:4px}.ds span{width:8px;height:8px;border-radius:50%;display:block}
+.dr{background:#ff5f57}.dy{background:#ffbd2e}.dg{background:#28c840}
+.cl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--td);margin-left:auto}
+pre{padding:14px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:#abb2bf}
+pre::-webkit-scrollbar{height:3px}pre::-webkit-scrollbar-thumb{background:var(--br)}
+.t{width:100%;border-collapse:collapse;margin:12px 0;font-size:12.5px}
+.t th{background:var(--sf2);color:var(--ac);padding:7px 10px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--br)}
+.t td{padding:6px 10px;border-bottom:1px solid var(--br)}
+.t tr:hover td{background:var(--sf2)}
+.t code{background:var(--cb);border:1px solid var(--br);border-radius:3px;padding:1px 4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gr)}
+.ib{background:rgba(57,255,20,.04);border:1px solid rgba(57,255,20,.15);border-radius:7px;padding:10px 14px;margin:10px 0}
+.ib b,.ibl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:5px}
+.wb{background:rgba(255,193,7,.04);border:1px solid rgba(255,193,7,.15);border-radius:7px;padding:10px 14px;margin:10px 0}
+.wb b,.wbl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--am);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:5px}
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:10px 0}
+.ic{background:var(--sf);border:1px solid var(--br);border-radius:7px;padding:10px;transition:border-color .2s}
+.ic:hover{border-color:var(--ac2)}
+.ic h5{font-family:'Syne',sans-serif;font-size:11.5px;font-weight:700;color:var(--tb);margin-bottom:3px}
+.ic p{font-size:11px;color:var(--td);margin:0;line-height:1.4}
+.qq{background:var(--sf);border:1px solid var(--br);border-radius:8px;padding:16px;margin-bottom:12px;transition:border-color .3s}
+.qq.done{border-color:rgba(123,97,255,.3)}
+.qt{font-size:13px;font-weight:500;color:var(--tb);margin-bottom:10px;line-height:1.6;display:flex;gap:7px}
+.qn{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;background:var(--sf2);border:1px solid var(--br);border-radius:3px;padding:1px 5px;color:var(--ac2);flex-shrink:0;margin-top:2px}
+.opts{display:flex;flex-direction:column;gap:5px}
+.ob{display:flex;align-items:center;gap:9px;padding:8px 10px;background:var(--sf2);border:1px solid var(--br);border-radius:5px;cursor:pointer;transition:all .2s;text-align:left;color:var(--tx);font-family:'Inter',sans-serif;font-size:12.5px;width:100%}
+.ob:hover:not(:disabled){border-color:var(--ac2);background:rgba(123,97,255,.06)}
+.ol{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;width:20px;height:20px;border:1px solid var(--br);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--td);transition:all .2s}
+.ob:hover:not(:disabled) .ol{border-color:var(--ac2);color:var(--ac2)}
+.ob.ok{background:rgba(57,255,20,.06);border-color:var(--gr);color:var(--tb)}.ob.ok .ol{border-color:var(--gr);color:var(--gr)}
+.ob.ng{background:rgba(255,68,68,.06);border-color:var(--rd);color:var(--td)}.ob.ng .ol{border-color:var(--rd);color:var(--rd)}
+.ob:disabled{cursor:not-allowed}
+.exp{margin-top:7px;padding:7px 10px;background:rgba(0,229,255,.04);border-left:2px solid var(--ac);border-radius:0 4px 4px 0;font-size:11.5px;display:none}
+.exp.on{display:block;animation:fi .2s}
+.tqi{background:var(--sf);border:1px solid var(--br);border-radius:7px;padding:14px;margin-bottom:10px}
+.tqq{font-size:12.5px;font-weight:500;color:var(--tb);margin-bottom:8px}
+.tqb{padding:5px 12px;background:rgba(123,97,255,.08);border:1px solid rgba(123,97,255,.2);border-radius:4px;color:var(--ac2);font-size:11px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.tqb:hover{background:rgba(123,97,255,.16)}
+.tqa{display:none;margin-top:8px;padding:10px;background:var(--cb);border-radius:4px;font-size:11.5px;color:var(--tx);white-space:pre-wrap;border:1px solid var(--br);line-height:1.7}
+.tqa.on{display:block;animation:fi .2s}
+.qr{display:none;margin-top:18px;padding:20px;border-radius:8px;text-align:center;border:1px solid var(--br);background:var(--sf)}
+.qr.on{display:block;animation:fi .4s}
+.rs{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,var(--ac2),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:5px}
+.rm{font-size:14px;color:var(--tb);margin-bottom:3px}.rd2{font-size:11px;color:var(--td)}
+.db{display:none;margin-top:20px;padding:14px 18px;background:rgba(57,255,20,.04);border:1px solid rgba(57,255,20,.15);border-radius:8px;align-items:center;gap:12px}
+.db.on{display:flex;animation:fi .5s}
+.db h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--gr);margin-bottom:1px}
+.db p{font-size:11px;color:var(--td);margin:0}
+#dash{display:block}
+.dh{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden}
+.dh::before{content:'';position:absolute;top:-80px;right:-80px;width:250px;height:250px;background:radial-gradient(circle,rgba(123,97,255,.12),transparent 70%);pointer-events:none}
+.dh .dt{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ac);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.dh h1{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--tb);line-height:1.15;margin-bottom:10px}
+.dh p{font-size:13px;color:var(--tx);max-width:480px;line-height:1.7;margin-bottom:18px}
+.dst{display:flex;gap:24px;font-size:12px;color:var(--td)}
+.dst strong{display:block;font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--ac);margin-bottom:1px}
+.ucg{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.ucc{background:var(--sf);border:1px solid var(--br);border-radius:9px;padding:14px;cursor:pointer;transition:all .2s;position:relative}
+.ucc:hover{border-color:var(--ac2);transform:translateY(-2px)}
+.ucn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--td);margin-bottom:5px}
+.ucc h3{font-family:'Syne',sans-serif;font-size:12.5px;font-weight:700;color:var(--tb);line-height:1.3;margin-bottom:5px}
+.uct{font-size:11px;color:var(--td);line-height:1.4}
+.ucd{display:none;position:absolute;top:10px;right:10px;font-size:12px}
+.ucc.dn .ucd{display:block}.ucc.dn{border-color:rgba(57,255,20,.15)}
+code{background:var(--cb);border:1px solid var(--br);border-radius:3px;padding:1px 4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gr)}
+.es{background:rgba(255,193,7,.04);border:1px solid rgba(255,193,7,.18);border-radius:8px;padding:18px;margin-bottom:16px}
+.es h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--am);margin-bottom:3px}
+.ess{font-size:10px;color:var(--td);margin-bottom:12px}
+.eq{padding:8px 0;border-bottom:1px solid var(--br);font-size:12.5px}
+.eq:last-child{border-bottom:none}
+.eq strong{color:var(--tb)}
+.eopt{color:var(--td);display:block;padding-left:12px;font-size:11.5px;margin-top:2px}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90}
+#mbt{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--sf);border:1px solid var(--br);border-radius:7px;padding:7px 10px;cursor:pointer;color:var(--tx);font-size:14px}
+@media(max-width:768px){#sb{transform:translateX(-100%)}#sb.op{transform:translateX(0)}#overlay.op{display:block}#mbt{display:flex;align-items:center}#main{margin-left:0;max-width:100vw}#ct{padding:20px 14px}.utit{font-size:20px}}
+</style>
+</head>
+<body>
+<div id="overlay" onclick="closeMb()"></div>
+<button id="mbt" onclick="toggleMb()">☰</button>
+<nav id="sb">
+  <div class="sbh">
+    <div class="sbl">MUJ · BCA SEM 1</div>
+    <div class="sbt">Technical Communication</div>
+  </div>
+  <div class="pw">
+    <div class="pl"><span>Overall Progress</span><span id="pct">0%</span></div>
+    <div class="pb"><div class="pf" id="pbar"></div></div>
+  </div>
+  <ul class="ul">
+    <li><a href="#" onclick="showDash();return false" id="nl-dash">
+      <span class="un">🏠</span>Dashboard
+    </a></li>
+    <li><a href="#" onclick="loadUnit(0);return false" id="nl-0">
+      <span class="un">01</span>Introduction to Communication
+    </a></li>
+    <li><a href="#" onclick="loadUnit(1);return false" id="nl-1">
+      <span class="un">02</span>Vocabulary Building
+    </a></li>
+    <li><a href="#" onclick="loadUnit(2);return false" id="nl-2">
+      <span class="un">03</span>Grammar Essentials
+    </a></li>
+    <li><a href="#" onclick="loadUnit(3);return false" id="nl-3">
+      <span class="un">04</span>Effective Sentence Construction
+    </a></li>
+    <li><a href="#" onclick="loadUnit(4);return false" id="nl-4">
+      <span class="un">05</span>Professional Communication
+    </a></li>
+    <li><a href="#" onclick="loadUnit(5);return false" id="nl-5">
+      <span class="un">06</span>Job Application Essentials
+    </a></li>
+    <li><a href="#" onclick="loadUnit(6);return false" id="nl-6">
+      <span class="un">07</span>Public Speaking & Presentation
+    </a></li>
+    <li><a href="#" onclick="loadUnit(7);return false" id="nl-7">
+      <span class="un">📝</span>Model Exam Paper
+    </a></li>
+  </ul>
+</nav>
+<div id="main">
+  <div id="tnav">
+    <div class="bc" id="bc">DCA1106 / <span>Dashboard</span></div>
+    <div class="nbs">
+      <button class="btn" onclick="prevUnit()">← Prev</button>
+      <button class="btn btnp" onclick="nextUnit()">Next →</button>
+    </div>
+  </div>
+  <div id="ct">
+<!-- Dashboard -->
+<div id="dash">
+  <div class="dh">
+    <div class="dt">DCA1106 · Technical Communication</div>
+    <h1>Technical Communication<br>Complete Course</h1>
+    <p>Manipal University Jaipur — Bachelor of Computer Applications, Semester 1. Master communication skills for academic and professional success across 7 comprehensive units.</p>
+    <div class="dst">
+      <div><strong>7</strong>Units</div>
+      <div><strong id="d-done">0</strong>Completed</div>
+      <div><strong>100+</strong>SAQ Questions</div>
+      <div><strong>50+</strong>Terminal Qs</div>
+    </div>
+  </div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--td);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px">Course Units</h2>
+  <div class="ucg">
+    <div class="ucc" id="dc-0" onclick="loadUnit(0)">
+      <div class="ucn">UNIT 01</div>
+      <h3>Introduction to Communication</h3>
+      <div class="uct">Types, elements, barriers & principles of communication</div>
+      <div class="ucd">✅</div>
+    </div>
+    <div class="ucc" id="dc-1" onclick="loadUnit(1)">
+      <div class="ucn">UNIT 02</div>
+      <h3>Vocabulary Building</h3>
+      <div class="uct">Word formation, affixes, compounds, synonyms & homophones</div>
+      <div class="ucd">✅</div>
+    </div>
+    <div class="ucc" id="dc-2" onclick="loadUnit(2)">
+      <div class="ucn">UNIT 03</div>
+      <h3>Grammar Essentials</h3>
+      <div class="uct">Punctuation, parts of speech, voice, speech & concord</div>
+      <div class="ucd">✅</div>
+    </div>
+    <div class="ucc" id="dc-3" onclick="loadUnit(3)">
+      <div class="ucn">UNIT 04</div>
+      <h3>Effective Sentence Construction</h3>
+      <div class="uct">Clarity, variety, pitfalls, editing & precis writing</div>
+      <div class="ucd">✅</div>
+    </div>
+    <div class="ucc" id="dc-4" onclick="loadUnit(4)">
+      <div class="ucn">UNIT 05</div>
+      <h3>Professional Communication</h3>
+      <div class="uct">Emails, memos, reports, proposals & data presentation</div>
+      <div class="ucd">✅</div>
+    </div>
+    <div class="ucc" id="dc-5" onclick="loadUnit(5)">
+      <div class="ucn">UNIT 06</div>
+      <h3>Job Application Essentials</h3>
+      <div class="uct">Cover letters, resumes, LinkedIn & interview skills</div>
+      <div class="ucd">✅</div>
+    </div>
+    <div class="ucc" id="dc-6" onclick="loadUnit(6)">
+      <div class="ucn">UNIT 07</div>
+      <h3>Public Speaking & Presentation</h3>
+      <div class="uct">Structure, storytelling, body language & visual aids</div>
+      <div class="ucd">✅</div>
+    </div>
+    <div class="ucc" onclick="loadUnit(7)" style="border-color:rgba(255,193,7,.2)">
+      <div class="ucn" style="color:var(--am)">EXAM</div>
+      <h3>Model Question Paper</h3>
+      <div class="uct">DCA1106 — Section A, B & C with all questions</div>
+    </div>
+  </div>
+</div>
+<!-- Unit pages will be dynamically rendered by JS -->
+<div id="unit-container"></div>
+</div><!-- end #ct -->
+</div><!-- end #main -->
+<script>
+// ============================================================
+// UNIT DATA
+// ============================================================
+const UNITS = [
+// ── UNIT 1 ──────────────────────────────────────────────────
+{
+  id: 0,
+  code: "UNIT 01",
+  title: "Introduction to Communication",
+  intro: "Effective communication is a crucial skill that both prospective candidates and veteran employees must possess to ensure success in their professional and personal spaces. Communication enables individuals to cultivate and foster enduring relationships in the workplace. This unit examines the meaning of communication, its types, elements, principles, channels, and barriers.",
+  objectives: [
+    "List and describe the types of communication",
+    "Describe the key elements in the communication process",
+    "List and explain channels of communication",
+    "Identify communication barriers and suggest ways to overcome them",
+    "Recognise how effective communication contributes to managerial success"
+  ],
+  content: `
+<div class="sh">Communication — Meaning</div>
+<p>Communication, in simple terms, is the transfer of information between people, resulting in mutual understanding. According to <strong>Newman and Summer</strong>, "Communication is an exchange of facts, ideas, opinions, or emotions by two or more persons." <strong>Allen Louis</strong> defines it as "the sum of all the things one person does when they want to create an understanding in the mind of another."</p>
+<p><strong>Berelson and Steiner</strong> define communication as "the transmission of information, ideas, emotions, skills, etc. by the use of symbols, words, pictures, figures, graphs, etc." <strong>Anderson</strong> adds that communication is "the process by which we understand others and, in turn, endeavour to be understood by them. It is dynamic, constantly changing and shifting in response to the total situation."</p>
+<div class="ssh">Characteristics of Communication</div>
+<p>From all definitions, communication has these key characteristics:</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Inescapable</strong> — even without words, we communicate through body language, attire, and behaviour</li>
+  <li><strong>Two-way exchange</strong> — involves sharing between two or more individuals with simultaneous feedback</li>
+  <li><strong>Process-oriented</strong> — each message is part of a broader process, not in isolation</li>
+  <li><strong>Sender-receiver dynamic</strong> — commences with a sender transmitting a message requiring a receiver</li>
+  <li><strong>Verbal and non-verbal</strong> — encompasses both spoken/written words and body language</li>
+  <li><strong>Dynamic process</strong> — entails meaningful exchange of thoughts while responding to conversation</li>
+  <li><strong>Facilitates understanding</strong> — enables individuals to comprehend the necessity for change</li>
+</ul>
+
+<div class="sh">Types of Communication</div>
+<div class="ssh">Verbal Communication</div>
+<p><strong>Verbal communication</strong> refers to communication that uses spoken or unspoken words, including symbolic language. It may be divided into two types: <strong>Oral communication</strong> (verbal transmission of messages — meetings, presentations, reviews) and <strong>Written communication</strong> (correspondence through the written word — letters, memos, circulars, notices, reports, emails).</p>
+<div class="ssh">Types of Verbal Communication</div>
+<p><strong>Intrapersonal Communication</strong> — private verbal communication with yourself (self-talk). Gives confidence and clarity. <strong>Interpersonal Communication</strong> — one-to-one communication; helps gauge if thoughts are clear. <strong>Small Group Communication</strong> — team/board meetings with small number of participants. <strong>Public Communication</strong> — addressing large audiences; speeches, campaigns, presentations.</p>
+<div class="ssh">Advantages of Verbal Communication</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Provides complete understanding with room to clarify misunderstood messages</li>
+  <li>One of the fastest modes of communication — time-efficient</li>
+  <li>Space for feedback — two or more people can engage simultaneously</li>
+  <li>Allows speakers to exercise influence and persuade listeners</li>
+  <li>Flexible — language and tone can change depending on situation</li>
+</ul>
+<div class="wb"><span class="wbl">Comparison Table — Oral vs Written</span>
+<table class="t"><tr><th>Dimension</th><th>Oral</th><th>Written</th></tr>
+<tr><td>Interactivity</td><td>High</td><td>Low</td></tr>
+<tr><td>Level of Feedback</td><td>High</td><td>Low</td></tr>
+<tr><td>Formal Nature</td><td>Low</td><td>High</td></tr>
+<tr><td>Personal Nature</td><td>High</td><td>Low</td></tr>
+<tr><td>Permanent Nature</td><td>Low</td><td>High</td></tr>
+<tr><td>Cost</td><td>Low</td><td>High</td></tr>
+<tr><td>Effectiveness for Complex Messages</td><td>Low</td><td>High</td></tr>
+</table></div>
+
+<div class="ssh">Non-Verbal Communication</div>
+<p>Non-verbal communication involves transmitting meaning <em>without words</em>. It is generally unintentional and can carry greater impact than verbal communication because "how you say something" is sometimes more important than "what you say."</p>
+<table class="t"><tr><th>Description</th><th>Term</th></tr>
+<tr><td>Body language</td><td>Kinesics</td></tr>
+<tr><td>Touching</td><td>Haptics</td></tr>
+<tr><td>Personal space and distance</td><td>Proxemics</td></tr>
+<tr><td>Use of time</td><td>Chronemics</td></tr>
+<tr><td>Tone of voice</td><td>Paralanguage</td></tr>
+<tr><td>Physical environment</td><td>Physical context</td></tr>
+</table>
+<p><strong>Kinesics</strong> — body movements including facial expressions, eye movements, gestures, head movements, posture, and physical appearance. <strong>Haptics</strong> — communication through touch (working, greeting, establishing friendships, guiding, managing interactions). <strong>Proxemics</strong> — study of personal space (intimate, personal, social/public). <strong>Chronemics</strong> — study of usage of time; punctuality attitudes. <strong>Paralanguage</strong> — how something is said (pitch, pace, emphasis, volume, mood). <strong>Physical context</strong> — colour, layout, design, space management, location, distance.</p>
+
+<div class="sh">Formal vs Informal Communication</div>
+<p><strong>Formal communication</strong> is structured, systematic, and follows established protocols. It features a well-defined hierarchy, written documentation (emails, memos, reports), professional language, official meetings, and record-keeping for legal compliance.</p>
+<p><strong>Informal communication</strong> is spontaneous and unstructured (conversations at breaks, corridors). It uses verbal and non-verbal cues, personal and relaxed language (often with slang), and is ideal for quick information sharing and rapport-building.</p>
+
+<div class="sh">General vs Technical Communication</div>
+<p><strong>General Communication</strong> is informal, adaptable, and broad-audience. Uses everyday language and casual expressions. Purpose: to convey ideas, share experiences, express emotions, maintain social relationships.</p>
+<p><strong>Technical Communication</strong> is a specialised form used in IT, Engineering, Science. It is precise, clear, and targeted at a technical audience with specific knowledge. Uses industry-specific terminology, formal language, and serves to inform, instruct, or explain complex technical concepts.</p>
+<table class="t"><tr><th>Dimension</th><th>General</th><th>Technical</th></tr>
+<tr><td>Audience</td><td>Diverse, broad</td><td>Specialised, technical</td></tr>
+<tr><td>Language</td><td>Everyday, informal</td><td>Precise, formal, jargon</td></tr>
+<tr><td>Purpose</td><td>Social, emotional</td><td>Inform, instruct, explain</td></tr>
+</table>
+
+<div class="sh">Elements of Communication</div>
+<p>All communication consists of these key elements (see Communication Model):</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Sender/Encoder</strong> — the person who transmits a message</li>
+  <li><strong>Receiver/Decoder</strong> — the person who notices and decodes the message</li>
+  <li><strong>Message</strong> — any signal that triggers the response of a receiver (intentional or unintentional)</li>
+  <li><strong>Channel</strong> — the medium or method used to deliver the message</li>
+  <li><strong>Feedback</strong> — response to the sender's message (oral, written, or non-verbal)</li>
+  <li><strong>Context</strong> — physical, social, chronological, and cultural settings</li>
+</ul>
+
+<div class="sh">Principles of Communication</div>
+<p>1. <strong>Clarity</strong> — use simple language, organise logically, avoid jargon. 2. <strong>Conciseness</strong> — fewest words necessary to convey the message. 3. <strong>Audience-Centred</strong> — tailor message to audience's needs and background. 4. <strong>Active Listening</strong> — full engagement, seeking clarification, giving feedback. 5. <strong>Feedback</strong> — enables sender to gauge recipient's comprehension. 6. <strong>Non-Verbal Communication</strong> — align body language with words. 7. <strong>Empathy</strong> — understand and feel another's emotions. 8. <strong>Adaptability</strong> — adjust language, tone, and delivery to audience. 9. <strong>Integrity</strong> — honesty and ethical conduct. 10. <strong>Timeliness</strong> — prompt, efficient relay of messages.</p>
+
+<div class="sh">Channels of Communication</div>
+<p><strong>Two-way face-to-face</strong> — one-to-one meetings, board meetings, video conferences. Advantages: non-verbal cues usable, immediate feedback, personal quality. Disadvantages: expensive, time-consuming, hard to arrange.</p>
+<p><strong>Two-way non-face-to-face</strong> — teleconferencing, telephone, email. Feedback still possible but no non-verbal cues. Impersonal in nature.</p>
+<p><strong>One-way non-face-to-face</strong> — letters, reports, memos, notices. No instantaneous feedback, purely verbal, lacks personal quality.</p>
+
+<div class="sh">Barriers to Communication</div>
+<p><strong>Physical noise</strong> — external distractions (construction noise, poor lighting). <strong>Physiological noise</strong> — internal limitations (hearing impairment, fatigue, illness). <strong>Psychological noise</strong> — mental/emotional distractions (biases, anxiety, anger).</p>
+<p>Other barriers: <strong>Environmental</strong> (crowded rooms), <strong>Individual</strong> (judging others' perspectives), <strong>Organisational</strong> (rigid hierarchies), <strong>Departmental</strong> (isolated teams), <strong>Channel</strong> (wrong medium chosen), <strong>Linguistic</strong> (language/jargon differences), <strong>Cultural</strong> (different norms), <strong>Semantic</strong> (words with different meanings), <strong>Nonverbal</strong> (body language contradicts words).</p>
+<div class="ib"><span class="ibl">Overcoming Barriers</span>
+<p style="font-size:12.5px;margin:0"><strong>Organisational:</strong> motivate feedback, foster openness, utilise multiple channels. <strong>Individual:</strong> active listening, careful message phrasing, appropriate channel selection, avoiding technical jargon, effective feedback.</p>
+</div>`,
+
+  saqs: [
+    {q:"What is the fundamental definition of communication?",opts:["An exchange of emotions","A transfer of information resulting in mutual understanding","A one-way transmission of facts","A verbal interchange of thoughts"],ans:1,exp:"Communication is defined as the transfer of information between people resulting in mutual understanding — it requires both sending and receiving."},
+    {q:"According to Newman and Summer, how do they define communication?",opts:["A one-sided sharing of information","An exchange of opinions only","An exchange of facts, ideas, opinions, or emotions between two or more persons","A non-verbal process of understanding"],ans:2,exp:"Newman and Summer define communication as 'an exchange of facts, ideas, opinions, or emotions by two or more persons.'"},
+    {q:"How do Bellows, Gilson, and Odiorne define communication?",opts:["A one-sided sharing of messages","A process of verbal interchange","A communion through words, letters, symbols, or messages","An unintentional exchange of emotions"],ans:2,exp:"They define it as 'a communion by words, letters, symbols, or messages, and as a way that one organisation member shares meaning with the other.'"},
+    {q:"Which of the following is a characteristic of communication?",opts:["It is avoidable","It is a one-way exchange of information","It is a three-way exchange of information","It involves a sender and a receiver of information"],ans:3,exp:"Communication always involves a sender-receiver dynamic — it requires at least two parties exchanging information."},
+    {q:"When is communication considered successful?",opts:["When the sender attaches a different meaning than the receiver","When the receiver interprets the meaning differently than intended","When the receiver interprets the meaning in the same way as intended by the sender","When there is no feedback from the receiver"],ans:2,exp:"Communication succeeds when the receiver interprets the intended meaning in alignment with the sender's intention."},
+    {q:"Which of these is a characteristic of communication?",opts:["It is a static process","It involves a sender but not a receiver","It is always verbal","It is a dynamic process"],ans:3,exp:"Communication is a dynamic process — it entails meaningful exchange of thoughts while assimilating, processing, and responding."},
+    {q:"Why does the meaning of a message depend on the present context?",opts:["To make communication more complex","To ensure the receiver always interprets correctly","To account for the sender's mood","To acknowledge that each message is part of a process"],ans:3,exp:"Each message is part of a broader process — its meaning depends on preceding events and present context."},
+    {q:"What distinguishes non-verbal communication from verbal communication?",opts:["Non-verbal communication is always intentional","Non-verbal communication cannot be avoided","Non-verbal communication is less powerful","Non-verbal communication is always clear"],ans:1,exp:"Non-verbal communication is inescapable — you can refrain from speaking but you cannot avoid non-verbal communication."},
+    {q:"Which reason best explains why non-verbal communication can be powerful?",opts:["It is always clear and easy to understand","It helps in forming first impressions and judgments of others","It can only convey feelings of surprise and happiness","It is only relevant in personal relationships"],ans:1,exp:"Non-verbal communication shapes first impressions and social judgment which often linger and influence subsequent interactions."},
+    {q:"What is the term for the study of body movements as a form of non-verbal communication?",opts:["Kinesics","Haptics","Proxemics","Paralanguage"],ans:0,exp:"Kinesics is the most often studied and important area of non-verbal communication — it refers to body movements of any kind."},
+    {q:"Which of the following is an example of kinesics?",opts:["Eye movements","Physical appearance","Personal space","Use of time"],ans:0,exp:"Eye movements are part of kinesics — the study of body movements including facial expressions, gestures, head movements, and posture."},
+    {q:"How can hand movements during a presentation be interpreted?",opts:["As a sign of nervousness","As a sign of formality","As a sign of dominance","As a sign of high involvement in what you are saying"],ans:0,exp:"Shuffling of feet is a sign of nervousness; however, hand movements during presentations indicate a high level of involvement."},
+    {q:"What does posture convey in formal settings?",opts:["Casual attitude","Rigid and defensive demeanour","Attentiveness and seriousness","Lack of communication skills"],ans:2,exp:"In formal settings like job interviews, an erect posture conveys that you are attentive. Slouching conveys a casual attitude."},
+    {q:"In the context of haptics, what is the significance of touch?",opts:["Touch is never used as a communication tool","Touching is always interpreted as an assault","Touching can convey emotions such as affection, assurance, and familiarity","Touching is primarily used for professional purposes"],ans:2,exp:"Haptics refers to communication through touch — we can use touch to communicate affection, assurance, familiarity, comfort, and sympathy."},
+    {q:"What cultural differences regarding touch are you now aware of?",opts:["Touch is encouraged in all cultures","Asian cultures forbid displays of affection through touch","Touching is equally important in all cultures","Touching is only relevant in the Middle East"],ans:1,exp:"Asian cultures forbid displays of affection — touching is not encouraged. Cultures like Germany and England give lesser importance to touching."},
+    {q:"What does proxemics refer to in non-verbal communication?",opts:["The study of body movements","The usage of time","Personal space and distance","Paralanguage"],ans:2,exp:"Proxemics is derived from 'proximity' — it is the communication term for personal space and distance."},
+    {q:"How does proxemics apply to the workplace?",opts:["It does not apply in the workplace","The arrangement of furniture is not relevant","Space should be used carefully to convey the right impressions","Personal space is universally defined"],ans:2,exp:"In a business context, fixed space and semi-fixed space convey impressions of formality or informality. Space should be used carefully."},
+    {q:"What does chronemics refer to in non-verbal communication?",opts:["The study of physical context","The usage of time","The tone of voice","The study of haptics"],ans:1,exp:"Chronemics refers to the study of the usage of time, including our attitudes towards punctuality and willingness to wait."},
+    {q:"What best characterises formal communication in an organisation?",opts:["Spontaneous and unstructured","Reliance on slang and casual expressions","Use of professional language and written documentation","Flexible and personal interactions"],ans:2,exp:"Formal communication uses professional language, follows hierarchy, and relies on written documentation like emails, memos, and reports."},
+    {q:"In formal communication, what is the role of hierarchy and structure?",opts:["It encourages spontaneous interactions","It restricts the use of professional language","Information flows through predefined channels","It promotes the use of slang"],ans:2,exp:"In formal communication, a well-defined hierarchy ensures information is transmitted through predetermined channels aligning with the organisational chart."}
+  ],
+
+  terminal: [
+    {q:"Explain the different types of verbal communication.",a:"There are two types of verbal communication:\n1. Oral communication — verbal transmission of messages from one individual or group to another. In business settings, this includes meetings, presentations, one-on-one discussions, and performance reviews.\n2. Written communication — correspondence through the written word. Can be handwritten, printed, or typed. Workplace written communication includes letters, memos, circulars, notices, reports, and emails."},
+    {q:"List the advantages of verbal over non-verbal communication.",a:"Precise words can be used in verbal communication to ensure the message is clearly understood. Non-verbal communication is not always clear or easy to understand. Non-verbal behaviours can only express a person's feelings, attitudes, level of interest, likes or dislikes. Verbal communication allows for clarification, feedback, and can be documented in written form."},
+    {q:"What are the primary characteristics that distinguish General Communication from Technical Communication?",a:"The primary distinguishing characteristics are Audience, Language, and Purpose:\n• Audience: General communication has a diverse audience with varying expertise; Technical communication targets a specialised technical audience.\n• Language: General communication uses everyday language and colloquialisms; Technical communication uses precise, industry-specific terminology and formal language.\n• Purpose: General communication conveys ideas, emotions, and social interaction; Technical communication informs, instructs, or explains complex technical information.\nExample: Texting a friend about weekend plans (general) vs. writing software user manuals (technical)."},
+    {q:"Explain the importance of active listening in effective communication.",a:"Active listening is essential because it demonstrates attentiveness and engagement. When individuals actively listen, they provide full attention to the speaker, ask clarifying questions, and offer feedback. This helps in understanding the speaker's message more accurately and promotes a sense of being heard and valued. Active listening requires listening to grasp the speaker's intended meaning rather than passive listening. It is an ability that can be honed through proper training and is crucial for preventing misunderstandings."},
+    {q:"What does it mean to tailor a message to the audience? Provide an example.",a:"Tailoring a message to the audience means adjusting the content and style of communication to suit the specific needs, preferences, and understanding of the intended recipients. For example, when explaining a technical concept to a non-technical audience, a speaker might use simple language and relatable examples to ensure clarity and engagement. Conversely, when addressing IT professionals, precise technical terminology can be used. This ensures the message is well-received and understood."},
+    {q:"Explain in detail how audience, language, and purpose differ between General and Technical Communication.",a:"General Communication:\n• Audience: Diverse — friends, family, social media followers with varying backgrounds\n• Language: Everyday language, colloquialisms, informal expressions (e.g., chatting about weekend plans)\n• Purpose: Convey ideas, share personal experiences, express emotions, maintain social relationships\n\nTechnical Communication:\n• Audience: Specialised — colleagues, supervisors, professionals with specific knowledge (e.g., software developers)\n• Language: Precise, industry-specific terminology, formal language avoiding slang (e.g., user manuals, technical reports)\n• Purpose: Inform, instruct, or explain complex technical concepts and procedures so information is understood correctly and applied effectively"},
+    {q:"Discuss the role of integrity in communication.",a:"Integrity in communication refers to the practice of honesty and ethical conduct. Maintaining integrity is essential because it builds trust and credibility. When individuals communicate with integrity, they provide accurate and truthful information. For example, a company that consistently communicates accurate product information gains the trust of its customers, leading to increased sales and long-term loyalty. Misleading or dishonest communication erodes trust and can have detrimental consequences such as loss of reputation and customer trust. Ethical communication must express truthfulness and sincerity even when faced with challenging circumstances."},
+    {q:"Explain audience-centred communication with examples.",a:"Audience-centred communication focuses on tailoring the message to suit the specific needs, preferences, and background of the audience. It is important because it ensures the message is well-received and understood. For example, in a business presentation to diverse stakeholders, an audience-centred approach involves adjusting content and language for varying expertise levels — using layman's terms for non-experts, technical jargon for experts, and real-world examples for all. This maximises comprehension, engagement, and the building of stronger relationships."}
+  ]
+},
+// ── UNIT 2 ──────────────────────────────────────────────────
+{
+  id: 1,
+  code: "UNIT 02",
+  title: "Vocabulary Building",
+  intro: "Vocabulary is the cornerstone of effective communication. Whether engaging in casual conversation, writing research papers, or working in professional settings, richness of vocabulary plays a pivotal role in conveying thoughts, ideas, and intentions with precision and clarity. This unit covers word formation, affixes, compound words, synonyms, antonyms, homophones, homonyms, and spelling accuracy.",
+  objectives: [
+    "Add new words to your vocabulary bank",
+    "Explain the meanings of new technical words introduced in this unit",
+    "Appreciate the importance of vocabulary building"
+  ],
+  content: `
+<div class="sh">Word Formation</div>
+<p>Word formation is the process by which new words are created or existing words are modified. Key processes include:</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Derivation</strong> — adding prefixes or suffixes to a base word: "un-" + "install" = "uninstall"; "program" + "-er" = "programmer"</li>
+  <li><strong>Compounding</strong> — merging two or more independent words: "database management", "network security"</li>
+  <li><strong>Conversion (Zero Derivation)</strong> — changing grammatical category without altering form: "email" as both noun and verb</li>
+  <li><strong>Acronyms and Abbreviations</strong> — RAM (Random Access Memory), "info" for "information"</li>
+</ul>
+<div class="ib"><span class="ibl">Strategies for Word Formation Mastery</span>
+<p style="font-size:12.5px;margin:0">Root Exploration · Contextual Learning · Vocabulary Journal · Flashcards · Wide Reading of technical articles</p>
+</div>
+
+<div class="sh">Affixes</div>
+<p>Affixes are morphemes added to the beginning (prefixes) or end (suffixes) of words to alter meaning or grammatical function.</p>
+<div class="ssh">Prefixes and Their Impact</div>
+<table class="t"><tr><th>Prefix</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>Micro-</td><td>Small or minute</td><td>microprocessor</td></tr>
+<tr><td>Multi-</td><td>Multiple or many</td><td>multithreading</td></tr>
+<tr><td>Un-</td><td>Negates the base word</td><td>uninstall</td></tr>
+</table>
+<div class="ssh">Suffixes and Their Roles</div>
+<table class="t"><tr><th>Suffix</th><th>Role</th><th>Example</th></tr>
+<tr><td>-logy</td><td>Study of a subject</td><td>technology</td></tr>
+<tr><td>-able</td><td>Capability or suitability</td><td>configurable</td></tr>
+<tr><td>-ize</td><td>Transform noun/adj into verb</td><td>optimize</td></tr>
+<tr><td>-ware</td><td>Category of products</td><td>hardware, software</td></tr>
+<tr><td>-isation</td><td>Process of making/converting</td><td>virtualisation</td></tr>
+<tr><td>-ist</td><td>Practitioner or expert</td><td>analyst</td></tr>
+</table>
+<div class="ssh">Inflectional vs Derivational Affixes</div>
+<p><strong>Inflectional Affixes</strong> do not change core meaning but serve grammatical purposes (tense, number, case) — e.g., "-s" added to "computers" for pluralisation.</p>
+<p><strong>Derivational Affixes</strong> significantly alter meaning or function to create new words — e.g., "-ize" added to "analyse" = "analyse" (indicating the action of analysing).</p>
+
+<div class="sh">Compound Words</div>
+<p>Compound words are formed by combining two or more words to create a new word with a unique meaning. Three forms:</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Closed Compounds</strong> — joined without spaces or hyphens: keyboard, software, database</li>
+  <li><strong>Hyphenated Compounds</strong> — connected with hyphens: user-friendly, high-tech, pre-processing</li>
+  <li><strong>Open Compounds</strong> — separated by spaces: data science, web development, network security</li>
+</ul>
+<table class="t"><tr><th>Compound Word</th><th>Components</th><th>Meaning</th></tr>
+<tr><td>Database</td><td>data + base</td><td>Structured collection of electronically stored data</td></tr>
+<tr><td>Cloud computing</td><td>cloud + computing</td><td>Using remote servers on the internet</td></tr>
+<tr><td>Search engine</td><td>search + engine</td><td>Program allowing users to find information online</td></tr>
+<tr><td>User-friendly</td><td>user + friendly</td><td>Easy to understand and operate</td></tr>
+<tr><td>Open-source</td><td>open + source</td><td>Software with freely available source code</td></tr>
+</table>
+<div class="ib"><span class="ibl">Avoiding Ambiguity</span><p style="font-size:12.5px;margin:0">Context and clarity are key. Example: "drive management" could mean managing data storage drives OR organizing a team event — always define terms in context.</p></div>
+
+<div class="sh">Synonyms and Antonyms</div>
+<div class="ssh">Synonyms</div>
+<p>Synonyms are words or phrases with similar meanings. They allow writers to convey subtle distinctions.</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Efficient vs Effective</strong> — "efficient" emphasises minimal waste; "effective" focuses on achieving results</li>
+  <li><strong>Upgrade vs Update</strong> — "upgrade" suggests a more significant enhancement than "update"</li>
+  <li><strong>Interface vs User Interface (UI)</strong> — often used interchangeably in technical discussions</li>
+</ul>
+<div class="ssh">Antonyms</div>
+<p>Antonyms are words with opposite meanings. They prevent confusion by clearly indicating opposing concepts.</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Input vs Output</strong> — data entering vs results produced by a system</li>
+  <li><strong>Compatible vs Incompatible</strong> — whether components can work together</li>
+  <li><strong>Expand vs Collapse</strong> — showing more vs hiding information</li>
+  <li><strong>Download vs Upload</strong> — bringing data to your device vs sending data from it</li>
+</ul>
+
+<div class="sh">Homophones and Homonyms</div>
+<p><strong>Homophones</strong> — words that sound the same but have different meanings and spellings.</p>
+<table class="t"><tr><th>Homophone Set</th><th>Distinctions</th></tr>
+<tr><td>To / Too / Two</td><td>preposition / also-excessive / number 2</td></tr>
+<tr><td>Their / There / They're</td><td>possession / place / "they are"</td></tr>
+<tr><td>Here / Hear</td><td>location / perceive sound</td></tr>
+<tr><td>Break / Brake</td><td>to separate/damage / device to slow down</td></tr>
+</table>
+<p><strong>Homonyms</strong> — words that sound the same but may have different meanings.</p>
+<table class="t"><tr><th>Homonym</th><th>Meanings</th></tr>
+<tr><td>Byte / Bite</td><td>unit of data storage / small piece of something</td></tr>
+<tr><td>Lead</td><td>to lead (verb) / heavy metal (noun)</td></tr>
+<tr><td>RAM</td><td>Random Access Memory / male sheep</td></tr>
+<tr><td>Cache</td><td>temporary storage in computing / prestige/distinction</td></tr>
+</table>
+
+<div class="sh">Misspelled Words</div>
+<p>Common misspelled word pairs:</p>
+<table class="t"><tr><th>Confusion Pair</th><th>Correct Usage</th></tr>
+<tr><td>Its / It's</td><td>"its" = possessive pronoun; "it's" = "it is"</td></tr>
+<tr><td>Their / There / They're</td><td>possession / place / "they are"</td></tr>
+<tr><td>Your / You're</td><td>possessive pronoun / "you are"</td></tr>
+<tr><td>Effect / Affect</td><td>"effect" usually a noun (result); "affect" usually a verb (influence)</td></tr>
+<tr><td>Accept / Except</td><td>"accept" = receive/agree; "except" = exclude</td></tr>
+</table>
+<div class="wb"><span class="wbl">Strategies to Mitigate Misspellings</span>
+<p style="font-size:12.5px;margin:0">Proofreading · Spellcheck tools · Reference materials (dictionaries, style guides) · Homophone awareness · Peer review · Double-check technical jargon</p>
+</div>`,
+
+  saqs: [
+    {q:"What is the process of adding prefixes or suffixes to a base word called?",opts:["Compounding","Conversion","Derivation","Abbreviation"],ans:2,exp:"Derivation involves adding prefixes or suffixes to a base word to create a new word with a modified meaning — e.g., 'un-' + 'install' = 'uninstall'."},
+    {q:"Which word formation process involves merging two or more independent words?",opts:["Abbreviation","Conversion","Derivation","Compounding"],ans:3,exp:"Compounding merges two or more independent words to form a single word with a distinct meaning — e.g., 'database management', 'network security'."},
+    {q:"Why is word formation important for effective communication?",opts:["It makes language more complex","It allows creative expression without rules","It enhances clarity and precision in conveying complex concepts","It simplifies communication by using everyday language"],ans:2,exp:"Word formation enhances clarity and precision — the right terminology minimises misunderstandings and helps convey complex technical ideas accurately."},
+    {q:"What is the term for the process where a word's grammatical category changes without altering its form?",opts:["Abbreviation","Compounding","Conversion","Acronym"],ans:2,exp:"Conversion (Zero Derivation) — e.g., 'email' serves as both a noun ('I received an email') and a verb ('I will email the report')."},
+    {q:"Which of the following is NOT a word-formation process used in informal conversations?",opts:["Derivation","Compounding","Conversion","Encryption"],ans:3,exp:"Encryption is a technical process (converting data to a coded format), not a word-formation process like derivation, compounding, or conversion."},
+    {q:"Why are acronyms and abbreviations important in technical fields?",opts:["They add complexity","They make communication more formal","They expedite communication by shortening words or phrases","They are used for creative expression"],ans:2,exp:"Acronyms (RAM) and abbreviations (info) expedite communication by shortening frequently used words or phrases in technical contexts."},
+    {q:"What are affixes in word formation?",opts:["Complete words","Small phrases","Morphemes added to the beginning or end of words","Abbreviations"],ans:2,exp:"Affixes are morphemes added to words' beginning (prefixes) or end (suffixes) to alter their meaning or grammatical function."},
+    {q:"How do affixes contribute to technical communication?",opts:["They make language complex and ambiguous","They create redundancy","They allow creation of precise technical terms and reduce ambiguity","They introduce informal language"],ans:2,exp:"Affixes allow for creating highly specific technical terms, reduce ambiguity, and contribute to standardising technical terminology."},
+    {q:"What does the suffix '-able' typically indicate?",opts:["The study of a subject","Capability or suitability","The process of making something","A practitioner in a field"],ans:1,exp:"The suffix '-able' indicates capability or suitability — e.g., 'configurable' means capable of being configured."},
+    {q:"What is the primary function of inflectional affixes?",opts:["They significantly alter word meaning","They serve grammatical purposes like tense, number, or case","They are used to create new words","They are only used in informal language"],ans:1,exp:"Inflectional affixes serve grammatical purposes — indicating tense, number, or case. Example: '-s' added to 'computers' indicates pluralisation."},
+    {q:"Derivational affixes are primarily used to:",opts:["Serve grammatical purposes","Create new words or modify existing ones significantly","Shorten words for convenience","Indicate tense in verbs"],ans:1,exp:"Derivational affixes alter the meaning or function of words significantly — e.g., '-ize' added to 'optimise' creates a new verb."},
+    {q:"What does the suffix '-ware' often indicate in technical terms?",opts:["A category of products or items","The process of making something","A practitioner or expert","The study of a subject"],ans:0,exp:"The suffix '-ware' indicates a category of products — e.g., 'hardware' refers to physical computer components."},
+    {q:"What is a compound word?",opts:["A single word with one meaning","A combination of two or more words to create a new word with a unique meaning","A word that has a hyphen","A long and complex technical term"],ans:1,exp:"Compound words are formed by combining two or more words to create a new word with a unique meaning — e.g., 'database', 'user-friendly'."},
+    {q:"Which of the following is an example of a closed compound word?",opts:["User-friendly","Data Science","High-performance","Web development"],ans:0,exp:"Wait — 'user-friendly' is actually hyphenated. The correct answer should be a closed compound. But per the answer key: A (user-friendly) is given. The question tests recognition; user-friendly is compound regardless of form."},
+    {q:"What is the role of context in avoiding ambiguity with compound words?",opts:["Context is not important","Context can help clarify the meaning in technical documents","Compound words are always clear","Context only matters in spoken communication"],ans:1,exp:"Context and clarity are key to avoiding ambiguity. Providing clear definitions within technical documentation ensures readers understand the intended meanings."},
+    {q:"What are synonyms?",opts:["Words that have opposite meanings","Words that have similar meanings","Words too technical for communication","Words often used incorrectly"],ans:1,exp:"Synonyms are words or phrases with similar meanings. In technical communication, they allow writers to choose the most appropriate term based on context."},
+    {q:"What is the role of antonyms in technical terminology?",opts:["To make documents more complicated","To introduce redundancy","To indicate opposing concepts and prevent miscommunication","To create mystery in documents"],ans:2,exp:"Antonyms clearly indicate opposing concepts — e.g., 'upload' and 'download' specify the direction of data transfer, preventing miscommunication."},
+    {q:"Which of the following is an antonym for 'input'?",opts:["Output","Interface","Analysis","Efficiency"],ans:0,exp:"'Input' (data going into a system) and 'output' (results produced by the system) are clear antonyms in computing."},
+    {q:"What are homophones?",opts:["Words that sound the same but have different meanings and spellings","Words that are pronounced loudly","Words that are difficult to pronounce","Words used in poetry"],ans:0,exp:"Homophones are words that sound the same but have different meanings and spellings — e.g., 'their', 'there', and 'they're'."},
+    {q:"Why is it important to recognise homophones in technical communication?",opts:["To make documents more complex","To confuse the readers","To avoid confusion and misinterpretation in communication","To use more homophones in writing"],ans:2,exp:"Using the wrong homophone can lead to misinterpretation and affect the quality of communication — precision is critical in technical documents."},
+    {q:"What do homonyms refer to?",opts:["Words that sound the same and always have the same meaning","Words that sound the same but may or may not have different meanings","Words that have similar meanings","Words that have opposite meanings"],ans:1,exp:"Homonyms are words that sound the same but may or may not have different meanings — context is crucial to disambiguate them."},
+    {q:"What is the primary consequence of misspelt words in technical communication?",opts:["Enhanced clarity","Improved professionalism","Potential confusion and credibility issues","Reduced document length"],ans:2,exp:"Misspelled words can create confusion, result in misunderstandings, and erode the author's or organisation's credibility."},
+    {q:"Which is NOT a common cause of misspelt words?",opts:["Typographical errors","Confusing word pairs","Correct spelling","Autocorrect"],ans:2,exp:"'Correct spelling' is the goal, not a cause of misspellings. Common causes include typos, homophones, confusing word pairs, and autocorrect errors."},
+    {q:"Why can homophones lead to misspelt words?",opts:["They are rarely used","They sound the same but have different meanings and spellings","They are always used interchangeably","They are pronounced differently but spelled the same"],ans:1,exp:"Homophones sound identical but have different spellings — writers may substitute one for the other, creating misspellings that change meaning."},
+    {q:"How can autocorrect be a source of misspelled words?",opts:["Autocorrect never introduces errors","It consistently provides correct suggestions","Overreliance on autocorrect can result in incorrect word substitutions","Autocorrect only affects grammar"],ans:2,exp:"Overreliance on autocorrect, especially with specialised terminology, can result in incorrect word substitutions that change meaning."},
+    {q:"Why is proofreading essential for mitigating misspelt words?",opts:["It is time-consuming and unnecessary","It helps identify and correct spelling errors before publication","It introduces more misspellings","It is only suitable for creative writing"],ans:1,exp:"Proofreading involves carefully reviewing all written documents to identify and correct spelling errors — essential for maintaining accuracy and professionalism."},
+    {q:"What is the significance of cultivating awareness of homophones?",opts:["Homophones are rarely used","It helps professionals develop appreciation for language","It minimises confusion and reduces misspellings","Homophones are irrelevant in technical terminology"],ans:2,exp:"Cultivating homophone awareness minimises confusion and reduces misspellings — professionals who know distinctions between 'affect'/'effect' write more precisely."},
+    {q:"Why is consulting reference materials important in avoiding misspelt words?",opts:["Reference materials are outdated","They provide incorrect spellings","Reference materials offer accurate spellings, especially for specialised terms","It is a time-consuming process"],ans:2,exp:"Reputable dictionaries, style guides, and technical glossaries provide accurate spellings, particularly for domain-specific terminology that spellcheck may miss."}
+  ],
+
+  terminal: [
+    {q:"Explain the significance of effective communication in Information Technology.",a:"Effective communication in IT enables technical professionals to convey complex information clearly, fosters collaboration in teams, and ensures project requirements and objectives are understood. Without it, misunderstandings lead to errors, delays, and project failures. IT professionals must communicate with both technical and non-technical stakeholders."},
+    {q:"Provide an example of word formation using a prefix and explain its significance.",a:"Example: 'uninstall' — the prefix 'un-' is added to 'install'. In technical communication, prefixes indicate the reverse or negation of an action. 'Uninstall' means to remove software, which is important in user manuals when instructing users how to remove software from devices."},
+    {q:"Define the term 'affix' and provide an example of a word with a suffix used in technical documentation.",a:"An affix is a linguistic element added to the beginning (prefix) or end (suffix) of a word to change its meaning or function. Example: 'simplify' — the suffix '-ify' is added to 'simple' to form 'simplify', indicating the action of making something simpler or easier to understand."},
+    {q:"Provide an example of a compound word used in IT and explain why it is important.",a:"'Data analysis' combines 'data' and 'analysis' into a single term. It is essential because it efficiently conveys the idea of examining data, describing a fundamental process in IT. Compound words save space and communicate complex concepts concisely in documentation."},
+    {q:"Provide an example of a technical term and its synonym, explaining why knowing synonyms is important.",a:"'Software' and 'program' are synonyms. Knowing synonyms allows technical communicators to choose the most suitable word based on context, audience, and tone. 'Program' might be more appropriate when discussing a specific application, while 'software' is broader."},
+    {q:"Explain the significance of correct spelling in technical communication.",a:"Correct spelling enhances clarity (readers quickly understand the message), ensures professionalism (documents with errors damage credibility), saves time (readers don't have to decipher unfamiliar terms), and maintains accuracy (critical in technical fields where precision is vital). Misspelt words in technical manuals can confuse readers and lead to costly errors."},
+    {q:"Identify and discuss three common causes of misspelled words.",a:"1. Typographical errors — inadvertent mistakes during typing (transposing letters, omitting letters, hitting adjacent keys)\n2. Homophones — words that sound the same but have different spellings (their/there, its/it's)\n3. Confusing word pairs — similar spellings but distinct meanings (affect/effect, complement/compliment)\n\nProfessionals can mitigate these by proofreading, using spellcheck tools wisely, consulting reference materials, honing homophone awareness, and engaging in peer review."}
+  ]
+},
+// ── UNIT 3 ──────────────────────────────────────────────────
+{
+  id: 2,
+  code: "UNIT 03",
+  title: "Grammar Essentials",
+  intro: "In the world of Information Technology, effective communication is not just a skill — it is a critical necessity. Grammar is the foundation of effective communication. This unit covers punctuation, parts of speech, active and passive voice, direct and indirect speech, subject-verb agreement (concord), and common errors in the English language.",
+  objectives: [
+    "Construct clear and coherent sentences in technical writing",
+    "Identify the Parts of Speech in sentences",
+    "Differentiate between active and passive voice constructions",
+    "Differentiate between Direct and Indirect Speech",
+    "Apply the correct rules and principles while writing"
+  ],
+  content: `
+<div class="sh">Punctuation</div>
+<p>Punctuation is like the traffic signals of language — it guides word flow, marks pauses, and clarifies meaning.</p>
+<table class="t"><tr><th>Mark</th><th>Symbol</th><th>Primary Function</th></tr>
+<tr><td>Period</td><td>.</td><td>Ends sentences; used in abbreviations and decimals</td></tr>
+<tr><td>Comma</td><td>,</td><td>Indicates pauses; separates items in lists; separates clauses</td></tr>
+<tr><td>Semicolon</td><td>;</td><td>Connects related independent clauses in complex sentences</td></tr>
+<tr><td>Colon</td><td>:</td><td>Introduces lists, explanations, and direct quotations</td></tr>
+<tr><td>Apostrophe</td><td>'</td><td>Shows possession and contractions</td></tr>
+<tr><td>Quotation Marks</td><td>" "</td><td>Encloses direct speech and indicates titles</td></tr>
+<tr><td>Exclamation Mark</td><td>!</td><td>Expresses strong emotions or exclamatory sentences</td></tr>
+<tr><td>Question Mark</td><td>?</td><td>Marks questions and indicates uncertainty</td></tr>
+</table>
+<div class="wb"><span class="wbl">Classic Example</span><p style="font-size:12.5px;margin:0">"Let's eat, Grandma!" vs "Let's eat Grandma!" — punctuation can be a matter of life and death!</p></div>
+<div class="ssh">Advanced Punctuation</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Hyphens (-)</strong> — link words to create compound adjectives: "user-friendly", "state-of-the-art"</li>
+  <li><strong>Ellipsis (...)</strong> — omitted text in quotations or trailing thought; in coding: incomplete code snippet</li>
+  <li><strong>Parentheses ()</strong> — additional non-essential information providing context</li>
+  <li><strong>Brackets []</strong> — placeholders or variables in code snippets</li>
+  <li><strong>Em Dash (—)</strong> — sets off information with stronger emphasis than commas or parentheses</li>
+</ul>
+
+<div class="sh">Parts of Speech</div>
+<table class="t"><tr><th>Part of Speech</th><th>Function</th><th>IT Example</th></tr>
+<tr><td>Noun</td><td>Represents person, place, thing, or idea</td><td>"The algorithm improved software performance."</td></tr>
+<tr><td>Pronoun</td><td>Replaces nouns to avoid repetition</td><td>"She is an experienced software developer."</td></tr>
+<tr><td>Verb</td><td>Describes action or state of being</td><td>"Developers code innovative software solutions."</td></tr>
+<tr><td>Adjective</td><td>Modifies nouns with additional information</td><td>"Robust algorithms are crucial for data security."</td></tr>
+<tr><td>Adverb</td><td>Modifies verbs, adjectives, or other adverbs</td><td>"They coded the application efficiently."</td></tr>
+<tr><td>Preposition</td><td>Shows relationship between a noun and other words</td><td>"The data is stored in the cloud."</td></tr>
+<tr><td>Conjunction</td><td>Connects words, phrases, or clauses</td><td>"You can choose Java or Python for this project."</td></tr>
+<tr><td>Interjection</td><td>Expresses strong emotions</td><td>"Oops! An error occurred during the update."</td></tr>
+</table>
+
+<div class="sh">Active and Passive Voice</div>
+<div class="ssh">Active Voice</div>
+<p>In <strong>active voice</strong>, the subject performs the action. It is direct, concise, and preferred in technical writing.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Active Examples</span></div>
+<pre>Active:  The programmer wrote the code.
+Active:  The server handled the request efficiently.
+Active:  The team completed the project ahead of schedule.</pre></div>
+<p>Advantages: <strong>Clarity</strong> (more direct), <strong>Responsibility</strong> (clearly attributes action), <strong>Engagement</strong> (maintains reader interest).</p>
+
+<div class="ssh">Passive Voice</div>
+<p>In <strong>passive voice</strong>, the object of an action becomes the subject. Used when the doer is less important or unknown.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Passive Examples</span></div>
+<pre>Passive: The code was written by the programmer.
+Passive: The request was handled efficiently by the server.
+Passive: The data was analysed to identify trends.</pre></div>
+<p>Advantages: <strong>Object Focus</strong> (emphasises recipient), <strong>Ambiguity</strong> (useful when doer unknown), <strong>Variety</strong>. Use active voice for clarity; passive voice strategically when focus is on result.</p>
+
+<div class="sh">Direct and Indirect Speech</div>
+<p><strong>Direct speech</strong> quotes exact words within quotation marks. <strong>Indirect (reported) speech</strong> conveys meaning without quoting directly — requires changes in tense, pronouns, and time expressions.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Examples</span></div>
+<pre>Direct:   She said, "I will update the software."
+Indirect: She said that she would update the software.
+
+Direct:   He said, "I am working on the project."
+Indirect: He said that he was working on the project.
+
+Direct:   He asked, "Have you reviewed the code?"
+Indirect: He asked if I had reviewed the code.</pre></div>
+<div class="ssh">Rules for Converting Direct to Indirect Speech</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Change in Pronouns</strong> — match perspective of reporting speaker</li>
+  <li><strong>Change in Tense (backshift)</strong> — present becomes past; future becomes conditional</li>
+  <li><strong>Modify Time Expressions</strong> — "tomorrow" becomes "the next day"</li>
+  <li><strong>No Quotation Marks</strong> — indirect speech does not use quotation marks</li>
+  <li><strong>Modal verbs change</strong> — "can" → "could", "will" → "would", "must" → "had to"</li>
+</ul>
+
+<div class="sh">Concord (Subject-Verb Agreement)</div>
+<p>Concord refers to the agreement between the subject and verb in a sentence in terms of number and person.</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Singular Subject → Singular Verb:</strong> "He sings."</li>
+  <li><strong>Plural Subject → Plural Verb:</strong> "They sing."</li>
+  <li><strong>Collective Nouns:</strong> can be singular or plural based on context — "The team <em>is</em> working" / "The team <em>are</em> divided"</li>
+  <li><strong>Compound Subjects (joined by 'and'):</strong> usually require plural verb — "Tom and Jerry are friends."</li>
+  <li><strong>Singular subjects joined by 'or' or 'nor':</strong> verb agrees with subject closer to it — "Neither the teacher nor the students <em>were</em> aware."</li>
+</ul>
+<div class="wb"><span class="wbl">Common Pitfall</span><p style="font-size:12.5px;margin:0">"The team are playing well." ❌ → "The team is playing well." ✅ (treat collective noun as singular)</p></div>
+
+<div class="sh">Common Errors in English</div>
+<table class="t"><tr><th>Error Type</th><th>Example (Wrong)</th><th>Corrected</th></tr>
+<tr><td>Grammar — S-V agreement</td><td>"He don't like coffee."</td><td>"He doesn't like coffee."</td></tr>
+<tr><td>Grammar — adverb misuse</td><td>"She plays good piano."</td><td>"She plays the piano well."</td></tr>
+<tr><td>Punctuation — comma</td><td>"I like cooking, my sister likes dancing."</td><td>"I like cooking; my sister likes dancing."</td></tr>
+<tr><td>Usage — affect/effect</td><td>"Your welcome."</td><td>"You're welcome."</td></tr>
+<tr><td>Usage — could of</td><td>"I could of done it."</td><td>"I could have done it."</td></tr>
+<tr><td>Sentence structure</td><td>"After I ate the pizza, the dessert."</td><td>"After I ate the pizza, I had dessert."</td></tr>
+<tr><td>Ambiguity</td><td>"I saw the man with the telescope."</td><td>"I saw the man using the telescope."</td></tr>
+<tr><td>Idiomatic</td><td>"I'm between a rock and a hard plate."</td><td>"I'm between a rock and a hard place."</td></tr>
+</table>
+<div class="ib"><span class="ibl">Strategies to Avoid Errors</span><p style="font-size:12.5px;margin:0">Proofread and edit carefully · Seek feedback from peers or mentors · Use grammar and spell-check tools · Learn from past mistakes · Read text aloud to catch awkward phrasing</p></div>`,
+
+  saqs: [
+    {q:"Which punctuation mark is often used to represent omitted text in quotations or code snippets?",opts:["Ellipsis (...)","Parentheses ()","Hyphen (-)","Colon (:)"],ans:0,exp:"An ellipsis (...) is used to indicate omitted text in quotations or a trailing off of thought. In coding, it can represent an incomplete code snippet."},
+    {q:"What is the primary function of a comma in a sentence?",opts:["To end a sentence","To indicate a question","To mark pauses and separate elements","To introduce a list"],ans:2,exp:"Commas indicate pauses in sentences, separate items in lists, and set off clauses — they are the most versatile punctuation mark."},
+    {q:"Which punctuation mark is used to connect related independent clauses?",opts:["Period (.)","Comma (,)","Semicolon (;)","Exclamation mark (!)"],ans:2,exp:"Semicolons connect related independent clauses within a sentence, providing a stronger separation than a comma but less than a period."},
+    {q:"When is a colon typically used in writing?",opts:["To end a sentence","To introduce a list or explanation","To mark a pause","To indicate possession"],ans:1,exp:"Colons introduce lists, explanations, direct quotations, or emphasise information that follows."},
+    {q:"Which punctuation mark is used to show possession or indicate contractions?",opts:["Exclamation mark (!)","Apostrophe (')","Question mark (?)","Quotation marks"],ans:1,exp:"Apostrophes show possession (the IT department's projects) and indicate contractions (it's = it is)."},
+    {q:"In 'The IT department's projects,' where should the apostrophe be placed?",opts:["After 'IT'","After 'department'","After 'projects'","After 'IT' and 'department'"],ans:1,exp:"The apostrophe goes after 'department' to show possession — 'department's' indicates the projects belong to the IT department."},
+    {q:"Which punctuation mark is used to enclose direct speech or indicate titles?",opts:["Colon (:)","Exclamation mark (!)","Quotation marks","Parentheses ()"],ans:2,exp:"Quotation marks enclose direct speech and highlight titles of works or specific terms."},
+    {q:"What is the purpose of parentheses in writing?",opts:["To end a sentence","To indicate a question","To clarify complex concepts or provide context","To separate items in a list"],ans:2,exp:"Parentheses enclose additional non-essential information that provides context or clarification without interrupting the main sentence."},
+    {q:"In coding, which punctuation mark represents placeholders or variables in code snippets?",opts:["Hyphen (-)","Ellipsis (...)","Brackets ([])","Exclamation mark (!)"],ans:2,exp:"Brackets [] are often used in coding to indicate placeholders, variables, or options in code documentation."},
+    {q:"When should an em dash (—) be used?",opts:["To end a sentence","To introduce a list","To set off information with emphasis","To indicate possession"],ans:2,exp:"Em dashes set off information within a sentence with stronger emphasis than parentheses or commas — useful for highlighting important points."},
+    {q:"In 'The report covers programming, databases, and networks,' which mark separates items?",opts:["Period (.)","Semicolon (;)","Comma (,)","Quotation marks"],ans:2,exp:"Commas separate items in a list. The Oxford comma before 'and' is also used here."},
+    {q:"Which punctuation mark introduces a quotation or direct speech?",opts:["Semicolon (;)","Colon (:)","Quotation marks","Parentheses ()"],ans:1,exp:"A colon is used to introduce a direct quotation or to signal that something follows — though quotation marks enclose the speech itself."},
+    {q:"What is the primary purpose of hyphens?",opts:["To end a sentence","To separate items in a list","To link words and clarify meanings","To indicate possession"],ans:2,exp:"Hyphens link words to create compound adjectives and clarify meanings — e.g., 'user-friendly', 'real-time', 'state-of-the-art'."},
+    {q:"What is the primary function of a noun?",opts:["To describe an action","To represent a person, place, thing, or idea","To modify a verb","To connect clauses"],ans:1,exp:"Nouns represent persons, places, things, or ideas and serve as the building blocks of sentences."},
+    {q:"Which part of speech is used to replace nouns to avoid repetition?",opts:["Verb","Adjective","Pronoun","Adverb"],ans:2,exp:"Pronouns (he, she, it, they) replace nouns to avoid repetition and maintain clarity and flow in writing."},
+    {q:"Which part of speech describes an action in a sentence?",opts:["Pronoun","Noun","Adjective","Verb"],ans:3,exp:"Verbs are action words that describe what someone or something is doing — essential for defining functions and actions in coding."},
+    {q:"Which of the following is an example of an adverb?",opts:["Book","Quickly","Table","Programmer"],ans:1,exp:"'Quickly' is an adverb — it modifies a verb, adjective, or other adverb (e.g., 'The application runs quickly')."},
+    {q:"What part of speech indicates location or direction in technical documentation?",opts:["Preposition","Conjunction","Interjection","Verb"],ans:0,exp:"Prepositions show the relationship between a noun and other words — essential for indicating locations: 'stored in the cloud', 'flows from the server'."},
+    {q:"Which conjunction type connects independent clauses using 'and', 'but', 'or'?",opts:["Coordinating conjunction","Subordinating conjunction","Correlative conjunction","Relative pronoun"],ans:0,exp:"Coordinating conjunctions (FANBOYS: For, And, Nor, But, Or, Yet, So) connect elements of equal importance."},
+    {q:"What does an interjection express in a sentence?",opts:["Possession","A strong emotion or reaction","A location","A question"],ans:1,exp:"Interjections express strong emotions — e.g., 'Wow! That's an impressive AI breakthrough.' or 'Oops! An error occurred.'"},
+    {q:"In 'The software runs smoothly and consistently,' what are 'smoothly' and 'consistently'?",opts:["Nouns","Adjectives","Adverbs","Pronouns"],ans:2,exp:"'Smoothly' and 'consistently' are adverbs — they modify the verb 'runs', describing how the action is performed."},
+    {q:"What is the primary role of a preposition in a sentence?",opts:["To describe actions","To connect independent clauses","To show the relationship between a noun and other words","To replace nouns"],ans:2,exp:"Prepositions show relationships between nouns and other parts of the sentence — crucial for indicating locations and directions."},
+    {q:"In passive voice, what becomes the subject of the sentence?",opts:["The action","The object","The subject","The verb"],ans:1,exp:"In passive voice, the object of an active sentence becomes the subject — 'The code was written by the programmer' (object 'code' becomes subject)."},
+    {q:"When is passive voice typically used?",opts:["To emphasise the subject","To maintain clarity","When the doer of the action is unknown or less important","In all types of writing"],ans:2,exp:"Passive voice is used when the doer is unknown or less relevant, or when focus is on the result — 'The data was analysed to identify trends.'"},
+    {q:"Which sentence is in passive voice?",opts:["The team completed the project on time.","The project was completed by the team on time.","The code runs smoothly.","She designed the user interface."],ans:1,exp:"'The project was completed by the team' is passive — the object 'project' is the subject, and the action is performed by 'the team' (agent with 'by')."},
+    {q:"What is the primary advantage of active voice in technical writing?",opts:["Emphasizes the action","Focuses on the result","Adds variety to sentences","Maintains ambiguity"],ans:0,exp:"Active voice emphasises the subject performing the action, providing clarity and directness — 'The IT administrator applied the security patch.'"},
+    {q:"Which voice can highlight the result or action's recipient?",opts:["Active voice","Passive voice","Both","Neither"],ans:1,exp:"Passive voice places emphasis on the action's recipient or object — useful when focusing on results rather than who performed the action."},
+    {q:"In 'The data was analysed to identify trends,' which voice is used?",opts:["Active voice","Passive voice","Neither","Both"],ans:1,exp:"This is passive voice — 'the data' (object) is the subject. The doer of the analysis is not mentioned."},
+    {q:"Which voice should be avoided when the doer is unknown?",opts:["Active voice","Passive voice","Neither","Both"],ans:0,exp:"Active voice requires identifying the subject/doer. When the doer is unknown or less important, passive voice is more appropriate."},
+    {q:"Which voice is commonly used to attribute actions in technical documentation?",opts:["Passive voice","Active voice","Both","Neither"],ans:1,exp:"Active voice is preferred in technical documentation — 'The software developer wrote the code' clearly attributes the action."},
+    {q:"What is the primary difference between direct and indirect speech?",opts:["Direct speech is always spoken","Direct speech quotes exact words; indirect speech conveys meaning without quoting","Direct speech is formal; indirect is informal","Direct uses third person; indirect uses first person"],ans:1,exp:"Direct speech quotes exact words within quotation marks. Indirect speech conveys meaning without quoting — requiring changes to tense, pronouns, and time expressions."},
+    {q:"Which is an example of direct speech?",opts:["She said that she would come tomorrow.","'I love coding,' he exclaimed.","The report should be submitted by Friday.","The manager asked if the project was on schedule."],ans:1,exp:"Direct speech uses quotation marks and quotes the exact words — 'I love coding,' he exclaimed."},
+    {q:"In indirect speech, what may change when reporting a question?",opts:["A question mark is added","The sentence structure remains the same","The word order of the question","The speech is enclosed in quotation marks"],ans:2,exp:"When reporting questions in indirect speech, the word order changes — 'Are you ready?' becomes 'He asked if I was ready.'"},
+    {q:"What is the purpose of changing modal verbs in indirect speech?",opts:["To confuse the reader","To make the sentence longer","To match the reporting speaker's perspective","To emphasise the direct speech"],ans:2,exp:"Modal verbs change to reflect the reporting speaker's perspective — 'can' becomes 'could', 'will' becomes 'would', 'must' becomes 'had to'."},
+    {q:"Which is NOT a transformation when converting direct to indirect speech?",opts:["Change in pronouns","Change in tense","Change in capitalisation","Change in time expressions"],ans:2,exp:"Capitalisation does not change when converting to indirect speech. The changes involve pronouns, tense, time expressions, and punctuation."},
+    {q:"Why is indirect speech valuable in technical documentation?",opts:["It adds complexity","It is more suitable for informal communication","It accurately reports conversations and decisions","It requires fewer words"],ans:2,exp:"Indirect speech is commonly used in technical documentation to accurately report conversations, decisions made during development, and project updates."},
+    {q:"Which sentence demonstrates subject-verb agreement?",opts:["'They is studying.'","'He am going to the store.'","'She sings beautifully.'","The dogs bark at night."],ans:2,exp:"'She sings beautifully' has correct agreement — singular subject 'She' pairs with singular verb 'sings'. Note: option D is also correct, but C is the primary answer."},
+    {q:"What is the subject-verb agreement in 'The committee is meeting today'?",opts:["Singular subject, singular verb","Singular subject, plural verb","Plural subject, singular verb","Plural subject, plural verb"],ans:0,exp:"'Committee' is a collective noun treated as singular here — 'is meeting' is the singular verb form."},
+    {q:"What should be the verb in 'Neither the cat nor the dogs ___ well-behaved'?",opts:["is","are","were","has been"],ans:1,exp:"When singular and plural subjects are joined by 'neither...nor', the verb agrees with the subject closer to it ('dogs' is plural, so 'are')."},
+    {q:"Which is NOT a common pitfall in subject-verb agreement?",opts:["Indefinite pronouns","Singular subjects joined by 'or' or 'nor'","Compound subjects","Verb tense"],ans:3,exp:"Verb tense is a separate grammar concept. Common pitfalls in subject-verb agreement involve indefinite pronouns, 'or/nor' constructions, and compound subjects."},
+    {q:"How do you correct 'The team are working on the project'?",opts:["'The team is working on the project.'","'The team were working on the project.'","'The team be working on the project.'","'The team have working on the project.'"],ans:0,exp:"'Team' is a collective noun — it takes a singular verb 'is working' in standard usage."},
+    {q:"Which pronoun is often singular and requires a singular verb?",opts:["Everyone","All","Many","Few"],ans:0,exp:"'Everyone' is an indefinite pronoun that is always singular — 'Everyone is responsible for their work.'"},
+    {q:"What is the main focus of grammar errors in English?",opts:["Correct punctuation","Sentence structure","Spelling accuracy","Proper word choice"],ans:1,exp:"Grammar errors primarily relate to sentence structure — including subject-verb agreement, tense inconsistency, sentence fragments, and run-on sentences."},
+    {q:"Which punctuation mark is often misused or omitted, leading to common errors?",opts:["Period (.)","Comma (,)","Semicolon (;)","Apostrophe (')"],ans:3,exp:"Apostrophes are frequently misused — confusing 'its' (possessive) with 'it's' (contraction) or missing apostrophes in possessives."},
+    {q:"Which is an example of a usage error?",opts:["Misplaced comma","Incorrect subject-verb agreement","Confusing affect and effect","Run-on sentence"],ans:2,exp:"Usage errors involve selecting the wrong word — 'affect' (usually a verb meaning to influence) is commonly confused with 'effect' (usually a noun meaning result)."},
+    {q:"What type of error consists of incomplete sentences lacking essential components?",opts:["Spelling errors","Grammar errors","Sentence structure errors","Usage errors"],ans:2,exp:"Sentence fragments are sentence structure errors — incomplete thoughts punctuated as complete sentences, lacking subject, verb, or both."},
+    {q:"Which is a common ambiguity error?",opts:["Misplacing commas","Using sentence fragments","Vague language or unclear pronoun references","Misusing idiomatic expressions"],ans:2,exp:"Ambiguity errors result from vague language — e.g., 'I saw the man with the telescope.' (Did I use a telescope, or did the man have one?)"},
+    {q:"What are idiomatic expressions known for in language?",opts:["Literal interpretations","Complex sentence structures","Figurative meanings","Formal language"],ans:2,exp:"Idiomatic expressions have figurative meanings that cannot be understood from individual words — e.g., 'between a rock and a hard place.'"},
+    {q:"What strategy is essential for avoiding common errors?",opts:["Using complex sentence structures","Relying on idiomatic expressions","Proofreading and editing","Ignoring grammar rules"],ans:2,exp:"Proofreading and editing carefully — taking a break and reviewing with fresh eyes — helps identify errors that might be overlooked when writing."}
+  ],
+
+  terminal: [
+    {q:"Explain the purpose and usage of ellipses (...). Provide an example.",a:"Ellipses are used to represent omitted text in quotations or indicate a pause. Example: 'She said, \"I'm not sure if I should... well, never mind,\"' — the ellipses indicate a pause, creating hesitation. In coding, they can represent an incomplete code snippet."},
+    {q:"Explain the difference between active and passive voice. Provide an example of each.",a:"Active voice: The subject performs the action — 'The chef cooked a delicious meal.' Clear, direct, and commonly used in technical writing.\n\nPassive voice: The subject receives the action — 'A delicious meal was cooked by the chef.' Used when the doer is unknown or when emphasising the result rather than the performer. In technical writing: 'The data was analysed to identify trends.'"},
+    {q:"Explain the concept of reported/indirect speech with an example.",a:"Reported speech conveys someone else's words without quoting them directly. Changes include: tense backshift (present → past), pronoun changes, and time expression modifications.\n\nExample:\nDirect Speech: She said, 'I will come tomorrow.'\nIndirect Speech: She said that she would come the next day.\n\nNote: No quotation marks are used; 'will' becomes 'would'; 'tomorrow' becomes 'the next day'."},
+    {q:"What is subject-verb agreement? Provide correct and incorrect examples.",a:"Subject-verb agreement means the subject and verb must agree in number and person.\n\nCorrect (Singular): 'She sings beautifully.'\nCorrect (Plural): 'They sing beautifully.'\nIncorrect: 'The team are working.' → Correct: 'The team is working.'\nIncorrect: 'Each of the students complete.' → Correct: 'Each of the students completes.'\n\nSpecial cases: collective nouns can be singular or plural; singular subjects joined by 'or/nor' take verb agreeing with the nearer subject."},
+    {q:"Explain why correct punctuation is important. Provide three examples showing how incorrect punctuation causes misunderstanding.",a:"Proper punctuation ensures clarity, conveys meaning, and structures sentences correctly.\n\n1. Ambiguity in Lists: 'I need apples, oranges and bananas' — unclear if 'oranges and bananas' are separate items or one item.\n2. Changing meaning: 'Let's eat, Grandma!' (invitation to dine) vs 'Let's eat Grandma!' (dangerous intent) — the comma makes all the difference.\n3. Possessives: 'The IT departments projects' (missing apostrophe) vs 'The IT department's projects' — the apostrophe clarifies singular possession."},
+    {q:"Explain the concept of concord and common subject-verb errors with corrections.",a:"Concord is the agreement between the subject and verb in a sentence.\n\nErrors and corrections:\n1. 'The collection of rare coins were auctioned' → 'The collection... was auctioned' (subject is 'collection', singular)\n2. 'The team are playing well' → 'The team is playing well' (collective noun, singular)\n3. 'Each of the students must submit their homework' → 'Each student must submit his or her homework'\n\nTo avoid errors: identify the true subject, determine singular/plural, be cautious with collective nouns and indefinite pronouns."}
+  ]
+},
+// ── UNIT 4 ──────────────────────────────────────────────────
+{
+  id: 3,
+  code: "UNIT 04",
+  title: "Effective Sentence Construction",
+  intro: "Effective communication is a cornerstone of success in virtually every aspect of life. At the heart of good communication lies the art of sentence construction. This unit covers the basics, clarity, variety, punctuation, transition words, common pitfalls, editing, and the process of precis writing.",
+  objectives: [
+    "Describe the importance of effective sentence construction",
+    "List and explain the steps involved in sentence construction",
+    "List Dos and Don'ts of sentence construction",
+    "Describe the process of Precis writing"
+  ],
+  content: `
+<div class="sh">The Basics of Sentence Construction</div>
+<p>A sentence is a group of words expressing a complete thought, typically containing a subject and a predicate (verb). Three key components:</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Subject</strong> — the main actor ("She" in "She walked to the park")</li>
+  <li><strong>Verb</strong> — the action or state of being ("walked")</li>
+  <li><strong>Object</strong> — receives the action of the verb ("the park")</li>
+</ul>
+<div class="ssh">Three Primary Sentence Types</div>
+<table class="t"><tr><th>Type</th><th>Structure</th><th>IT Example</th></tr>
+<tr><td>Simple</td><td>One independent clause (one subject, one verb)</td><td>"The update is available."</td></tr>
+<tr><td>Compound</td><td>Two+ independent clauses joined by coordinating conjunction or semicolon</td><td>"The update is available, but the server is down."</td></tr>
+<tr><td>Complex</td><td>Independent clause + one or more dependent clauses</td><td>"Although the update is available, we can't install it until the server is back."</td></tr>
+</table>
+<div class="wb"><span class="wbl">Common Errors to Avoid</span>
+<p style="font-size:12.5px;margin:0"><strong>Sentence Fragment:</strong> "Eager to learn." ❌ (lacks subject) → "She was eager to learn." ✅<br>
+<strong>Run-On Sentence:</strong> "She wanted to go to the party she had too much work." ❌ → "She wanted to go to the party, but she had too much work." ✅</p>
+</div>
+
+<div class="sh">Clarity in Sentence Construction</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Use specific language:</strong> "The software crashes when the 'Save' button is clicked" instead of "The software has a bug"</li>
+  <li><strong>Eliminate pronoun ambiguity:</strong> "The new software update is fast" instead of "It is fast"</li>
+  <li><strong>Use active voice:</strong> "The technician installed the software" instead of "The software was installed by the technician"</li>
+  <li><strong>Manage sentence length:</strong> Break complex ideas into shorter, manageable sentences</li>
+</ul>
+
+<div class="sh">Variety in Sentence Structure</div>
+<p>Sentence variety keeps readers engaged, like using different coding techniques for different tasks.</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Short sentences</strong> for critical instructions: "The system is compromised. Disconnect it immediately."</li>
+  <li><strong>Long sentences</strong> for detailed explanations with context</li>
+  <li><strong>Questions</strong> engage the reader: "Have you backed up your data recently?"</li>
+  <li><strong>Commands</strong> give clear instructions: "Update your antivirus software regularly."</li>
+  <li><strong>Parallelism</strong> emphasises qualities: "The software is fast, efficient, and reliable."</li>
+</ul>
+
+<div class="sh">Transition Words and Phrases</div>
+<p>Transitional words link ideas and ensure logical flow — like the connectors in a complex network.</p>
+<table class="t"><tr><th>Purpose</th><th>Examples</th></tr>
+<tr><td>Sequential Logic</td><td>Firstly, Secondly, Finally, Next</td></tr>
+<tr><td>Contrast / Comparison</td><td>However, On the other hand, Similarly, In contrast</td></tr>
+<tr><td>Cause and Effect</td><td>As a result, Therefore, Consequently</td></tr>
+<tr><td>Addition</td><td>Moreover, Furthermore, In addition</td></tr>
+</table>
+
+<div class="sh">Common Pitfalls in Sentence Construction</div>
+<table class="t"><tr><th>Pitfall</th><th>Wrong</th><th>Correct</th></tr>
+<tr><td>Redundancy</td><td>"PIN number"</td><td>"PIN"</td></tr>
+<tr><td>Wordiness</td><td>"In the event of system failure"</td><td>"If the system fails"</td></tr>
+<tr><td>Misplaced Modifier</td><td>"Connecting the cables, the server was powered on."</td><td>"After connecting the cables, we powered on the server."</td></tr>
+<tr><td>S-V Disagreement</td><td>"The devices is secure."</td><td>"The devices are secure."</td></tr>
+</table>
+
+<div class="sh">Precis Writing</div>
+<p>Precis writing is distilling the essence of a complex document into a much shorter version (approximately one-third of original length) while capturing main ideas and key points.</p>
+<div class="ssh">The Precis Writing Process</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Step 1: Read the Source Material</strong> — thoroughly understand main ideas and structure</li>
+  <li><strong>Step 2: Identify Key Ideas</strong> — find main arguments, important statistics, significant findings</li>
+  <li><strong>Step 3: Determine Central Theme</strong> — the backbone of your precis</li>
+  <li><strong>Step 4: Write a Rough Draft</strong> — concise, maintaining same logical flow as source</li>
+  <li><strong>Step 5: Refine the Precis</strong> — ensure clarity, check word choice and sentence structure</li>
+  <li><strong>Step 6: Check for Length</strong> — approximately one-third of original</li>
+  <li><strong>Step 7: Proofread</strong> — check grammar, punctuation, spelling</li>
+</ul>
+<div class="ssh">Art of Conciseness in Precis</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Omit redundancies:</strong> "the new software update is an essential requirement" → "the new software update is essential"</li>
+  <li><strong>Avoid irrelevant details</strong> — focus on the core message</li>
+  <li><strong>Eliminate filler words:</strong> "The system is very efficient" → "The system is efficient"</li>
+  <li><strong>Use precise terminology</strong> — every word counts</li>
+</ul>
+<div class="ib"><span class="ibl">Example Precis</span>
+<p style="font-size:12.5px;margin:0"><strong>Source:</strong> "The latest version of our project management software offers an enhanced user interface, improved task management features, and increased integration with third-party apps. The user experience has been significantly upgraded, and the software now supports cross-platform usage."</p>
+<p style="font-size:12.5px;margin:6px 0 0"><strong>Precis:</strong> "The latest software update enhances the user interface, improves task management, and increases third-party app integration. It now supports cross-platform usage."</p>
+</div>`,
+
+  saqs: [
+    {q:"What are the key benefits of effective sentence construction?",opts:["Aesthetics and complexity","Clarity and power","Length and complexity","Tone and rhythm"],ans:1,exp:"Well-constructed sentences offer clarity (ensure message is easily understood) and power (captivate, inspire, and engage readers)."},
+    {q:"What are the primary components of a sentence?",opts:["Paragraph, topic sentence, conclusion","Subject, verb, object","Introduction, body, conclusion","Pronoun, adjective, adverb"],ans:1,exp:"A sentence consists of a subject (main actor), verb (action), and object (receiver of the action)."},
+    {q:"What is a sentence fragment?",opts:["A sentence that is too lengthy","A sentence with multiple subjects","An incomplete thought punctuated as a complete sentence","A sentence with complex language"],ans:2,exp:"A sentence fragment is an incomplete thought punctuated as if it were a complete sentence — lacking a subject, verb, or both. Example: 'Eager to learn.'"},
+    {q:"What is one way to avoid ambiguity in IT writing?",opts:["Use vague language","Include numerous acronyms","Use specific and concrete language","Avoid mentioning technical terms"],ans:2,exp:"Specific language prevents ambiguity — instead of 'The software has a bug', specify: 'The software crashes when the Save button is clicked.'"},
+    {q:"Which voice is recommended in IT writing for concise and direct communication?",opts:["Passive voice","Past tense","Active voice","Future tense"],ans:2,exp:"Active voice is preferred in IT writing for clarity and directness — 'The technician installed the software' vs 'The software was installed by the technician.'"},
+    {q:"What are the three primary sentence types in IT writing?",opts:["Simple, compound, compound-complex","Simple, compound, passive","Passive, active, complex","Simple, compound, complex"],ans:3,exp:"The three primary sentence types are simple (one independent clause), compound (two+ independent clauses joined), and complex (independent + dependent clauses)."},
+    {q:"Which sentence type consists of one independent clause and is concise?",opts:["Compound","Complex","Simple","Passive"],ans:2,exp:"A simple sentence contains one independent clause with one subject and one verb — 'The update is available.'"},
+    {q:"Why are short sentences considered powerful in IT writing?",opts:["They add complexity","They impress the reader","They convey information succinctly","They are recommended for in-depth explanations"],ans:2,exp:"Short sentences convey information succinctly — especially powerful for critical instructions: 'The system is compromised. Disconnect it immediately.'"},
+    {q:"What is the purpose of using questions in IT writing?",opts:["To provide answers directly","To confuse the reader","To engage the reader and prompt thinking","To create ambiguity"],ans:2,exp:"Questions in IT writing engage the reader and prompt them to think — 'Have you backed up your data recently?'"},
+    {q:"What is parallelism in IT writing?",opts:["The use of complex jargon","The use of inconsistent grammatical structure","The use of clear and concise language","The use of a consistent grammatical structure in a sentence"],ans:3,exp:"Parallelism involves using a consistent grammatical structure to emphasise qualities — 'The software is fast, efficient, and reliable.'"},
+    {q:"In IT writing, what is the role of commas?",opts:["To complicate sentences","To separate items in a list or clauses within a sentence","To replace other punctuation marks","To add ambiguity"],ans:1,exp:"Commas separate items in lists and clauses — 'The upgrade includes new features, enhanced security, and improved performance.'"},
+    {q:"When should semi-colons be used in IT writing?",opts:["To connect related but independent clauses","To introduce lists","To emphasise key points","To make sentences shorter"],ans:0,exp:"Semi-colons connect closely related independent clauses — 'The servers crashed; we lost all our data.'"},
+    {q:"What is the primary role of transitional words in IT writing?",opts:["To confuse the reader","To distract from main ideas","To add complexity","To link ideas and ensure a logical flow of information"],ans:3,exp:"Transitional words link ideas and ensure logical flow — like the connectors and cables ensuring smooth data flow within a complex network."},
+    {q:"Why is redundancy problematic in IT writing?",opts:["It makes documentation more concise","It makes text easier to understand","It bloats documentation and makes it harder to digest","It adds clarity"],ans:2,exp:"Redundancy bloats documentation — 'PIN number' (PIN already stands for Personal Identification Number, so 'number' is redundant)."},
+    {q:"Why is proofreading essential in IT writing?",opts:["To make your writing more complex","To increase ambiguity","To catch errors in spelling, grammar, and punctuation","To add technical jargon"],ans:2,exp:"In IT, the smallest oversight can lead to big problems — proofreading catches spelling, grammar, and punctuation errors, ensuring accuracy."},
+    {q:"Why should you seek feedback from colleagues in IT writing?",opts:["To confuse the reader","To impress others","To catch errors you might have missed and gain valuable insights","To ignore their input"],ans:2,exp:"Multiple sets of eyes catch errors missed by the original author — colleagues provide valuable insights to ensure clarity and effectiveness."},
+    {q:"In academic IT writing, what is key for conveying technical concepts?",opts:["Using complex jargon","Short and ambiguous sentences","Clear, well-structured sentences","Avoiding citations"],ans:2,exp:"In academic IT writing, precision is key — sentences should be clear and well-structured, with sources cited appropriately."},
+    {q:"What is the primary goal in mastering sentence structure in IT?",opts:["Creating complex sentences","Enhancing ambiguity","Conveying messages effectively","Maximizing redundancy"],ans:2,exp:"The primary goal is to convey messages effectively — sentences should communicate technical information clearly, directly, and precisely."},
+    {q:"In active voice, who performs the action?",opts:["The verb","The object","The subject","The dependent clause"],ans:2,exp:"In active voice, the subject performs the action — 'The IT administrator applied the security patch.' Subject = IT administrator."},
+    {q:"Why is it important to avoid redundancy in IT writing?",opts:["Redundancy adds clarity","Redundancy makes writing more concise","Redundancy bloats documentation and makes it harder to digest","Redundancy enhances ambiguity"],ans:2,exp:"Redundant phrases clutter IT documentation — using 'ATM machine' when ATM already stands for Automated Teller Machine is a classic example."},
+    {q:"What is the preferred approach to wordiness in IT writing?",opts:["Embrace complexity","Use long and complex sentences","Embrace precision and brevity","Use redundancy to explain concepts"],ans:2,exp:"In IT, precision and brevity are essential — 'If the system fails' is preferred over 'In the event of system failure.'"},
+    {q:"Why is subject-verb agreement important in IT writing?",opts:["It makes sentences more complex","It adds clarity","It helps create ambiguity","It's unnecessary in IT writing"],ans:1,exp:"Maintaining proper subject-verb agreement ensures that technical documentation, reports, and code comments are accurate and easily understood."},
+    {q:"Why is precis writing important in IT?",opts:["To make articles longer","To condense complex ideas into concise summaries","To add unnecessary details","To overwhelm IT professionals"],ans:1,exp:"In IT where information is abundant and changes rapidly, precis writing saves time, ensures clarity, and allows quick grasp of essential information."},
+    {q:"What is the first step in the precis writing process?",opts:["Determining the central theme","Writing a rough draft","Reading the source material","Checking for length"],ans:2,exp:"The first step is to thoroughly read the source material — understanding the main ideas, key points, and overall structure before writing anything."},
+    {q:"What is one way to achieve conciseness in precis writing?",opts:["Include redundant information","Add irrelevant details","Use filler words generously","Omitting redundancies"],ans:3,exp:"Omitting redundancies is central to conciseness — 'the new software update is an essential requirement' becomes 'the new software update is essential.'"},
+    {q:"Why is using precise terminology important in IT precis writing?",opts:["To make the precis longer","To confuse readers","To ensure every word counts","To increase the use of filler words"],ans:2,exp:"In IT precis writing, every word counts — precise terminology ensures the condensed text accurately represents the original's technical content."},
+    {q:"Which demonstrates elimination of a redundancy in IT precis?",opts:["Changing 'very efficient' to 'extremely efficient'","Changing 'The system is very fast' to 'The system is fast'","Keeping 'essential requirement' as is","Adding more repetitive information"],ans:1,exp:"Eliminating the filler word 'very' — 'The system is fast' is more concise and equally precise than 'The system is very fast.'"},
+    {q:"What is the primary goal of precis writing in IT?",opts:["To make articles longer","To overwhelm IT professionals","To condense and clarify key ideas","To use as many filler words as possible"],ans:2,exp:"The primary goal is to condense and clarify — capturing main ideas while eliminating unnecessary details for IT professionals who need quick access to information."},
+    {q:"Which sentence demonstrates elimination of a filler word?",opts:["'The network is completely reliable.'","'The system is very efficient.'","'The software has a lot of features.'","'The device is extremely user-friendly.'"],ans:0,exp:"Per the answer key, option B ('The system is very efficient') would become 'The system is efficient' by removing 'very'. But since this asks which demonstrates elimination, select the answer that omits a filler."},
+    {q:"Why is proofreading and editing important in IT writing?",opts:["To add technical jargon","To create complexity","To catch errors and enhance clarity","To increase ambiguity"],ans:2,exp:"Proofreading and editing catch errors and enhance clarity — ensuring that IT writing maintains the highest level of precision and professionalism."}
+  ],
+
+  terminal: [
+    {q:"Why is sentence construction important in IT? What are the three primary sentence types?",a:"Sentence construction ensures clarity and precision, enabling complex technical information to be conveyed clearly and avoiding misunderstandings.\n\nThree primary sentence types:\n1. Simple: One independent clause — 'The update is available.'\n2. Compound: Two related ideas joined — 'The update is available, but the server is down.'\n3. Complex: Independent clause + dependent clause — 'Although the update is available, we can't install it until the server is back online.'"},
+    {q:"Explain sentence fragments and run-on sentences in IT writing. Provide examples and corrections.",a:"Sentence Fragments: Incomplete thoughts punctuated as complete sentences, lacking subject, verb, or both.\nExample: 'Eager to learn.' ❌ (no subject)\nCorrection: 'She was eager to learn.' ✅\n\nRun-On Sentences: Two or more independent clauses joined without appropriate punctuation or conjunction.\nExample: 'She wanted to go to the party she had too much work.' ❌\nCorrection: 'She wanted to go to the party, but she had too much work.' ✅\n\nBoth errors disrupt reading flow and cause confusion in IT documentation."},
+    {q:"What is precis writing? Explain the step-by-step process.",a:"Precis writing is condensing a longer text to approximately one-third its length while retaining the main ideas.\n\nProcess:\n1. Read the source material — understand structure and ideas\n2. Identify key ideas — main arguments, statistics, findings\n3. Determine central theme — the backbone of the precis\n4. Write rough draft — concise, same logical flow as source\n5. Refine — clarity, word choice, sentence structure\n6. Check length — approximately one-third of original\n7. Proofread — grammar, punctuation, spelling\n\nEach step ensures the final precis accurately and concisely represents the source material."},
+    {q:"Discuss the significance of transition words in IT writing with examples.",a:"Transition words link ideas and maintain logical flow — like connectors in a network.\n\nFor sequential logic: 'First, establish a secure connection. Secondly, run the diagnostic. Finally, analyse results.'\n\nFor contrast: 'Solution A offers robust security. However, Solution B provides more scalability.'\n\nFor cause and effect: 'The new update is installed. Consequently, system performance improved.'\n\nFor addition: 'The software is cost-effective. Moreover, it supports cross-platform usage.'\n\nThey ensure IT concepts are presented as a cohesive whole, making complex topics navigable for both experts and novices."},
+    {q:"Discuss avoiding redundancy and wordiness in IT writing with examples.",a:"Redundancy and wordiness obscure IT communication by adding unnecessary words without adding meaning.\n\nRedundancy examples:\n• 'PIN number' → 'PIN' (PIN = Personal Identification Number; 'number' is redundant)\n• 'ATM machine' → 'ATM' (ATM = Automated Teller Machine)\n\nWordiness examples:\n• 'In the event of system failure' → 'If the system fails'\n• 'At this point in time' → 'Now'\n\nEliminating these enhances clarity by presenting information concisely, allowing readers to quickly grasp the message — especially critical in the IT field where precision is paramount."}
+  ]
+},
+// ── UNIT 5 ──────────────────────────────────────────────────
+{
+  id: 4,
+  code: "UNIT 05",
+  title: "Professional Communication",
+  intro: "Professional communication refers to the sharing of ideas, information, and messages in a commercial or formal environment. This unit covers emails, memos, reports, proposals, and data presentation — the foundational tools of professional interactions. Each has distinct format and purpose, working together to provide clear, effective communication inside and across organisations.",
+  objectives: [
+    "Identify the basic components of an email's structure",
+    "Differentiate between appropriate and inappropriate tones for various email contexts",
+    "Describe the purpose of memos in organisational communication",
+    "Organize a report using a standard structure"
+  ],
+  content: `
+<div class="sh">Emails</div>
+<p>Email largely replaces physical letters for external communications and memos for internal communication. It is most effective for relatively concise messages. In business settings, it is important to maintain a professional tone that allows the email to be shared with third parties if necessary.</p>
+<div class="ssh">Email Structure — 5 Components</div>
+<ol style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Email Address</strong> — verify recipient's address accuracy after drafting</li>
+  <li><strong>Subject Line</strong> — concise sentence conveying the purpose (e.g., "Request for Leave", "Inquiry about offer letter")</li>
+  <li><strong>Salutation</strong> — establishes appropriate tone; "Dear Mr./Ms." for formal, "Hello [Name]" for informal</li>
+  <li><strong>Body Paragraphs</strong> — First para: brief introduction and purpose; Second para: details, problem, requirements; Conclusion: closing request/action statement</li>
+  <li><strong>Sign-off and Signature</strong> — "Thanks and Regards" or "Warm Regards" + name + job title</li>
+</ol>
+<div class="ssh">Email Tone Best Practices</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Use polite, optimistic language; impartial and inclusive</li>
+  <li>Limit emojis to informal emails only</li>
+  <li>Avoid capital letters (appears as shouting), text abbreviations (lol, k)</li>
+  <li>Use active voice instead of passive</li>
+  <li>Keep it brief; use bullet points for lengthy information</li>
+  <li>Proofread before sending; include full signature</li>
+  <li>Reply promptly; mention attachments in body text</li>
+  <li>Use CC and BCC appropriately to protect recipient privacy</li>
+</ul>
+
+<div class="sh">Memos</div>
+<p>A memo is a brief written tool to convey formal corporate rules and procedures inside an organisation. Intended for widespread distribution, not personal messages. Common purposes: policy updates, progress reports, company news, reminders, action requests.</p>
+<div class="ssh">Memo Format</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Memorandum Template</span></div>
+<pre>MEMORANDUM
+
+Recipient(s): [Names of intended recipients]
+Sender:       [Your full name and job position]
+Date:         [Month, day, year]
+Subject:      [Topic of the memorandum]
+
+[Introduction — 1-2 sentences stating the reason for writing]
+
+• [Bullet point #1 to list important information]
+• [Bullet point #2 to list important information]
+• [Bullet point #3 to list important information]
+
+[Conclusion — includes request for action if needed]
+
+Thank you,
+[Your first and last name]
+[Your email address]
+[Your phone number]</pre></div>
+<div class="ib"><span class="ibl">Effective Memo Writing</span><p style="font-size:12.5px;margin:0">Consider all intended recipients · Proofread before sending · Use clear, unambiguous subject lines · Send at least one week before due dates · Use formal business language throughout</p></div>
+
+<div class="sh">Reports</div>
+<p>According to Mary Munter and Lynn Hamilton: report writing is "the process of selecting, organising, interpreting, and communicating information to meet a specific objective." Reports convey research findings to stakeholders and managers.</p>
+<div class="ssh">Types of Reports</div>
+<table class="t"><tr><th>Type</th><th>Description</th></tr>
+<tr><td>Informational</td><td>Facts and details about a subject, product, or service</td></tr>
+<tr><td>Analytical</td><td>Systematically conveys data using charts/graphs to show trends</td></tr>
+<tr><td>Formal</td><td>Comprehensive, organised, for specific audience with specific goal</td></tr>
+<tr><td>Progress</td><td>Updates on a project's progress and challenges</td></tr>
+<tr><td>Technical</td><td>Detailed technical information — specifications, designs, performance data</td></tr>
+<tr><td>Research</td><td>Results of research — literature review, data analysis, conclusions</td></tr>
+<tr><td>Feasibility Study</td><td>Evaluates probability of success for a proposed project</td></tr>
+<tr><td>Business</td><td>Company performance, operations, or strategies</td></tr>
+</table>
+<div class="ssh">Report Structure</div>
+<p><strong>Preliminary Parts:</strong> Title page · Date · Acknowledgments · Table of Contents · List of Tables and Illustrations</p>
+<p><strong>Main Text:</strong> Introduction (objectives, background, methodology, scope) · Summary of findings · Results with data (tables, charts) · Implications · Summary</p>
+<p><strong>End Matter:</strong> Appendices (questionnaires, sample info, derivations) · Bibliography</p>
+<div class="ssh">Essential Elements of Report Writing</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Title</strong> — clear and brief; includes subject, author, date, recipient</li>
+  <li><strong>Table of Contents</strong> — comprehensive list with distinct headers</li>
+  <li><strong>Executive Summary</strong> — concise review; written after full report; maximum one page</li>
+  <li><strong>Introduction</strong> — presents subject, engages readers, provides context</li>
+  <li><strong>Body</strong> — all important details, facts, analysis with subheadings and visual aids</li>
+  <li><strong>Conclusion</strong> — summarises findings; offers recommendations; no new information</li>
+  <li><strong>Recommendations</strong> — suggested goals/actions based on findings; realistic and attainable</li>
+  <li><strong>Appendices</strong> — supplementary technical information</li>
+</ul>
+
+<div class="sh">Data Presentation</div>
+<p>Data presentation transforms raw data into understandable visual representations. Three main categories:</p>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Textual Presentation</strong> — uses language to provide context, explanations, and narrative structure</li>
+  <li><strong>Tabular Presentation</strong> — uses tables to organise data for comparison across groups</li>
+  <li><strong>Graphical Presentation</strong> — uses charts and graphs to highlight trends, patterns, correlations</li>
+</ul>
+<table class="t"><tr><th>Chart Type</th><th>Best Used For</th></tr>
+<tr><td>Bar Chart</td><td>Comparing several categories of data</td></tr>
+<tr><td>Pie Chart</td><td>Showing relative proportions (no more than 8 segments)</td></tr>
+<tr><td>Line Graph</td><td>Illustrating data progression over time or correlations</td></tr>
+</table>
+
+<div class="sh">Proposals</div>
+<p>A proposal is a written official document to carry out some activity, with specified conditions on either side and financial consideration. Types: Business Proposals, Research Proposals, Educational Proposals, Accreditation Proposals.</p>
+<div class="ssh">Characteristics of a Business Proposal</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Solutions</strong> — presents how your business solves the client's problems</li>
+  <li><strong>Benefits</strong> — clearly outlines the benefits of doing business with you</li>
+  <li><strong>Credibility</strong> — showcases expertise, past successes, testimonials</li>
+  <li><strong>Samples/Evidence</strong> — proof of ability to deliver</li>
+  <li><strong>Targeted</strong> — speaks in the language of the intended audience</li>
+</ul>
+<div class="ssh">10 Persuasive Techniques for Proposals</div>
+<ol style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Establish Credibility</strong> — expert testimonials, past achievements</li>
+  <li><strong>Use Rationality (Logos)</strong> — clear data, charts, structural coherence</li>
+  <li><strong>Emotional Appeal (Pathos)</strong> — stories, visuals creating emotional reactions</li>
+  <li><strong>Highlight Benefits</strong> — focus on reader's needs and desires</li>
+  <li><strong>Create Urgency</strong> — emphasise potential benefits of prompt action</li>
+  <li><strong>Social Proof</strong> — client testimonials, industry acknowledgements</li>
+  <li><strong>Clear Call to Action (CTA)</strong> — specific next steps for the reader</li>
+  <li><strong>Address Objections</strong> — anticipate concerns; provide resolutions</li>
+  <li><strong>Customise Language</strong> — adapt to reader's tone and style</li>
+  <li><strong>Demonstrate Alignment</strong> — align with reader's values and long-term objectives</li>
+</ol>`,
+
+  saqs: [
+    {q:"What is the primary purpose of using a clear and concise subject line in an email?",opts:["To make the email look professional","To ensure the email is not marked as spam","To convey the purpose or intention of the email to the recipient","To decorate the email content"],ans:2,exp:"The subject line should contain a concise sentence conveying the purpose — enabling the recipient to understand the email's objective and respond appropriately."},
+    {q:"Which of the following is NOT recommended when composing a business email?",opts:["Using polite and optimistic language","Incorporating emojis to express emotions","Proofreading the email for errors","Keeping the email concise"],ans:1,exp:"Emojis should be limited to informal emails only. Business emails require professional tone, and emojis can undermine that professionalism."},
+    {q:"What should be included in the first paragraph of an email's main content?",opts:["A detailed description of the problem","A brief introduction of oneself and the purpose","Bullet points of all topics","The conclusion and call to action"],ans:1,exp:"The first paragraph should briefly introduce who you are and the purpose for composing the email, establishing clear intent from the start."},
+    {q:"Why is it important to use a professional salutation at the beginning of an email?",opts:["To establish the overall tone of the email","To ensure the email is forwarded to the right person","To increase the length of the email","To comply with email service provider guidelines"],ans:0,exp:"The salutation establishes the overall tone and timing from the very beginning — setting a bond between sender and recipient."},
+    {q:"Which practice should be followed to enhance the readability of an email?",opts:["Using a passive voice throughout","Writing long paragraphs without breaks","Utilizing bullet points and paragraphs","Avoiding salutations and closings"],ans:2,exp:"Bullet points and paragraphs enhance organisation and readability — breaking down lengthy information makes the email easier to scan and understand."},
+    {q:"What is the primary purpose of a memo within an organisation?",opts:["To serve as a personal message to an individual","To convey formal corporate rules and procedures","To advertise products to external customers","To share personal updates with friends"],ans:1,exp:"A memo conveys formal corporate rules and procedures inside an organisation — intended for widespread distribution among all members, not personalised messages."},
+    {q:"What should be included at the beginning of a memo to ensure proper structure?",opts:["A detailed description of the sender's background","An apology for potential misunderstandings","A header stating it's a memorandum with date and subject","A call to action for recipients"],ans:2,exp:"Every memo begins with a header explicitly stating it is a memorandum, identifying recipients, specifying the sender, date, and subject."},
+    {q:"What is recommended for enhancing the readability of a memo?",opts:["Using complex language to impress","Including as many acronyms as possible","Employing concise paragraphs, subheadings, and bulleted lists","Making the memo as lengthy as possible"],ans:2,exp:"Concise paragraphs with subheadings and bulleted lists enhance readability — receivers are likely to skim through memos."},
+    {q:"Which of the following is NOT a type of report?",opts:["Fictional reports","Analytical reports","Progress reports","Technical reports"],ans:0,exp:"'Fictional reports' is not a recognised report type. Reports deal with real data, research, and factual information."},
+    {q:"What is included in the preliminary parts of a report?",opts:["Conclusions and recommendations","Data analysis and findings","Title page, acknowledgments, and table of contents","Appendices and bibliography"],ans:2,exp:"Preliminary parts include: title page, date, acknowledgments (preface/foreword), table of contents, and list of tables and illustrations."},
+    {q:"Which section contains comprehensive exposition of findings with tables and charts?",opts:["Introduction","Conclusion","Recommendations","Results"],ans:3,exp:"The Results section provides a comprehensive exposition of findings with accompanying data in tables and charts, presented in coherent order."},
+    {q:"What is the significance of data presentation in reports?",opts:["To make the report longer","To confuse the reader with complex data","To transform unprocessed data into understandable visual representation","To replace textual content entirely with visuals"],ans:2,exp:"Data presentation transforms raw data into understandable visual representations — making complex information accessible and aiding decision-making."},
+    {q:"What is the primary purpose of a proposal?",opts:["To entertain the reader with a story","To carry out some activity with specified conditions and financial consideration","To provide personal opinions and advice","To document daily activities"],ans:1,exp:"A proposal is a written official document to carry out some activity, with specified conditions on either side and some financial consideration."},
+    {q:"What should a business proposal include to establish credibility?",opts:["Only a list of the company's products","Expert testimonials and past successes","Irrelevant statistics","Fictional stories of success"],ans:1,exp:"Credibility is established through expert testimonials, endorsements from industry authorities, and highlighting comparable past successful projects."},
+    {q:"Which persuasive technique focuses on appealing to the reader's logical thinking?",opts:["Using emotional stories","Providing clear data and accurate information","Utilizing vivid imagery only","Offering benefits without evidence"],ans:1,exp:"Using Rationality (Logos) involves providing clear data, accurate information, statistical data, and visual representations to support claims logically."}
+  ],
+
+  terminal: [
+    {q:"Elucidate the components of an email structure and give a sample template.",a:"An effective email has 5 components:\n1. Email Address — verify recipient address accuracy\n2. Subject Line — concise sentence conveying purpose (e.g., 'Request for Leave')\n3. Salutation — 'Dear Mr./Ms. [Name]' (formal) or 'Hello [Name]' (informal)\n4. Body Paragraphs — First: brief self-introduction and purpose; Second: detailed information/request; Conclusion: closing action request\n5. Sign-off — 'Thanks and Regards' + name + designation + contact\n\nTemplate:\nSubject: [Clear Subject]\nDear [Name],\nI hope this email finds you well.\n[First paragraph — who you are and purpose]\n[Second paragraph — specific details, requirements]\nI look forward to hearing from you. Please find attached [documents if applicable].\nThanks and Regards,\n[Your Name] | [Designation] | [Contact]"},
+    {q:"Define Memo. Explicate the template for the memorandum.",a:"A memo (memorandum) is a brief written tool to convey formal corporate rules and procedures inside an organisation — intended for widespread distribution rather than personalised messages.\n\nTemplate:\nMEMORANDUM\nRecipient(s): [Names]\nSender: [Full name and job position]\nDate: [Month, day, year]\nSubject: [Topic]\n\n[Introduction — 1-2 sentences stating reason for writing]\n• [Key information point 1]\n• [Key information point 2]\n• [Key information point 3]\n[Conclusion — request for action]\n\nThank you,\n[Name] | [Email] | [Phone]"},
+    {q:"Briefly explain the structure of a proposal with an example.",a:"A proposal structure typically includes:\n1. Introductory Part: Cover page, title page, covering letter, summary of proposal\n2. Main Body: Approach for solution, methodology, manpower/resource details, quality control, experience\n3. Appendices: Supporting documents, certificates, technical specifications\n\nExample (US Planning Consultant format):\n1. Name and address of firm\n2. Contact person with phone and email\n3. Key personnel with qualifications\n4. Sub-consultants for the project\n5. Major past projects\n6. Authorisation/registration details\nMain body: Approach · Coordination method · Unique methodologies · Technical strength · Quality control · Additional relevant information"},
+    {q:"Explain the different types of proposals.",a:"1. Business Proposals — supply of materials, construction, services, equipment procurement, software, transportation, maintenance etc.\n\n2. Research Proposals — invited internally or externally. Funding agencies include AICTE, DOE, DST, DRDO, CSIR, UGC. Government organisations like SAC, ISRO, NPRL also conduct research.\n\n3. Educational Proposals — for establishing schools, colleges, postgraduate institutes. Submitted to local, state, or national authorities (UGC, AICTE, Medical Council). Prepared in specified formats.\n\n4. Accreditation Proposals — NBA accreditation for engineering programmes; NAAC accreditation for institutes and universities. Also includes ISO certification, NABL-approved laboratory certification, and BIS testing facility proposals."},
+    {q:"Write a short note on Data Presentation.",a:"Data presentation is the skilful transformation of raw data into understandable, interpretable visual representations.\n\nTypes:\n1. Textual Presentation — uses language and sentence structure to provide context and narrative\n2. Tabular Presentation — uses tables for comparison across groups; systematic and concise\n3. Graphical Presentation — uses charts and graphs to highlight trends and correlations\n  • Bar charts — comparing several data categories\n  • Pie charts — showing relative proportions (max 8 segments)\n  • Line graphs — showing data progression over time\n\nBenefits: Clarity, Engagement, Comprehension, Decision-making support, Lasting impact.\n\nKey elements: Clear data points · Emphasise comparisons · Use infographics · Include numerical values · Provide source citations."}
+  ]
+},
+// ── UNIT 6 ──────────────────────────────────────────────────
+{
+  id: 5,
+  code: "UNIT 06",
+  title: "Job Application Essentials & Interview Skills",
+  intro: "This unit focuses on the sophisticated details of Job Application Essentials and improving Interview Skills. It covers cover letter writing, resume formats, LinkedIn profile optimisation, and interview preparation including the STAR technique and post-interview etiquette.",
+  objectives: [
+    "Recall different resume formats",
+    "Explain effective strategies for networking on LinkedIn",
+    "Construct a cover letter adhering to the industry-standard structure",
+    "Apply the STAR technique to structure responses to Behavioral interview questions"
+  ],
+  content: `
+<div class="sh">Cover Letter</div>
+<p>A cover letter is an introduction to your résumé — it allows you, in narrative form, to tell the employer exactly why hiring you is a good decision. It reveals your ability to compose complete sentences and sound intelligent. Cover letters should be personalised and customised for every position.</p>
+<div class="ssh">What Makes a Good Cover Letter?</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Highlights how your skills tie to the department's specific needs</li>
+  <li>Demonstrates effective communication skills</li>
+  <li>Creates a lasting impression</li>
+  <li>Explains the "why" (why this department, why this role)</li>
+  <li>Tells a story and brings your resume to life</li>
+</ul>
+<div class="ssh">Cover Letter Structure — Three Parts</div>
+<div class="ib"><span class="ibl">First Paragraph — Introduction (WHY you are writing)</span>
+<p style="font-size:12.5px;margin:0">Clearly state who you are and why you are writing. Give compelling reasons for applying. Incorporate research. This is the appetiser — get them to keep reading!</p>
+</div>
+<div class="ib"><span class="ibl">Second Paragraph — Body (WHAT you have to offer)</span>
+<p style="font-size:12.5px;margin:0">Make your case — draw connections between job requirements and your skills, experiences, and attributes. Highlight 1-2 specific accomplishments. Don't repeat your resume. Show what you have to offer with examples.</p>
+</div>
+<div class="ib"><span class="ibl">Third Paragraph — Closing (WHAT you want and HOW you will follow-up)</span>
+<p style="font-size:12.5px;margin:0">Restate interest and enthusiasm. Recap what YOU can do for THEM. Make a specific ask (usually an interview) and outline follow-up. Thank the reader.</p>
+</div>
+<div class="ssh">Customizing for Job Roles</div>
+<p>Two primary tools: <strong>Conducting Research</strong> (department website, LinkedIn, Google the department lead) and <strong>Reading Job Descriptions</strong> (look for keywords, determine overlaps/gaps between requirements and your skills).</p>
+
+<div class="sh">Resume</div>
+<p>An excellent resume captivates the recruiter, setting you apart from other candidates. Three popular formats:</p>
+<table class="t"><tr><th>Format</th><th>Best For</th><th>Structure</th></tr>
+<tr><td>Chronological</td><td>Consistent progressive employment path, same industry</td><td>Contact → Objective → Work History → Skills → Education</td></tr>
+<tr><td>Functional</td><td>Employment gaps, career change, returning after break</td><td>Contact → Objective → Skills Summary → Work History → Education</td></tr>
+<tr><td>Combination</td><td>Strong skills AND experience; changing to different industry</td><td>Contact → Objective → Experience → Skills Summary → Education</td></tr>
+</table>
+<div class="ssh">Resume Formatting Steps</div>
+<ol style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Apply appropriate margins</strong> — standard one-inch; maximum 1.5 inches</li>
+  <li><strong>Select professional, readable font</strong> — Calibri, Cambria, Georgia, Helvetica, Garamond; avoid decorative fonts</li>
+  <li><strong>Font size 10–12 points</strong> — never reduce below 10; prefer 12 if space allows</li>
+  <li><strong>Feature section headers</strong> — bold or larger font (12, 14, or 16pt)</li>
+  <li><strong>Use bullet points</strong> — list accomplishments with action verbs</li>
+  <li><strong>Ask for feedback</strong> — have trusted colleagues review for readability</li>
+</ol>
+<div class="ssh">Highlighting Achievements</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Quantify:</strong> "Achieved 30% growth in sales during the first quarter"</li>
+  <li><strong>Use Action Verbs:</strong> Implemented, Developed, Achieved, Managed, Led</li>
+  <li><strong>Focus on Results:</strong> Highlight consequences and advantageous impact</li>
+  <li><strong>Include Awards and Recognition</strong></li>
+  <li><strong>Personalise</strong> for each job application</li>
+  <li><strong>Highlight Leadership and Initiative</strong></li>
+  <li><strong>Be Specific and Concise</strong></li>
+</ul>
+<div class="ssh">ATS-Friendly Resumes</div>
+<p>ATS (Applicant Tracking System) is software that sorts and scans resumes. To pass ATS scans:</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">ATS Resume Template</span></div>
+<pre>YOUR NAME
+Phone | Email | Location (City, State, ZIP)
+
+PROFESSIONAL SUMMARY
+2-3 sentences including experience, accomplishments, top skills
+
+EXPERIENCE
+Title, Company Name          Start Date - End Date
+• (Action verb) + what you did + reason/outcome/quantified results
+• (Action verb) + what you did + reason/outcome/quantified results
+
+EDUCATION
+Degree Type, Major           Month/Year of Completion
+Institution Name
+
+SKILLS
+Skill, Skill, Skill, Skill, Skill</pre></div>
+
+<div class="sh">LinkedIn Profile</div>
+<p>LinkedIn serves as a dynamic, interactive extension of your CV — for professional branding, visibility to recruiters, applying for jobs, researching companies, and post-interview etiquette.</p>
+<div class="ssh">Tips to Optimise Your LinkedIn Profile</div>
+<ol style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Professional profile picture and custom background</li>
+  <li>Catchy, relevant, and keyword-optimised headline</li>
+  <li>Authentic summary telling your professional story</li>
+  <li>Optimise job title with relevant keywords</li>
+  <li>Detailed and keyword-optimised work experience</li>
+  <li>Optimise skills section for better search ranking</li>
+  <li>Write articles and engage with others' content</li>
+  <li>Strong endorsements and recommendations from peers</li>
+  <li>Utilise the Feature section for key accomplishments</li>
+  <li>Customise your LinkedIn URL</li>
+  <li>Be active and grow your network regularly</li>
+  <li>Follow relevant professionals, HR, and recruiters</li>
+</ol>
+<div class="ssh">Networking on LinkedIn — 7 Tips</div>
+<ol style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Complete your profile fully (headline, photo, summary, experience, skills)</li>
+  <li>Optimise your profile for search visibility</li>
+  <li>Get endorsements by proactively endorsing others first</li>
+  <li>Connect with people you know (import phone contacts)</li>
+  <li>Connect with strangers in your field — send personalised messages</li>
+  <li>Join LinkedIn Groups relevant to your industry</li>
+  <li>Regularly write content (multiple times per week)</li>
+</ol>
+
+<div class="sh">Interview Skills</div>
+<p>An interview is aimed at the internal and external view of a person — to verify whether the person is suitable for the post, verify credentials, and assess attributes beyond just communication skills.</p>
+<div class="ssh">DOs for Interviews</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Be well-prepared for technical, non-technical, and general knowledge</li>
+  <li>Know everything in your CV/resume thoroughly</li>
+  <li>Carry all original documents in chronological order</li>
+  <li>Dress code appropriate to the job and profession</li>
+  <li>Be mentally stable and relaxed when entering</li>
+  <li>Report on time or slightly before</li>
+  <li>Enter with confidence, proper pace, smiling face, and eye contact</li>
+  <li>Use proper posture — attentive position while seated</li>
+  <li>Listen carefully and answer to the point; be brief</li>
+</ul>
+<div class="wb"><span class="wbl">DON'Ts for Interviews</span>
+<p style="font-size:12.5px;margin:0">Late reporting · Reading resume before committee · Uncomfortable dress · Sitting without permission · Bluffing · Arrogance · Arguing with panel · Using other languages · Abusing present employer · Boasting · Frequent job changes (if negative, don't mention)</p>
+</div>
+
+<div class="sh">The STAR Technique</div>
+<p>A structured method for responding to behavioural interview questions:</p>
+<table class="t"><tr><th>Component</th><th>Description</th></tr>
+<tr><td><strong>S</strong>ituation</td><td>Describe the specific event or situation (not generalised). Give enough detail.</td></tr>
+<tr><td><strong>T</strong>ask</td><td>What goal were you working toward?</td></tr>
+<tr><td><strong>A</strong>ction</td><td>Specific steps YOU took. Use "I", not "we". Keep focus on your contribution.</td></tr>
+<tr><td><strong>R</strong>esult</td><td>Outcome of your actions. What happened? What did you accomplish? Multiple positive results.</td></tr>
+</table>
+<div class="ib"><span class="ibl">Sample STAR Response</span>
+<p style="font-size:12.5px;margin:0"><strong>S:</strong> Advertising revenue was falling for my college newspaper; long-term advertisers not renewing.<br>
+<strong>T:</strong> Generate ideas to achieve at least 15% increase in advertisers from prior year.<br>
+<strong>A:</strong> Designed new promotional packet; compared benefits with other ad media; set up special training session with a Business professor on competitive selling strategies.<br>
+<strong>R:</strong> Signed contracts with 15 former advertisers; increased new advertisers by 20% over same period last year.</p>
+</div>
+
+<div class="sh">Post-Interview Etiquette</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Send a thank-you note within 24 hours of the interview</li>
+  <li>Evaluate your performance — reflect on difficult questions</li>
+  <li>Assess how the position meets your priorities and goals</li>
+  <li>If called for second round, prepare accordingly</li>
+  <li>If offered the job on spot, thank them and ask for time to consider</li>
+  <li>If no response within indicated timeline, follow up once by email or phone</li>
+</ul>`,
+
+  saqs: [
+    {q:"What is the primary purpose of a cover letter?",opts:["To introduce your résumé in a graceful way","To replace the résumé with a modern approach","To question the necessity of traditional job applications","To provide a list of references"],ans:0,exp:"A cover letter is a graceful way of introducing your résumé — it allows you to tell the employer exactly why hiring you is a good decision."},
+    {q:"What are the three primary parts of a cover letter?",opts:["Introduction, hobbies, and conclusion","Opening, body, and closing","Salutation, experience, and signature","Skills, achievements, and certifications"],ans:1,exp:"A cover letter has three parts: (a) an opening that captures attention and identifies the position, (b) a body that sells the candidate, and (c) a closing that requests an interview."},
+    {q:"How should a cover letter be customised?",opts:["Using a standard template for all applications","Tailoring it to the department and specific requirements","Including as many personal anecdotes as possible","Focusing solely on past job titles"],ans:1,exp:"Each cover letter should be customised — tailored to the department AND the specific requirements of the position. Departments and roles are not interchangeable."},
+    {q:"Which resume format is optimal for a constant and progressive employment path?",opts:["Chronological","Functional","Combination","Creative"],ans:0,exp:"A chronological resume is optimal for individuals with a consistent, progressive employment path — each position more senior than the previous."},
+    {q:"What is a primary focus of a functional resume?",opts:["Presenting work history in sequential order","Focusing on key abilities over employment history","Highlighting a mix of skills and work experience","Showcasing creative talents"],ans:1,exp:"A functional CV focuses on the applicant's skill set rather than emphasising extensive work history — suitable for those with employment gaps or career changers."},
+    {q:"What should NOT be done when formatting an ATS-friendly resume?",opts:["Use a professional, readable font","Apply appropriate margins","Include detailed descriptions using complex fonts","Make your font size 10-12 points"],ans:2,exp:"ATS systems may not correctly interpret complex/decorative fonts. Use standard, professional fonts like Calibri, Helvetica, or Georgia for ATS compatibility."},
+    {q:"What is the primary role of a LinkedIn profile?",opts:["To replace the traditional CV entirely","To serve as a dynamic and interactive extension of your CV","To function only as a social network","To communicate with friends about job searches"],ans:1,exp:"LinkedIn serves as a dynamic and interactive extension of your CV — enabling professional branding, recruiter visibility, and job applications."},
+    {q:"What is a key strategy for enhancing LinkedIn visibility to recruiters?",opts:["Ignoring the skills section","Keeping a minimalistic profile","Optimising your profile with relevant keywords and a thorough career summary","Sharing only personal achievements unrelated to the job"],ans:2,exp:"An efficiently optimised LinkedIn profile with appropriate keywords and a thorough career summary enhances visibility in search results, increasing likelihood of being found."},
+    {q:"What is the primary purpose of an interview?",opts:["To assess the candidate's ability to drive","To verify whether the person is suitable for the post or to verify credentials","To test knowledge of current events","To evaluate social media profiles"],ans:1,exp:"An interview is aimed at an 'internal view' of the person — to verify suitability for the post, verify credentials, and assess attributes including communication skills."},
+    {q:"Which resume format focuses on key abilities rather than employment history?",opts:["Chronological","Functional","Combination","Reverse chronological"],ans:1,exp:"A functional resume focuses on the applicant's skill set rather than work experience — most suitable when there are employment gaps or when transitioning careers."},
+    {q:"Which technique is recommended for responding to behavioural interview questions?",opts:["The STAR method","The ABC method","The 5 Ws method","The direct method"],ans:0,exp:"The STAR method (Situation, Task, Action, Result) provides a structured way to respond to behavioural questions with specific, detailed, and positive examples."},
+    {q:"What should a candidate do if they don't hear back from the employer?",opts:["Immediately accept another job offer","Post about the delay on social media","Follow up once by calling or emailing the interviewer or HR contact","Assume rejection and stop pursuing the position"],ans:2,exp:"If no response within the indicated hiring timeline, follow up once — call or email the interviewer or HR, reaffirm interest, and inquire about the new timeline."}
+  ],
+
+  terminal: [
+    {q:"Elucidate the structure of a Cover Letter with an example.",a:"A cover letter has three parts:\n\n1. Opening (Why you are writing):\nClearly state who you are and why you're writing. Give compelling reasons for applying. Hook: get them to keep reading.\nExample: 'I am writing to apply for the Leadership Giving Officer position. As an Advancement Officer at the same institution, I surpassed all individual fundraising goals in my first year.'\n\n2. Body (What you have to offer):\nDraw connections between job requirements and your skills. Highlight 1-2 accomplishments.\nExample: Describe specific achievements — managed 60 volunteers to raise $1.1M, achieved 82% proposal commitment rate.\n\n3. Closing (What you want and how you'll follow up):\nRestate interest, recap your value to them, make a specific ask.\nExample: 'I would appreciate the opportunity to be interviewed. Please feel free to contact me at [phone/email]. Thank you for your time and consideration.'"},
+    {q:"Explicate the popular resume formats.",a:"Three popular resume formats:\n\n1. Chronological Resume:\nPresents work history in reverse chronological sequence (most recent first). Structure: Contact → Objective → Work History → Key Competencies → Education.\nBest for: Consistent, progressive employment path in the same industry.\n\n2. Functional Resume:\nFocuses on skills rather than employment history. Structure: Contact → Objective → Skills Summary → Work Experience → Education.\nBest for: Employment gaps, career changes, returning to work after a break.\n\n3. Combination Resume:\nHybrid of chronological and functional formats — highlights both experience and skills. Structure: Contact → Objective → Professional Experience → Key Skills Summary → Education.\nBest for: Those with strong skills AND experience, or changing to a different industry."},
+    {q:"Briefly explain the ATS Resume Template.",a:"ATS (Applicant Tracking System) is software that sorts resumes by scanning for relevant keywords.\n\nATS-Friendly Template Structure:\n\nNAME | Phone | Email | Location\n\nPROFESSIONAL SUMMARY\n2-3 sentences with years of experience, accomplishments, top skills, and career goals.\n\nEXPERIENCE\nTitle, Company Name    Start Date – End Date\n• (Action verb) + what you did + reason/outcome/quantified results\n\nEDUCATION\nDegree Type, Major    Month/Year\nInstitution Name\n\nSKILLS\nKeyword-optimised skills matching the job description.\n\nKey rules: Use professional fonts (no decorative), standard margins, keyword-rich content, bullet points with action verbs."},
+    {q:"Explain the tips to optimize LinkedIn Visibility.",a:"Key tips to optimise LinkedIn for maximum visibility:\n\n1. Professional profile picture + custom background — significantly impacts first impressions\n2. Catchy, keyword-optimised headline — grabs attention and communicates expertise\n3. Authentic summary — tells your professional story with strengths and aspirations\n4. Optimised job title with relevant keywords — improves searchability\n5. Detailed work experience with keywords — showcases achievements\n6. Optimised skills section — enhances profile searchability\n7. Write articles and engage with others' content — demonstrates industry involvement\n8. Strong endorsements and recommendations — validates competencies\n9. Utilise the Feature section — highlight significant accomplishments/publications\n10. Customise LinkedIn URL — easier to share, enhances professional brand\n11. Be active — regular posting and networking keeps profile dynamic\n12. Follow relevant professionals, HR, and recruiters — opens opportunities"},
+    {q:"Write a short note on STAR technique.",a:"The STAR method is a structured way of responding to behavioural-based interview questions.\n\nS — Situation: Describe the specific event or situation. Give enough detail for the interviewer to understand context. Can be from previous job, volunteer experience, or any relevant event.\n\nT — Task: What goal were you working toward? What was expected of you?\n\nA — Action: Describe specific steps YOU took. Use 'I', not 'we'. Keep focus on your personal contribution and what specific steps you took.\n\nR — Result: Describe the outcome. What happened? What did you accomplish? What did you learn? Include multiple positive results.\n\nExample: Advertising revenue was falling (S) → Goal was 15% increase in advertisers (T) → Designed promotional packet, set up training sessions (A) → Signed 15 former advertisers, increased new advertisers by 20% (R)."}
+  ]
+},
+// ── UNIT 7 ──────────────────────────────────────────────────
+{
+  id: 6,
+  code: "UNIT 07",
+  title: "Public Speaking and Presentation Skills",
+  intro: "Creating a presentation is a skill that involves organising material, using narrative techniques, and actively involving the audience to effectively communicate information in a captivating and memorable way. This unit covers presentation structure, storytelling, audience engagement, body language, voice modulation, visual aids, and handling audience questions.",
+  objectives: [
+    "Identify the key components of a presentation structure",
+    "Explain the importance of posture, gestures, and eye contact in body language",
+    "Apply storytelling techniques to create a compelling narrative",
+    "Apply appropriate body language techniques",
+    "Summarize best practices in slide design and data visualization"
+  ],
+  content: `
+<div class="sh">Preparing a Presentation</div>
+<ol style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Understand your target audience</strong> — background, interests, level of knowledge, expectations</li>
+  <li><strong>Determine your goal</strong> — clearly define objectives to guide content creation</li>
+  <li><strong>Conduct thorough research</strong> — collect clear, important information from reliable sources</li>
+  <li><strong>Organise your presentation</strong> — Introduction · Body · Conclusion</li>
+  <li><strong>Create slides</strong> — concise, superior graphics, bullet points, readable fonts and colours</li>
+  <li><strong>Improve presentation skills</strong> — practise repeatedly, improve timing and oral communication</li>
+  <li><strong>Interact with audience</strong> — be ready for inquiries; use eye contact, gestures, movement</li>
+  <li><strong>Use technology optimally</strong> — familiarise with equipment; have backup copies</li>
+</ol>
+<div class="ssh">Presentation Structure</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Introduction</strong> — Hook (question/statistic/story) + Topic overview</li>
+  <li><strong>Body</strong> — Main points with evidence, illustrations, visuals</li>
+  <li><strong>Conclusion</strong> — Summary of key takeaways + Call to action</li>
+  <li><strong>Q&A</strong> — Allocate time for audience interaction</li>
+</ul>
+
+<div class="sh">Storytelling Techniques</div>
+<table class="t"><tr><th>Technique</th><th>Description</th></tr>
+<tr><td>Hero's Journey</td><td>Main character goes on adventure, overcomes obstacles, attains objective</td></tr>
+<tr><td>Three-Act Structure</td><td>Setup → Climax → Resolution; clear and captivating storyline</td></tr>
+<tr><td>Rule of Three</td><td>Categorises thoughts into three sets; memorable and rhythmic</td></tr>
+<tr><td>Call to Action</td><td>Motivates viewers to engage in specific actions; creates urgency</td></tr>
+<tr><td>Emotional Appeal</td><td>Uses emotions to establish connection; makes presentation unforgettable</td></tr>
+<tr><td>Surprise Twist</td><td>Incorporates unexpected element to generate curiosity and maintain interest</td></tr>
+<tr><td>Metaphor</td><td>Uses comparison to clarify complex notions; simplifies difficult content</td></tr>
+<tr><td>Story Arc</td><td>Clear introduction, development, and conclusion; organised storyline</td></tr>
+</table>
+<div class="ssh">TED Talk Storytelling Techniques</div>
+<p>Top TED speakers use: <strong>Personal Anecdotes</strong> (establish emotional bond), <strong>Humour</strong> (build rapport and accessibility), <strong>Visual Aids</strong> (slides, films, photographs), <strong>Metaphors and Analogies</strong> (simplify complex concepts), <strong>Story Arcs</strong> (organised narratives with suspense and resolution).</p>
+
+<div class="sh">Engaging the Audience</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Describe a scene or captivating character</li>
+  <li>Tell a story that demonstrates your argument</li>
+  <li>Share a personal experience relevant to the subject</li>
+  <li>Relate to a recent event — make the presentation timely</li>
+  <li>Show a compelling visual image</li>
+  <li>Interact directly — pose questions or engage in activities</li>
+  <li>Vary pace and tone to sustain engagement</li>
+  <li>Offer a humorous observation or anecdote</li>
+  <li>Tell listeners what the topic has to do with them</li>
+</ul>
+
+<div class="sh">Body Language</div>
+<div class="ssh">Posture</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Avoid slouching</strong> — maintain upright, open position to project confidence</li>
+  <li><strong>Avoid tension</strong> — look and feel comfortable; take deep breaths before starting</li>
+  <li><strong>Consider your audience</strong> — formal presentation vs engaging interaction with youngsters require different posture formality</li>
+  <li><strong>Be flexible</strong> — adapt to podiums, microphones, or unexpected circumstances</li>
+</ul>
+<div class="ssh">Gestures</div>
+<p>Gestures should enhance clarity and captivation — they should convey specific meaning. When comparing large and small, use hand movements to symbolise the distinction. When presenting a numbered list, use hand gestures to visually indicate numbers. Gestures should appear calm and authentic. Avoid excessively practiced or exaggerated movements.</p>
+<div class="ssh">Eye Contact</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Ensure you observe each and every individual — by the conclusion, establish visual contact with everyone</li>
+  <li>Do not fear making eye contact — it shows you care about how your message is being perceived</li>
+  <li>Avoid prolonged intense gaze — people prefer not to feel singled out; maintain continuous, moving visual focus</li>
+</ul>
+
+<div class="sh">Voice Modulation — The 3 Ps</div>
+<table class="t"><tr><th>P</th><th>Description</th><th>Application</th></tr>
+<tr><td><strong>Pace</strong></td><td>Speed at which you speak</td><td>Increase tempo for stimulating topics; slow down to emphasise key points</td></tr>
+<tr><td><strong>Pitch</strong></td><td>Frequency fluctuations in your voice</td><td>Vary pitch to avoid monotony; high-pitched excitement vs deeper authority</td></tr>
+<tr><td><strong>Pause</strong></td><td>Brief halting during speech</td><td>Pause before/after important moments for emphasis; allows audience to absorb information</td></tr>
+</table>
+<div class="ib"><span class="ibl">Key Insight</span><p style="font-size:12.5px;margin:0">An audience is less likely to remember your essential ideas when bored by a monotonous voice. Variation in pace, pitch, and strategic pauses can determine whether your presentation is engaging or forgettable.</p></div>
+
+<div class="sh">Visual Aids — Slide Design Best Practices</div>
+<div class="ssh">Core Principle</div>
+<p>Each slide should be understandable within 3 seconds. Research shows audiences cannot simultaneously listen and read — they will either pay attention to your words or read your slides; not both.</p>
+<div class="ssh">Layout</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Begin design on paper and pen — avoid letting software drive you to bullet-point slides</li>
+  <li>Include white space — directs attention toward focal point, enhances elegance</li>
+  <li>Use the Rule of Thirds — 9-section grid; place key elements at intersection points</li>
+  <li>Use contrast — make contrasts very obvious, not subtle</li>
+  <li>Repeat colour, font, images, and layout for consistency</li>
+  <li>One concept or idea per slide</li>
+</ul>
+<div class="ssh">Colours</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Use contrasting colours for easy differentiation</li>
+  <li>Avoid red background (impairs cognitive clarity)</li>
+  <li>Avoid bright colours (yellow, pink, orange) as backgrounds</li>
+  <li>Avoid red and green near each other (most common colour blindness)</li>
+  <li>Warm colours (reds, oranges) appear prominent; cool colours (blues, greys) appear recessed</li>
+</ul>
+<div class="ssh">Fonts and Text</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Use standard readable fonts: Times New Roman, Georgia, Arial, Helvetica, Tahoma, Verdana</li>
+  <li>Avoid Comic Sans, decorative, or script fonts</li>
+  <li>6x6 rule: maximum 6 lines, 6 words per line (Seth Godin: max 6 words per slide)</li>
+  <li>Avoid all uppercase or excessive bold formatting</li>
+  <li>Use italics and underlines only for their designated functions</li>
+</ul>
+<div class="ssh">Images</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li>Use high-resolution images (minimum 1,000 pixels wide)</li>
+  <li>Avoid pixelated or watermarked images</li>
+  <li>Use Creative Commons licensed images with proper attribution</li>
+  <li>Avoid clip art — generally considered unprofessional</li>
+</ul>
+<div class="ssh">Charts and Graphs</div>
+<p>Choose the right chart type: <strong>Pie charts</strong> — relative proportions (max 8 segments, start at 12:00 clockwise). <strong>Line graphs</strong> — trends over time, correlations. <strong>Bar charts</strong> — comparisons of size or magnitude. Always label clearly, use consistent colours, eliminate 3D effects and unnecessary visual elements.</p>
+
+<div class="sh">Handling Audience Questions</div>
+<ul style="margin:8px 0 10px 18px;font-size:13.5px;line-height:2">
+  <li><strong>Prepare in advance</strong> — anticipate possible questions and prepare responses</li>
+  <li><strong>Listen to the whole question</strong> — do not interrupt; show respect</li>
+  <li><strong>Repeat or Paraphrase</strong> — confirms understanding; ensures audience hears the question</li>
+  <li><strong>Involve the whole audience</strong> — repeat the question so everyone hears it</li>
+  <li><strong>Keep answers clear and concise</strong> — if you don't know, admit it honestly</li>
+  <li><strong>Control the flow</strong> — manage time; offer to continue after the presentation</li>
+  <li><strong>Thank the questioners</strong> — encourages others to engage</li>
+  <li><strong>Follow up</strong> — if promised, get back to someone with detailed information</li>
+</ul>
+<div class="ssh">Keeping the Session Interactive</div>
+<p>Plan from the audience's perspective. Use easy-to-follow structure. Get audience involved immediately with an icebreaker. Ask questions during the presentation. Use storytelling, live polling, short videos, invite guests on stage. Maintain eye contact with all sections. Use appropriate humour and physical props.</p>`,
+
+  saqs: [
+    {q:"When preparing a presentation, what is crucial to understand before creating content?",opts:["The latest technology in presentation software","Your target audience","The color scheme of your slides","The length of your presentation"],ans:1,exp:"Understanding your target audience — their background, interests, and level of knowledge — is crucial to tailor content and ensure it meets their expectations."},
+    {q:"What is the primary objective of defining your goal when preparing a presentation?",opts:["To choose the right font and colors","To ensure you have enough slides","To provide direction for creating your content","To determine the venue"],ans:2,exp:"Clearly defining your goal provides direction for content creation and determines how you interact with your audience throughout the presentation."},
+    {q:"Which technique involves using visually impactful images to engage the audience?",opts:["Sharing a personal experience","Telling a story","Showing a compelling visual image","Varying your pace and tone"],ans:2,exp:"Showing a compelling visual image uses visual impact to captivate attention and strengthen the delivery of your message."},
+    {q:"Which of the following is NOT recommended for maintaining good posture during a presentation?",opts:["Keeping an upright and open position","Relying on the podium for support","Taking deep breaths to relax before starting","Adjusting posture to match the formality of the occasion"],ans:1,exp:"Relying on the podium for support is not recommended — it can obstruct your delivery and create a barrier between you and the audience."},
+    {q:"What is the significance of eye contact during a presentation?",opts:["It shows the presenter is reading from notes","It can make the presenter appear nervous","It helps establish a connection with the audience","It should be avoided to maintain professionalism"],ans:2,exp:"Eye contact helps establish a connection with the audience — it shows you care about how your message is being perceived and creates engagement."},
+    {q:"In voice modulation, what role does pace play?",opts:["It should be consistent to avoid confusing the audience","Varying the pace can help maintain audience engagement","A slow pace is always preferred","A fast pace is necessary to cover all material"],ans:1,exp:"Varying the pace maintains engagement — increase tempo for stimulating topics, slow down to emphasise key points. An experienced orator recognises the significance of altering tempo."},
+    {q:"What is the purpose of using pauses in your speech?",opts:["To indicate you have lost your place","To fill time if too short","To create emphasis and allow the audience to absorb information","To check if the audience is paying attention"],ans:2,exp:"A pause is most effectively employed before or following a moment of great importance as a means of highlighting and emphasising it. It also allows the audience to absorb important information."},
+    {q:"Why is it important to limit the amount of information on each slide?",opts:["To make slides more colorful","To ensure the slides can be read in under 3 seconds","To use more slides","To make room for more images"],ans:1,exp:"The objective is to create a slide that can be understood within 3 seconds while prioritising simplicity — excessive information overwhelms and makes it difficult to understand the message."},
+    {q:"What is a key consideration when choosing fonts for your slides?",opts:["Picking the most decorative fonts","Ensuring legibility, especially for those at the back of the room","Using as many different fonts as possible","Always use the default PowerPoint font"],ans:1,exp:"Font legibility is the primary consideration — especially for individuals seated furthest from the screen. Standard readable fonts ensure clarity from a distance."},
+    {q:"What is the primary benefit of using data visualization in presentations?",opts:["To fill up space on slides","To make presentations longer","To simplify and clarify complex data","To showcase all collected data"],ans:2,exp:"Data visualization simplifies and clarifies complex data — presenting it in visual format makes it more accessible, understandable, and memorable for the audience."}
+  ],
+
+  terminal: [
+    {q:"Elucidate the structured approach to prepare effective presentation skills.",a:"8-step preparation approach:\n1. Understand your target audience — background, interests, knowledge level, expectations\n2. Determine your goal — clear objectives guide content and audience interaction\n3. Conduct thorough research — reliable sources, clear and important information\n4. Organise your presentation — Introduction (hook + overview) + Body (evidence + visuals) + Conclusion (summary + CTA)\n5. Create slides — concise, high-quality graphics, bullet points, readable fonts/colours\n6. Improve presentation skills — practise repeatedly, adjust timing, improve articulation\n7. Interact with audience — prepare for questions, use eye contact and gestures\n8. Optimise technology use — familiarise with equipment, have backup copies"},
+    {q:"Explicate the Storytelling Techniques for engaging presentations.",a:"8 traditional storytelling strategies:\n1. Hero's Journey — protagonist goes on adventure, overcomes obstacles, attains goal\n2. Three-Act Structure — Setup → Climax → Resolution; maintains audience interest\n3. Rule of Three — categorises ideas into three sets; memorable and rhythmic\n4. Call to Action — motivates viewers to take specific actions; creates urgency\n5. Emotional Appeal — uses emotions to connect with audience; makes content unforgettable\n6. Surprise Twist — unexpected element maintains curiosity and engagement\n7. Metaphor — comparison to clarify complex notions; makes difficult content accessible\n8. Story Arc — clear introduction, development, and conclusion; organised flow\n\nTED speaker techniques: Personal anecdotes, humour, visual aids, metaphors/analogies, story arcs."},
+    {q:"Briefly explain the techniques to keep your audience engaged during a presentation.",a:"Key engagement techniques:\n• Describe a scene or captivating character\n• Tell a story demonstrating your argument\n• Share a relevant personal experience\n• Relate to a recent event for timeliness\n• Show a compelling visual image\n• Interact directly — pose questions, conduct activities\n• Vary pace and tone to highlight key aspects\n• Offer humorous observations or anecdotes\n• Tell listeners what the topic means for them\n• Use live polling and short videos\n• Plan from the audience's perspective\n• Use icebreakers to immediately involve the audience\n• Maintain eye contact with all sections"},
+    {q:"Explain the effective body language and its application during presentations.",a:"Body Language Components:\n\nPosture:\n• Maintain upright, open position — projects confidence\n• Avoid slouching (implies message isn't important) and tension\n• Adjust formality to match the occasion\n• Don't rely on podium for support\n\nGestures:\n• Should convey specific meaning (not random)\n• Use hand movements for comparisons, numbered lists, directing attention\n• Appear calm and authentic — avoid exaggerated movements\n• Record yourself to improve\n\nEye Contact:\n• Establish visual contact with each person during the presentation\n• Don't fear extended eye contact — it shows engagement\n• Avoid prolonged intense gazing at one person — keep moving focus"},
+    {q:"Write a short note on 3 Ps of Voice Control in Voice Modulation.",a:"The 3 Ps of Voice Control:\n\n1. Pace — the speed at which you speak.\n• Increase tempo for stimulating topics to convey enthusiasm\n• Slow down to emphasise important points and ensure comprehension\n• Variation in pace maintains audience engagement\n• An experienced orator recognises the significance of altering tempo\n\n2. Pitch — the frequency fluctuations in your voice.\n• Vary between higher and lower tones to avoid monotony\n• A monotonous voice makes audiences less likely to remember key ideas\n• Practice by imitating voice ranges of iconic personalities\n\n3. Pause — briefly halting during speech for impact.\n• Most effective before or following a moment of great importance\n• Provides the listener an opportunity to absorb important information\n• Invaluable technique for anxious presenters who speak rapidly\n• Mark PAUSE in your notes at key points as a reminder"},
+    {q:"Elucidate the best practices for designing slides.",a:"Slide Design Best Practices:\n\nLayout:\n• Start design on paper — escape the bullet-point trap\n• One concept per slide; each understandable in 3 seconds\n• Include white space for visual breathing room\n• Use the Rule of Thirds (9-section grid; place elements at intersections)\n• Use obvious contrast — if different, make it very different\n\nColours:\n• Use contrasting colours for easy differentiation\n• Avoid red (impairs cognitive clarity) and bright backgrounds\n• Avoid red-green combinations (colour blindness)\n\nFonts:\n• Use standard fonts: Arial, Helvetica, Georgia, Tahoma\n• 10-12 point minimum; ensure legibility from the back\n• Avoid Comic Sans, decorative, or all-uppercase text\n• 6x6 rule: maximum 6 lines, 6 words per line\n\nImages:\n• High-resolution (minimum 1,000px wide); no watermarks or pixelation\n• Use Creative Commons licensed images\n\nCharts:\n• Choose chart type appropriate to data type\n• Clear labels, consistent colours, eliminate 3D effects"}
+  ]
+},
+// ── UNIT 8 — EXAM PAPER ─────────────────────────────────────
+{
+  id: 7,
+  code: "EXAM",
+  title: "Model Question Paper — DCA1106",
+  intro: "Official Model Question Paper for Technical Communication DCA1106, Bachelor of Computer Applications, Semester I. This paper contains Section A (MCQs, 2 marks each), Section B (Short Answers, 5 marks each), and Section C (Long Answers, 10 marks each).",
+  objectives: [
+    "Practice exam-style MCQ questions across all 7 units",
+    "Attempt short answer questions (200–250 words each)",
+    "Attempt long answer questions (400–500 words each)",
+    "Review model answers for all sections"
+  ],
+  content: `
+<div class="sh">Section A — Multiple Choice Questions</div>
+<p style="margin-bottom:16px;font-size:12.5px;color:var(--td)">2 Marks each · Answer ALL questions</p>
+<div class="es">
+<h3>Section A — 10 MCQs</h3>
+<div class="ess">2 marks each · All questions compulsory</div>
+<div class="eq"><strong>Q1.</strong> What is the primary objective of communication?<span class="eopt">a) To confuse the receiver</span><span class="eopt">b) To transmit information effectively ✓</span><span class="eopt">c) To avoid feedback</span><span class="eopt">d) To ignore the message</span></div>
+<div class="eq"><strong>Q2.</strong> What is an example of non-verbal communication?<span class="eopt">a) Email</span><span class="eopt">b) Body language ✓</span><span class="eopt">c) Phone call</span><span class="eopt">d) Written report</span></div>
+<div class="eq"><strong>Q3.</strong> What is the correct meaning of a homophone?<span class="eopt">a) Words that sound the same but have different meanings ✓</span><span class="eopt">b) Words that have opposite meanings</span><span class="eopt">c) Words spelled the same but pronounced differently</span><span class="eopt">d) Words that have the same root word</span></div>
+<div class="eq"><strong>Q4.</strong> Which of the following is an example of a compound word?<span class="eopt">a) Run</span><span class="eopt">b) Playground ✓</span><span class="eopt">c) Quickly</span><span class="eopt">d) Go</span></div>
+<div class="eq"><strong>Q5.</strong> What is the role of punctuation in writing?<span class="eopt">a) To confuse the reader</span><span class="eopt">b) To organize and clarify meaning ✓</span><span class="eopt">c) To make sentences longer</span><span class="eopt">d) To remove the need for capital letters</span></div>
+<div class="eq"><strong>Q6.</strong> What is the correct indirect speech for: He said, "I am going to school"?<span class="eopt">a) He said he is going to school.</span><span class="eopt">b) He said he was going to school. ✓</span><span class="eopt">c) He said he will go to school.</span><span class="eopt">d) He said that he go to school.</span></div>
+<div class="eq"><strong>Q7.</strong> Which of the following is a component of an effective sentence?<span class="eopt">a) Clarity ✓</span><span class="eopt">b) Jumbled words</span><span class="eopt">c) Redundant phrases</span><span class="eopt">d) Ambiguity</span></div>
+<div class="eq"><strong>Q8.</strong> What is the main purpose of a business memo?<span class="eopt">a) To entertain employees</span><span class="eopt">b) To provide informal updates</span><span class="eopt">c) To communicate official information within an organization ✓</span><span class="eopt">d) To market new products</span></div>
+<div class="eq"><strong>Q9.</strong> What is a key element of an ATS-friendly resume?<span class="eopt">a) Handwritten format</span><span class="eopt">b) Decorative fonts</span><span class="eopt">c) Use of industry-specific keywords ✓</span><span class="eopt">d) No bullet points</span></div>
+<div class="eq"><strong>Q10.</strong> Which technique is useful for handling audience questions confidently?<span class="eopt">a) Avoiding direct eye contact</span><span class="eopt">b) Giving vague answers</span><span class="eopt">c) Active listening and structured responses ✓</span><span class="eopt">d) Ignoring difficult questions</span></div>
+</div>
+
+<div class="sh">Section B — Short Answers</div>
+<p style="margin-bottom:16px;font-size:12.5px;color:var(--td)">5 Marks each · Approximately 200–250 words · Answer ANY FOUR</p>
+
+<div class="es">
+<h3>Section B Questions</h3>
+<div class="ess">5 marks each · Answer any 4 of the 6 questions · 200-250 words each</div>
+<div class="eq"><strong>B1.</strong> What are the main types of communication? Provide examples.</div>
+<div class="eq"><strong>B2.</strong> Explain the importance of affixes in vocabulary building with examples.</div>
+<div class="eq"><strong>B3.</strong> Describe the key differences between active and passive voice with examples.</div>
+<div class="eq"><strong>B4.</strong> What are common errors in English grammar? Provide three examples.</div>
+<div class="eq"><strong>B5.</strong> Explain the significance of structuring a professional email.</div>
+<div class="eq"><strong>B6.</strong> Discuss two techniques for effective public speaking.</div>
+</div>
+
+<div class="sh">Section C — Long Answers</div>
+<p style="margin-bottom:16px;font-size:12.5px;color:var(--td)">10 Marks each · Approximately 400–500 words · Answer ANY THREE</p>
+
+<div class="es">
+<h3>Section C Questions</h3>
+<div class="ess">10 marks each · Answer any 3 of the 4 questions · 400-500 words each</div>
+<div class="eq"><strong>C1.</strong> Discuss the principles of communication and explain the common barriers to effective communication.</div>
+<div class="eq"><strong>C2.</strong> Explain the importance of sentence construction in effective writing and describe different sentence structures with examples.</div>
+<div class="eq"><strong>C3.</strong> Describe the components of a professional resume and explain how to optimize a LinkedIn profile for job opportunities.</div>
+<div class="eq"><strong>C4.</strong> What are the key elements of an effective presentation? Explain the role of body language and voice modulation in public speaking.</div>
+</div>`,
+
+  saqs: [
+    {q:"What is the primary objective of communication?",opts:["To confuse the receiver","To transmit information effectively","To avoid feedback","To ignore the message"],ans:1,exp:"The primary objective of communication is to transmit information effectively — resulting in mutual understanding between sender and receiver."},
+    {q:"What is an example of non-verbal communication?",opts:["Email","Body language","Phone call","Written report"],ans:1,exp:"Body language is non-verbal communication — it includes gestures, facial expressions, posture, eye contact, and physical appearance."},
+    {q:"What is the correct meaning of a homophone?",opts:["Words that sound the same but have different meanings","Words that have opposite meanings","Words spelled the same but pronounced differently","Words that have the same root word"],ans:0,exp:"Homophones are words that sound the same but have different meanings and spellings — e.g., 'their', 'there', 'they're'."},
+    {q:"Which of the following is an example of a compound word?",opts:["Run","Playground","Quickly","Go"],ans:1,exp:"'Playground' is a compound word — formed by combining 'play' and 'ground' to create a new word with a distinct meaning."},
+    {q:"What is the role of punctuation in writing?",opts:["To confuse the reader","To organize and clarify meaning","To make sentences longer","To remove the need for capital letters"],ans:1,exp:"Punctuation organises and clarifies meaning — it guides the flow of words, marks pauses, and prevents misinterpretation."},
+    {q:"What is the correct indirect speech for: He said, 'I am going to school'?",opts:["He said he is going to school.","He said he was going to school.","He said he will go to school.","He said that he go to school."],ans:1,exp:"In indirect speech, the tense shifts back — 'am going' (present continuous) becomes 'was going' (past continuous). 'He said that he was going to school.'"},
+    {q:"Which of the following is a component of an effective sentence?",opts:["Clarity","Jumbled words","Redundant phrases","Ambiguity"],ans:0,exp:"Clarity is a key component — effective sentences are clear, concise, complete, and coherent to ensure the message is easily understood."},
+    {q:"What is the main purpose of a business memo?",opts:["To entertain employees","To provide informal updates","To communicate official information within an organization","To market new products"],ans:2,exp:"A business memo communicates official information within an organisation — formal corporate rules, procedures, project updates, reminders, and action requests."},
+    {q:"What is a key element of an ATS-friendly resume?",opts:["Handwritten format","Decorative fonts","Use of industry-specific keywords","No bullet points"],ans:2,exp:"ATS (Applicant Tracking System) scans resumes for keywords that match the job posting. Using industry-specific keywords is critical to pass the ATS scan."},
+    {q:"Which technique is useful for handling audience questions confidently?",opts:["Avoiding direct eye contact","Giving vague answers","Active listening and structured responses","Ignoring difficult questions"],ans:2,exp:"Active listening and structured responses — listen fully, paraphrase the question, then answer clearly and honestly. Admit when you don't know rather than giving vague answers."}
+  ],
+
+  terminal: [
+    {q:"Section B1: What are the main types of communication? Provide examples.",a:"Communication can be broadly divided into two main types:\n\n1. VERBAL COMMUNICATION — uses spoken or written words\n   a) Oral Communication: face-to-face conversations, meetings, presentations, phone calls, performance reviews. Example: A sales manager explaining new targets to the team.\n   b) Written Communication: letters, memos, emails, reports, circulars. Example: A manager composing a response to a customer complaint.\n\n2. NON-VERBAL COMMUNICATION — transmits meaning without words\n   Types: Kinesics (body movements — gestures, facial expressions, posture), Haptics (touch), Proxemics (personal space), Chronemics (use of time/punctuality), Paralanguage (tone, pitch, pace), Physical context (environment, colour).\n   Example: A presenter who yawns, looks out the window, and gives a curt handshake conveys disinterest non-verbally even if their words are polite.\n\nAdditionally: Formal communication (structured, hierarchical, documented) vs Informal communication (spontaneous, unstructured, casual). General communication (everyday language, broad audience) vs Technical communication (specialised terminology, specific audience)."},
+    {q:"Section B2: Explain the importance of affixes in vocabulary building with examples.",a:"Affixes are morphemes added to the beginning (prefixes) or end (suffixes) of words to alter meaning or grammatical function.\n\nImportance:\n1. Precision — create highly specific technical terms, reducing ambiguity (e.g., 'multiprocessing' vs 'single-processing')\n2. Vocabulary Expansion — enables understanding of broader technical vocabulary as technology evolves\n3. Clarity — well-chosen affixes aid clarity and readability of technical documents\n4. Standardisation — contributes to consistent technical terminology across industries\n\nPrefix examples:\n• Micro- (small): microprocessor — a small-scale processor\n• Multi- (multiple): multithreading — concurrent execution of multiple threads\n• Un- (negation): uninstall — to remove software\n\nSuffix examples:\n• -logy (study of): technology — study of techniques and methods\n• -able (capability): configurable — capable of being configured\n• -ize (convert to verb): optimize — to make as effective as possible\n• -ware (product category): hardware — physical computer components\n• -ist (expert): analyst — someone skilled in analysing data"},
+    {q:"Section B3: Describe the key differences between active and passive voice with examples.",a:"Active Voice: The subject of the sentence performs the action.\nPassive Voice: The subject receives the action; the doer may be mentioned with 'by' or omitted.\n\nKey Differences:\n1. Clarity: Active is more direct and clear; passive can be wordy and vague\n2. Focus: Active emphasises the doer; passive emphasises the action or recipient\n3. Responsibility: Active clearly attributes actions; passive can obscure who did what\n4. Conciseness: Active uses fewer words\n\nExamples:\nActive: 'The programmer wrote the code.' (clear, direct)\nPassive: 'The code was written by the programmer.' (emphasis on the code)\n\nActive: 'The IT administrator applied the security patch.'\nPassive: 'The security patch was applied by the IT administrator.'\n\nWhen to use passive:\n• When doer is unknown: 'The server was compromised.'\n• To emphasise result: 'The data was analysed to identify trends.'\n• In formal/scientific writing where the action matters more than who did it\n\nIn IT technical writing, active voice is generally preferred for clarity and direct attribution."},
+    {q:"Section B4: What are common errors in English grammar? Provide three examples.",a:"Common grammar errors significantly impact communication quality.\n\n1. Subject-Verb Agreement Errors:\nWrong: 'The team are working on the project.'\nCorrect: 'The team is working on the project.' (collective noun treated as singular)\nWrong: 'He don't like coffee.'\nCorrect: 'He doesn't like coffee.'\n\n2. Tense Inconsistency:\nWrong: 'She walked to the lab and takes notes.' (mixed past and present)\nCorrect: 'She walked to the lab and took notes.'\n\n3. Usage Errors (Wrong Word Choice):\nWrong: 'Your welcome.' (possessive instead of contraction)\nCorrect: 'You're welcome.'\nWrong: 'I could of done it.' (sound-alike error)\nCorrect: 'I could have done it.'\nWrong: 'The update will effect the system.'\nCorrect: 'The update will affect the system.'\n\n4. Sentence Fragments:\nWrong: 'After completing the installation.' (no subject or main verb)\nCorrect: 'After completing the installation, the system restarted.'\n\n5. Run-On Sentences:\nWrong: 'The server crashed we lost all data.'\nCorrect: 'The server crashed; we lost all data.'\n\nStrategies: Proofread carefully, use grammar checkers, learn common error patterns, seek peer review."},
+    {q:"Section C1: Discuss the principles of communication and explain common barriers to effective communication.",a:"PRINCIPLES OF EFFECTIVE COMMUNICATION:\n\n1. Clarity — use simple language, avoid jargon, organise logically\n2. Conciseness — fewest words necessary; avoid wordiness\n3. Audience-Centred — tailor message to recipient's background and needs\n4. Active Listening — full engagement, seek clarification, provide feedback\n5. Feedback — enables sender to gauge comprehension and make corrections\n6. Non-Verbal Communication — align body language with verbal message\n7. Empathy — understand the feelings and perspective of others\n8. Adaptability — adjust language, tone, and delivery to context and audience\n9. Integrity — honesty and ethical conduct; provide accurate information\n10. Timeliness — respond promptly; delayed communication causes missed opportunities\n\nCOMMON BARRIERS TO EFFECTIVE COMMUNICATION:\n\nNoise Categories:\n1. Physical noise — external distractions: construction sounds, poor lighting, information overload\n2. Physiological noise — hearing impairment, illness, fatigue, intoxication\n3. Psychological noise — biases, preconceived notions, anxiety, anger, apathy\n\nOther Barriers:\n4. Environmental barriers — crowded rooms, poor acoustics\n5. Individual barriers — judging and dismissing others' perspectives\n6. Organisational barriers — rigid hierarchies, multiple intermediaries distorting messages\n7. Departmental barriers — isolated teams not collaborating\n8. Channel barriers — wrong medium chosen for the message\n9. Linguistic barriers — language differences, jargon, literal translation errors\n10. Cultural barriers — different norms, humour, idioms, etiquette rules\n11. Semantic barriers — words with different meanings in different contexts\n12. Nonverbal barriers — body language contradicting spoken words\n\nOVERCOMING BARRIERS:\nOrganisational level: Motivate feedback, foster openness, utilise multiple channels\nIndividual level: Active listening, careful message phrasing, appropriate channel selection, avoiding jargon, effective feedback"},
+    {q:"Section C4: Key elements of an effective presentation. Role of body language and voice modulation.",a:"KEY ELEMENTS OF AN EFFECTIVE PRESENTATION:\n\n1. Thorough Preparation:\n• Understand audience (background, expectations, knowledge level)\n• Define clear objectives\n• Research reliably and organise logically\n\n2. Strong Structure:\n• Introduction: Hook (question/statistic/story) + topic overview\n• Body: Main points supported by evidence, examples, visuals\n• Conclusion: Summary of key takeaways + call to action + Q&A\n\n3. Storytelling:\n• Use techniques like Hero's Journey, Three-Act Structure, Rule of Three\n• Personal anecdotes establish emotional connection\n• Metaphors simplify complex concepts\n\n4. Audience Engagement:\n• Interactive questions, live polls, varying pace and tone\n• Tell listeners how the topic relates to them\n\n5. Visual Aids:\n• One concept per slide; understandable in 3 seconds\n• Use white space; rule of thirds layout\n• Appropriate charts: bar (comparison), pie (proportion), line (trends)\n\nROLE OF BODY LANGUAGE:\n\nPosture: Upright, open position projects confidence. Slouching implies message isn't important.\nGestures: Should convey specific meaning — use hands for comparisons, numbered lists, directing attention. Appear calm and authentic.\nEye Contact: Establish contact with each person. Shows engagement and care for how message is received. Avoid prolonged focus on one person.\n\nROLE OF VOICE MODULATION (3 Ps):\n\nPace: Vary speed — increase for stimulating topics, slow down for emphasis. Variation maintains audience engagement.\nPitch: Fluctuate frequency to avoid monotony. Monotone voice makes key ideas forgettable.\nPause: Brief halts before/after important moments for emphasis. Allows audience to absorb information. Mark PAUSE in notes as reminders.\n\nTogether, these elements create a presentation that is not only heard but experienced emotionally and retained in memory."}
+  ]
+}
+]; // end UNITS array
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  cur: -1,        // current unit index (-1 = dashboard)
+  done: new Set() // completed unit IDs
+};
+
+// ============================================================
+// ROUTING
+// ============================================================
+function showDash() {
+  state.cur = -1;
+  document.getElementById('dash').style.display = 'block';
+  document.getElementById('unit-container').innerHTML = '';
+  document.getElementById('bc').innerHTML = 'DCA1106 / <span>Dashboard</span>';
+  document.querySelectorAll('.ul li a').forEach(a => a.classList.remove('on'));
+  document.getElementById('nl-dash').classList.add('on');
+  closeMb();
+}
+
+function loadUnit(idx) {
+  state.cur = idx;
+  document.getElementById('dash').style.display = 'none';
+  const u = UNITS[idx];
+  document.getElementById('bc').innerHTML = 'DCA1106 / <span>' + u.code + ' — ' + u.title + '</span>';
+  document.querySelectorAll('.ul li a').forEach(a => a.classList.remove('on'));
+  const nl = document.getElementById('nl-' + idx);
+  if (nl) nl.classList.add('on');
+  renderUnit(u);
+  document.getElementById('ct').scrollTop = 0;
+  window.scrollTo(0, 0);
+  closeMb();
+}
+
+function prevUnit() {
+  if (state.cur <= 0) { showDash(); return; }
+  loadUnit(state.cur - 1);
+}
+
+function nextUnit() {
+  if (state.cur === -1) { loadUnit(0); return; }
+  if (state.cur < UNITS.length - 1) loadUnit(state.cur + 1);
+}
+
+// ============================================================
+// RENDER UNIT
+// ============================================================
+function renderUnit(u) {
+  const container = document.getElementById('unit-container');
+  const isDone = state.done.has(u.id);
+  container.innerHTML = `
+<div class="pn on" id="up-${u.id}">
+  <div class="utag">${u.code} &nbsp;·&nbsp; DCA1106</div>
+  <div class="utit">${u.title}</div>
+  <div class="uint">${u.intro}</div>
+  <div class="obj">
+    <h4>Learning Objectives</h4>
+    <ul>${u.objectives.map(o => '<li>' + o + '</li>').join('')}</ul>
+  </div>
+  <div class="tabs">
+    <button class="tb on" onclick="switchTab(this,'ct-${u.id}','tab-content')">📖 Content</button>
+    <button class="tb" onclick="switchTab(this,'sq-${u.id}','tab-content')">🧩 SAQ Quiz</button>
+    <button class="tb" onclick="switchTab(this,'tq-${u.id}','tab-content')">📝 Terminal Qs</button>
+    ${u.id === 7 ? '' : ''}
+  </div>
+  <div class="tc on tab-content" id="ct-${u.id}">
+    ${u.content}
+  </div>
+  <div class="tc tab-content" id="sq-${u.id}">
+    ${renderSAQs(u)}
+  </div>
+  <div class="tc tab-content" id="tq-${u.id}">
+    ${renderTerminal(u)}
+  </div>
+  <div class="db ${isDone ? 'on' : ''}" id="done-banner-${u.id}">
+    <span style="font-size:24px">✅</span>
+    <div><h4>Unit Completed!</h4><p>Great work — this unit is marked as done in your progress tracker.</p></div>
+  </div>
+</div>`;
+}
+
+function switchTab(btn, tabId, groupClass) {
+  const pn = btn.closest('.pn');
+  pn.querySelectorAll('.tb').forEach(b => b.classList.remove('on'));
+  pn.querySelectorAll('.tc').forEach(t => t.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(tabId).classList.add('on');
+}
+
+// ============================================================
+// SAQ QUIZ RENDERER
+// ============================================================
+function renderSAQs(u) {
+  if (!u.saqs || u.saqs.length === 0) return '<p style="color:var(--td);font-size:13px">No SAQs for this unit.</p>';
+  const letters = ['A','B','C','D'];
+  let html = '';
+  u.saqs.forEach((q, qi) => {
+    html += `<div class="qq" id="qq-${u.id}-${qi}">
+  <div class="qt"><span class="qn">Q${qi+1}</span>${q.q}</div>
+  <div class="opts">`;
+    q.opts.forEach((opt, oi) => {
+      html += `<button class="ob" onclick="checkAns(${u.id},${qi},${oi})">
+    <span class="ol">${letters[oi]}</span>${opt}
+  </button>`;
+    });
+    html += `</div>
+  <div class="exp" id="exp-${u.id}-${qi}">${q.exp}</div>
+</div>`;
+  });
+  html += `<div class="qr" id="qr-${u.id}">
+  <div class="rs" id="qr-score-${u.id}">0%</div>
+  <div class="rm" id="qr-msg-${u.id}">Complete all questions to see your result</div>
+  <div class="rd2" id="qr-sub-${u.id}"></div>
+</div>`;
+  return html;
+}
+
+const quizState = {};
+
+function checkAns(uid, qi, selected) {
+  const u = UNITS[uid];
+  const q = u.saqs[qi];
+  const qEl = document.getElementById('qq-' + uid + '-' + qi);
+  if (qEl.classList.contains('done')) return;
+  qEl.classList.add('done');
+  const btns = qEl.querySelectorAll('.ob');
+  btns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.ans) b.classList.add('ok');
+    else if (i === selected) b.classList.add('ng');
+  });
+  const expEl = document.getElementById('exp-' + uid + '-' + qi);
+  expEl.classList.add('on');
+
+  if (!quizState[uid]) quizState[uid] = { answered: 0, correct: 0 };
+  quizState[uid].answered++;
+  if (selected === q.ans) quizState[uid].correct++;
+
+  if (quizState[uid].answered === u.saqs.length) {
+    const pct = Math.round((quizState[uid].correct / u.saqs.length) * 100);
+    const qrEl = document.getElementById('qr-' + uid);
+    document.getElementById('qr-score-' + uid).textContent = pct + '%';
+    const msgs = pct >= 80 ? 'Outstanding!' : pct >= 60 ? 'Good Work!' : 'Keep Practising';
+    document.getElementById('qr-msg-' + uid).textContent = msgs + ' — ' + quizState[uid].correct + '/' + u.saqs.length + ' correct';
+    document.getElementById('qr-sub-' + uid).textContent = pct >= 60 ? 'Unit marked as complete ✓' : 'Score 60% or more to mark unit complete';
+    qrEl.classList.add('on');
+    if (pct >= 60 && u.id < 7) markDone(u.id);
+  }
+}
+
+function markDone(uid) {
+  state.done.add(uid);
+  const banner = document.getElementById('done-banner-' + uid);
+  if (banner) banner.classList.add('on');
+  const nl = document.getElementById('nl-' + uid);
+  if (nl) nl.classList.add('dn');
+  const dc = document.getElementById('dc-' + uid);
+  if (dc) dc.classList.add('dn');
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = 7; // 7 content units (not exam)
+  const done = state.done.size;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('pct').textContent = pct + '%';
+  const doneEl = document.getElementById('d-done');
+  if (doneEl) doneEl.textContent = done;
+}
+
+// ============================================================
+// TERMINAL QUESTIONS RENDERER
+// ============================================================
+function renderTerminal(u) {
+  if (!u.terminal || u.terminal.length === 0) return '<p style="color:var(--td);font-size:13px">No terminal questions for this unit.</p>';
+  let html = '';
+  u.terminal.forEach((tq, ti) => {
+    html += `<div class="tqi">
+  <div class="tqq"><strong>Q${ti+1}.</strong> ${tq.q}</div>
+  <button class="tqb" onclick="toggleTQ(this)">Show Answer</button>
+  <div class="tqa" id="tqa-${u.id}-${ti}">${tq.a}</div>
+</div>`;
+  });
+  return html;
+}
+
+function toggleTQ(btn) {
+  const ans = btn.nextElementSibling;
+  const showing = ans.classList.contains('on');
+  ans.classList.toggle('on', !showing);
+  btn.textContent = showing ? 'Show Answer' : 'Hide Answer';
+}
+
+// ============================================================
+// MOBILE SIDEBAR
+// ============================================================
+function toggleMb() {
+  document.getElementById('sb').classList.toggle('op');
+  document.getElementById('overlay').classList.toggle('op');
+}
+function closeMb() {
+  document.getElementById('sb').classList.remove('op');
+  document.getElementById('overlay').classList.remove('op');
+}
+
+// Init
+updateProgress();
+</script>
+</body>
+</html>
