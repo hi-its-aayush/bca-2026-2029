@@ -21,13 +21,12 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
 .ucn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--td);margin-bottom:6px;text-transform:uppercase}
 .ucc h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--tb);margin-bottom:10px}
 .btn-launch{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ac2);text-transform:uppercase;margin-top:auto}
-
-/* MODAL STYLES */
 #modal-ov{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(9,12,18,0.95);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(6px)}
 #modal{background:var(--sf);border:1px solid var(--ac2);padding:40px;border-radius:16px;max-width:450px;width:90%;text-align:center;position:relative}
 #modal h2{font-family:'Syne',sans-serif;color:var(--ac);margin-bottom:15px}
 .m-joke{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--td);background:var(--bg);padding:15px;border-radius:8px;margin-bottom:20px;border-left:3px solid var(--ac2)}
 .btn-close{background:var(--ac2);color:#fff;border:none;padding:10px 25px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-weight:700;cursor:pointer}
+@media(max-width:768px){.dh{padding:25px}.dh h1{font-size:26px}}
 </style>
 </head>
 <body>
@@ -35,7 +34,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
 <main id="main">
   <div class="dh">
     <h1>BCA Knowledge Base</h1>
-    <p>Aayush Acharya's academic portal for MUJ Online BCA (2026-2029).</p>
+    <p>Aayush Acharya's academic portal for MUJ Online BCA (2026-2029). Interactive modules for every semester.</p>
   </div>
 
   <section class="sem-sec">
@@ -53,10 +52,48 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
         <div class="ucn">DCA1106</div><h3>Technical Communication</h3>
         <div class="btn-launch">Open Module →</div>
       </a>
-      <div class="ucc" onclick="showModal('Fundamentals of Mathematics', 'Calculations are pending!')">
+      <div class="ucc" onclick="showModal('Fundamentals of Mathematics', 'Calculations are pending. I\'m currently busy solving the variables of Semester 1!')">
         <div class="ucn">DCA1105</div><h3>Fundamentals of Mathematics</h3>
         <div class="btn-launch" style="color:var(--td)">Coming Soon...</div>
       </div>
+      <div class="ucc" onclick="showModal('Foundation of Computer Systems', 'My CPU is at 99%. This module is still being compiled in my brain!')">
+        <div class="ucn">DCA1104</div><h3>Foundation of Computer Systems</h3>
+        <div class="btn-launch" style="color:var(--td)">Coming Soon...</div>
+      </div>
+      <div class="ucc" onclick="showModal('Introduction to Web Programming', 'The server is down for maintenance. Web programming will launch shortly!')">
+        <div class="ucn">DCA1103</div><h3>Web Programming</h3>
+        <div class="btn-launch" style="color:var(--td)">Coming Soon...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sem-sec">
+    <div class="sem-h">Semester 02</div>
+    <div class="ucg">
+      <div class="ucc" onclick="showModal('Data Structures', 'Still organizing my own memory structures. Locked for now!')"><h3>Data Structures</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+      <div class="ucc" onclick="showModal('DBMS', 'Access denied. The database for Semester 2 hasn\'t been initialized!')"><h3>Database Management</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+      <div class="ucc" onclick="showModal('Statistics', 'The probability of this opening today is 0%. Check back later!')"><h3>Statistics & Probability</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+      <div class="ucc" onclick="showModal('Languages', 'I haven\'t learned to speak this language yet!')"><h3>Programming Languages</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+      <div class="ucc" onclick="showModal('C++', 'Incrementing my skills... but haven\'t reached ++ yet!')"><h3>Object Oriented Programming</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+    </div>
+  </section>
+
+  <section class="sem-sec">
+    <div class="sem-h">Semester 03</div>
+    <div class="ucg">
+      <div class="ucc" onclick="showModal('Architecture', 'The blue-print is still being drawn up. Under construction!')"><h3>Computer Architecture</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+      <div class="ucc" onclick="showModal('Java', 'Still brewing the coffee for this one. Java is coming soon!')"><h3>Java Programming</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+      <div class="ucc" onclick="showModal('Networking', '404 Connection Not Found. Haven\'t reached the networking phase!')"><h3>Data Communication</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+      <div class="ucc" onclick="showModal('OS', 'System reboot required. Operating systems are locked!')"><h3>Operating Systems</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+      <div class="ucc" onclick="showModal('AI', 'I am still an Artificial Intelligence in training. Coming soon!')"><h3>AI for Problem Solving</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
+    </div>
+  </section>
+
+  <section class="sem-sec">
+    <div class="sem-h">Semesters 04 — 06</div>
+    <div class="ucg">
+      <div class="ucc" onclick="showModal('Advanced Modules', 'Python, Software Engineering, and Cloud Computing are deep in the future!')"><h3>Advanced Specializations</h3><div class="btn-launch" style="color:var(--td)">Locked</div></div>
+      <div class="ucc" onclick="showModal('Major Project', 'The final boss fight isn\'t until 2029!')"><h3>Final Degree Project</h3><div class="btn-launch" style="color:var(--td)">Locked</div></div>
     </div>
   </section>
 </main>
@@ -66,14 +103,15 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
     <div style="font-size:40px; margin-bottom:10px">⏳</div>
     <h2 id="m-title">Subject Locked</h2>
     <div class="m-joke" id="m-text">I haven't commenced this subject yet.</div>
+    <p style="color:var(--tx); font-size:14px; margin-bottom:20px">As Aayush advances his studies, interactive modules will appear here automatically.</p>
     <button class="btn-close" onclick="closeModal()">GOT IT</button>
   </div>
 </div>
 
 <script>
-function showModal(title, joke) {
-  document.getElementById('m-title').innerText = title;
-  document.getElementById('m-text').innerText = joke;
+function showModal(t, j) {
+  document.getElementById('m-title').innerText = t;
+  document.getElementById('m-text').innerText = j;
   document.getElementById('modal-ov').style.display = 'flex';
 }
 function closeModal() {
