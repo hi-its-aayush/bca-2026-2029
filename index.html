@@ -1,133 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>BCA Study Portal | Aayush Acharya</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0b0e14;--sf:#111620;--sf2:#161c2a;--br:#1e2840;--ac:#00e5ff;--ac2:#7b61ff;--tx:#c8d6f0;--td:#5a6a8a;--tb:#e8f0ff}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;display:flex;justify-content:center;min-height:100vh;padding:40px 20px}
-#main{max-width:1100px;width:100%}
-.dh{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:40px;margin-bottom:40px;position:relative;overflow:hidden}
-.dh h1{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--tb);margin-bottom:10px}
-.dh p{font-size:14px;color:var(--td);max-width:600px}
-.sem-sec{margin-bottom:50px}
-.sem-h{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--ac);margin-bottom:25px;display:flex;align-items:center;gap:15px}
-.sem-h::after{content:'';flex:1;height:1px;background:var(--br)}
-.ucg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.ucc{background:var(--sf);border:1px solid var(--br);border-radius:10px;padding:22px;text-decoration:none;transition:all .2s;display:flex;flex-direction:column;min-height:140px;cursor:pointer}
-.ucc:hover{border-color:var(--ac2);transform:translateY(-3px);background:var(--sf2)}
-.ucn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--td);margin-bottom:6px;text-transform:uppercase}
-.ucc h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--tb);margin-bottom:10px}
-.btn-launch{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ac2);text-transform:uppercase;margin-top:auto}
-
-/* MODAL STYLES */
-#modal-ov{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(9,12,18,0.95);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(6px)}
-#modal{background:var(--sf);border:1px solid var(--ac2);padding:40px;border-radius:16px;max-width:450px;width:90%;text-align:center;position:relative}
-#modal h2{font-family:'Syne',sans-serif;color:var(--ac);margin-bottom:15px}
-.m-joke{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--td);background:var(--bg);padding:15px;border-radius:8px;margin-bottom:20px;border-left:3px solid var(--ac2)}
-.btn-close{background:var(--ac2);color:#fff;border:none;padding:10px 25px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-weight:700;cursor:pointer}
-</style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
 </head>
 <body>
-
-<main id="main">
-  <div class="dh">
-    <h1>BCA Knowledge Base</h1>
-    <p>Aayush Acharya's academic portal for MUJ Online BCA (2026-2029). Interactive modules for every semester.</p>
-  </div>
-
-  <section class="sem-sec">
-    <div class="sem-h">Semester 01</div>
-    <div class="ucg">
-      <a href="Semester 1/C Programming/Interactive Website/index.html" class="ucc">
-        <div class="ucn">DCA1102</div><h3>C Programming</h3>
-        <div class="btn-launch">Open Module →</div>
-      </a>
-      <a href="Semester 1/Environmental Science/Interactive webpage/index.html" class="ucc">
-        <div class="ucn">DCA1107</div><h3>Environmental Science</h3>
-        <div class="btn-launch">Open Module →</div>
-      </a>
-      <div class="ucc" onclick="showModal('Fundamentals of Mathematics', 'Calculations are pending. I\'m currently busy solving the variables of Semester 1!')">
-        <div class="ucn">DCA1105</div><h3>Fundamentals of Mathematics</h3>
-        <div class="btn-launch" style="color:var(--td)">Coming Soon...</div>
-      </div>
-      <div class="ucc" onclick="showModal('Foundation of Computer Systems', 'My CPU is at 99%. This module is still being compiled in my brain!')">
-        <div class="ucn">DCA1104</div><h3>Foundation of Computer Systems</h3>
-        <div class="btn-launch" style="color:var(--td)">Coming Soon...</div>
-      </div>
-      <div class="ucc" onclick="showModal('Introduction to Web Programming', 'The server is down for maintenance. Web programming will launch shortly!')">
-        <div class="ucn">DCA1103</div><h3>Web Programming</h3>
-        <div class="btn-launch" style="color:var(--td)">Coming Soon...</div>
-      </div>
-      <div class="ucc" onclick="showModal('Technical Communication', 'Transmission lost. I haven\'t reached the communication unit yet!')">
-        <div class="ucn">DCA1106</div><h3>Technical Communication</h3>
-        <div class="btn-launch" style="color:var(--td)">Coming Soon...</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sem-sec">
-    <div class="sem-h">Semester 02</div>
-    <div class="ucg">
-      <div class="ucc" onclick="showModal('Data Structures', 'Still organizing my own memory structures. Locked for now!')"><h3>Data Structures</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('DBMS', 'Access denied. The database for Semester 2 hasn\'t been initialized!')"><h3>Database Management</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('Statistics', 'The probability of this opening today is 0%. Check back later!')"><h3>Statistics & Probability</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('Languages', 'I haven\'t learned to speak this language yet!')"><h3>Programming Languages</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('C++', 'Incrementing my skills... but haven\'t reached ++ yet!')"><h3>Object Oriented Programming</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-    </div>
-  </section>
-
-  <section class="sem-sec">
-    <div class="sem-h">Semester 03</div>
-    <div class="ucg">
-      <div class="ucc" onclick="showModal('Architecture', 'The blue-print is still being drawn up. Under construction!')"><h3>Computer Architecture</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('Java', 'Still brewing the coffee for this one. Java is coming soon!')"><h3>Java Programming</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('Networking', '404 Connection Not Found. Haven\'t reached the networking phase!')"><h3>Data Communication</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('OS', 'System reboot required. Operating systems are locked!')"><h3>Operating Systems</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('AI', 'I am still an Artificial Intelligence in training. Coming soon!')"><h3>AI for Problem Solving</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-    </div>
-  </section>
-
-  <section class="sem-sec">
-    <div class="sem-h">Semester 04</div>
-    <div class="ucg">
-      <div class="ucc" onclick="showModal('Python', 'The snake hasn\'t hatched yet. Coming in Semester 4!')"><h3>Python Programming</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('SE', 'The software lifecycle hasn\'t started for this subject yet!')"><h3>Software Engineering</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('Data Mining', 'Still digging for gold. Visualization is locked!')"><h3>Data Mining</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-      <div class="ucc" onclick="showModal('Security', 'Encrypted. You don\'t have the decryption key yet!')"><h3>Network Security</h3><div class="btn-launch" style="color:var(--td)">Coming Soon...</div></div>
-    </div>
-  </section>
-
-  <section class="sem-sec">
-    <div class="sem-h">Semester 05 & 06</div>
-    <div class="ucg">
-      <div class="ucc" onclick="showModal('Specialization', 'Advanced modules including Cloud and Machine Learning are deep in the future!')"><h3>Specialized Electives</h3><div class="btn-launch" style="color:var(--td)">Locked</div></div>
-      <div class="ucc" onclick="showModal('Final Project', 'The final boss fight isn\'t until 2029!')"><h3>Major Project</h3><div class="btn-launch" style="color:var(--td)">Locked</div></div>
-    </div>
-  </section>
-</main>
-
-<div id="modal-ov" onclick="closeModal()">
-  <div id="modal" onclick="event.stopPropagation()">
-    <div style="font-size:40px; margin-bottom:10px">⏳</div>
-    <h2 id="m-title">Subject Locked</h2>
-    <div class="m-joke" id="m-text">I haven't commenced this subject yet.</div>
-    <p style="color:var(--tx); font-size:14px; margin-bottom:20px">As Aayush advances his studies, interactive modules will appear here automatically.</p>
-    <button class="btn-close" onclick="closeModal()">GOT IT</button>
-  </div>
-</div>
-
-<script>
-function showModal(title, joke) {
-  document.getElementById('m-title').innerText = title;
-  document.getElementById('m-text').innerText = joke;
-  document.getElementById('modal-ov').style.display = 'flex';
-}
-function closeModal() {
-  document.getElementById('modal-ov').style.display = 'none';
-}
-</script>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;BCA Study Portal | Aayush Acharya&lt;/title&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&amp;family=Syne:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">:root{--bg:#0b0e14;--sf:#111620;--sf2:#161c2a;--br:#1e2840;--ac:#00e5ff;--ac2:#7b61ff;--tx:#c8d6f0;--td:#5a6a8a;--tb:#e8f0ff}</p>
+<p class="p1">*{margin:0;padding:0;box-sizing:border-box}</p>
+<p class="p1">body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;display:flex;justify-content:center;min-height:100vh;padding:40px 20px}</p>
+<p class="p1">#main{max-width:1100px;width:100%}</p>
+<p class="p1">.dh{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:40px;margin-bottom:40px;position:relative;overflow:hidden}</p>
+<p class="p1">.dh h1{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--tb);margin-bottom:10px}</p>
+<p class="p1">.dh p{font-size:14px;color:var(--td);max-width:600px}</p>
+<p class="p1">.sem-sec{margin-bottom:50px}</p>
+<p class="p1">.sem-h{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--ac);margin-bottom:25px;display:flex;align-items:center;gap:15px}</p>
+<p class="p1">.sem-h::after{content:'';flex:1;height:1px;background:var(--br)}</p>
+<p class="p1">.ucg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}</p>
+<p class="p1">.ucc{background:var(--sf);border:1px solid var(--br);border-radius:10px;padding:22px;text-decoration:none;transition:all .2s;display:flex;flex-direction:column;min-height:140px;cursor:pointer}</p>
+<p class="p1">.ucc:hover{border-color:var(--ac2);transform:translateY(-3px);background:var(--sf2)}</p>
+<p class="p1">.ucn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--td);margin-bottom:6px;text-transform:uppercase}</p>
+<p class="p1">.ucc h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--tb);margin-bottom:10px}</p>
+<p class="p1">.btn-launch{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ac2);text-transform:uppercase;margin-top:auto}</p>
+<p class="p2"><br></p>
+<p class="p1">/* MODAL STYLES */</p>
+<p class="p1">#modal-ov{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(9,12,18,0.95);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(6px)}</p>
+<p class="p1">#modal{background:var(--sf);border:1px solid var(--ac2);padding:40px;border-radius:16px;max-width:450px;width:90%;text-align:center;position:relative}</p>
+<p class="p1">#modal h2{font-family:'Syne',sans-serif;color:var(--ac);margin-bottom:15px}</p>
+<p class="p1">.m-joke{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--td);background:var(--bg);padding:15px;border-radius:8px;margin-bottom:20px;border-left:3px solid var(--ac2)}</p>
+<p class="p1">.btn-close{background:var(--ac2);color:#fff;border:none;padding:10px 25px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-weight:700;cursor:pointer}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;main id="main"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="dh"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;BCA Knowledge Base&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Aayush Acharya's academic portal for MUJ Online BCA (2026-2029). Interactive modules for every semester.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="sem-sec"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="sem-h"&gt;Semester 01&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="ucg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="Semester 1/C Programming/webpage/index.html" class="ucc"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="ucn"&gt;DCA1102&lt;/div&gt;&lt;h3&gt;C Programming&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="btn-launch"&gt;Open Module →&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="Semester 1/Environmental Science/webpage/index.html" class="ucc"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="ucn"&gt;DCA1107&lt;/div&gt;&lt;h3&gt;Environmental Science&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="btn-launch"&gt;Open Module →&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="Semester 1/Technical Communication/webpage/index.html" class="ucc"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="ucn"&gt;DCA1106&lt;/div&gt;&lt;h3&gt;Technical Communication&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="btn-launch"&gt;Open Module →&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/a&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Fundamentals of Mathematics', 'Calculations are pending. I\'m currently busy solving the variables of Semester 1!')"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="ucn"&gt;DCA1105&lt;/div&gt;&lt;h3&gt;Fundamentals of Mathematics&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Foundation of Computer Systems', 'My CPU is at 99%. This module is still being compiled in my brain!')"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="ucn"&gt;DCA1104&lt;/div&gt;&lt;h3&gt;Foundation of Computer Systems&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Introduction to Web Programming', 'The server is down for maintenance. Web programming will launch shortly!')"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="ucn"&gt;DCA1103&lt;/div&gt;&lt;h3&gt;Web Programming&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="sem-sec"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="sem-h"&gt;Semester 02&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="ucg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Data Structures', 'Still organizing my own memory structures. Locked for now!')"&gt;&lt;h3&gt;Data Structures&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('DBMS', 'Access denied. The database for Semester 2 hasn\'t been initialized!')"&gt;&lt;h3&gt;Database Management&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Statistics', 'The probability of this opening today is 0%. Check back later!')"&gt;&lt;h3&gt;Statistics &amp; Probability&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Languages', 'I haven\'t learned to speak this language yet!')"&gt;&lt;h3&gt;Programming Languages&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('C++', 'Incrementing my skills... but haven\'t reached ++ yet!')"&gt;&lt;h3&gt;Object Oriented Programming&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="sem-sec"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="sem-h"&gt;Semester 03&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="ucg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Architecture', 'The blue-print is still being drawn up. Under construction!')"&gt;&lt;h3&gt;Computer Architecture&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Java', 'Still brewing the coffee for this one. Java is coming soon!')"&gt;&lt;h3&gt;Java Programming&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('Networking', '404 Connection Not Found. Haven\'t reached the networking phase!')"&gt;&lt;h3&gt;Data Communication&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('OS', 'System reboot required. Operating systems are locked!')"&gt;&lt;h3&gt;Operating Systems&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="ucc" onclick="showModal('AI', 'I am still an Artificial Intelligence in training. Coming soon!')"&gt;&lt;h3&gt;AI for Problem Solving&lt;/h3&gt;&lt;div class="btn-launch" style="color:var(--td)"&gt;Coming Soon...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div id="modal-ov" onclick="closeModal()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="modal" onclick="event.stopPropagation()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div style="font-size:40px; margin-bottom:10px"&gt;⏳&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2 id="m-title"&gt;Subject Locked&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="m-joke" id="m-text"&gt;I haven't commenced this subject yet.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p style="color:var(--tx); font-size:14px; margin-bottom:20px"&gt;As Aayush advances his studies, interactive modules will appear here automatically.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="btn-close" onclick="closeModal()"&gt;GOT IT&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">function showModal(title, joke) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('m-title').innerText = title;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('m-text').innerText = joke;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('modal-ov').style.display = 'flex';</p>
+<p class="p1">}</p>
+<p class="p1">function closeModal() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('modal-ov').style.display = 'none';</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
 </body>
 </html>
