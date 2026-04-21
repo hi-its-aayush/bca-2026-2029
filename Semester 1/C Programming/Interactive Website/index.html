@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>C Programming — Complete Course | MUJ BCA Sem 1</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0e14;--sf:#111620;--sf2:#161c2a;--br:#1e2840;--ac:#00e5ff;--ac2:#7b61ff;--gr:#39ff14;--am:#ffc107;--rd:#ff4444;--tx:#c8d6f0;--td:#5a6a8a;--tb:#e8f0ff;--cb:#090c12;--sw:265px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;display:flex;min-height:100vh}
+#sb{width:var(--sw);background:var(--sf);border-right:1px solid var(--br);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;display:flex;flex-direction:column;z-index:100;transition:transform .3s}
+#sb::-webkit-scrollbar{width:3px}#sb::-webkit-scrollbar-thumb{background:var(--br)}
+.sbh{padding:16px;border-bottom:1px solid var(--br);position:sticky;top:0;background:var(--sf);z-index:2}
+.sbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ac);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.sbt{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--tb)}
+.pw{padding:10px 16px;border-bottom:1px solid var(--br)}
+.pl{display:flex;justify-content:space-between;font-size:10px;color:var(--td);margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+.pb{height:3px;background:var(--br);border-radius:2px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:2px;transition:width .5s;width:0%}
+.ul{list-style:none;padding:4px 0;flex:1}
+.ul li a{display:flex;align-items:center;gap:7px;padding:7px 14px;text-decoration:none;font-size:11.5px;color:var(--td);transition:all .2s;border-left:2px solid transparent}
+.ul li a:hover{color:var(--tx);background:var(--sf2);border-left-color:var(--ac2)}
+.ul li a.on{color:var(--ac);background:rgba(0,229,255,.05);border-left-color:var(--ac);font-weight:500}
+.ul li a.dn{color:var(--gr)}
+.un{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;background:var(--sf2);border:1px solid var(--br);border-radius:3px;padding:1px 4px;min-width:24px;text-align:center;flex-shrink:0}
+.ul li a.on .un{border-color:var(--ac);color:var(--ac)}
+.ul li a.dn .un{border-color:var(--gr);color:var(--gr)}
+#main{margin-left:var(--sw);flex:1}
+#tnav{background:var(--sf);border-bottom:1px solid var(--br);padding:10px 32px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:50}
+.bc{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--td)}.bc span{color:var(--ac)}
+.nbs{margin-left:auto;display:flex;gap:8px}
+.btn{padding:6px 14px;border-radius:5px;border:1px solid var(--br);background:transparent;color:var(--tx);font-size:12px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.btn:hover{border-color:var(--ac);color:var(--ac)}
+.btnp{background:linear-gradient(135deg,var(--ac2),var(--ac));border:none;color:#000;font-weight:600}
+.btnp:hover{opacity:.85;color:#000}
+#ct{padding:32px;max-width:880px}
+.pn{display:none}.pn.on{display:block;animation:fi .3s}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.utag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--ac2);letter-spacing:3px;text-transform:uppercase;margin-bottom:7px}
+.utit{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--tb);line-height:1.15;margin-bottom:14px}
+.uint{font-size:13.5px;line-height:1.8;margin-bottom:22px;padding:14px 18px;background:var(--sf);border-left:3px solid var(--ac);border-radius:0 7px 7px 0}
+.obj{background:rgba(123,97,255,.07);border:1px solid rgba(123,97,255,.2);border-radius:8px;padding:14px 18px;margin-bottom:24px}
+.obj h4{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--ac2);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.obj li{padding:3px 0;font-size:12.5px;display:flex;gap:7px;list-style:none}
+.obj li::before{content:'▸';color:var(--ac2);flex-shrink:0}
+/* Tabs */
+.tabs{display:flex;border-bottom:1px solid var(--br);margin-bottom:20px}
+.tb{padding:8px 16px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--td);font-size:12.5px;cursor:pointer;transition:all .2s;margin-bottom:-1px;font-family:'Inter',sans-serif}
+.tb:hover{color:var(--tx)}.tb.on{color:var(--ac);border-bottom-color:var(--ac)}
+.tc{display:none}.tc.on{display:block;animation:fi .2s}
+/* Content */
+.sh{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--tb);margin:24px 0 10px;display:flex;align-items:center;gap:10px}
+.sh::after{content:'';flex:1;height:1px;background:var(--br)}
+.ssh{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ac);margin:18px 0 8px}
+.pn p{margin-bottom:10px;color:var(--tx);font-size:13.5px;line-height:1.8}
+/* Code */
+.cw{background:var(--cb);border:1px solid var(--br);border-radius:7px;margin:12px 0;overflow:hidden}
+.ch{display:flex;align-items:center;padding:7px 12px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--br);gap:6px}
+.ds{display:flex;gap:4px}.ds span{width:8px;height:8px;border-radius:50%;display:block}
+.dr{background:#ff5f57}.dy{background:#ffbd2e}.dg{background:#28c840}
+.cl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--td);margin-left:auto}
+pre{padding:14px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:#abb2bf}
+pre::-webkit-scrollbar{height:3px}pre::-webkit-scrollbar-thumb{background:var(--br)}
+.kw{color:#c678dd}.fn{color:#61afef}.str{color:#98c379}.num{color:#d19a66}.cm{color:#5c6370;font-style:italic}.type{color:#e5c07b}.pp{color:#c678dd}.op{color:#56b6c2}
+/* Tables */
+.t{width:100%;border-collapse:collapse;margin:12px 0;font-size:12.5px}
+.t th{background:var(--sf2);color:var(--ac);padding:7px 10px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--br)}
+.t td{padding:6px 10px;border-bottom:1px solid var(--br)}
+.t tr:hover td{background:var(--sf2)}
+.t code{background:var(--cb);border:1px solid var(--br);border-radius:3px;padding:1px 4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gr)}
+/* Info boxes */
+.ib{background:rgba(57,255,20,.04);border:1px solid rgba(57,255,20,.15);border-radius:7px;padding:10px 14px;margin:10px 0}
+.ib b,.ibl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:5px}
+.wb{background:rgba(255,193,7,.04);border:1px solid rgba(255,193,7,.15);border-radius:7px;padding:10px 14px;margin:10px 0}
+.wb b,.wbl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--am);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:5px}
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:10px 0}
+.ic{background:var(--sf);border:1px solid var(--br);border-radius:7px;padding:10px;transition:border-color .2s}
+.ic:hover{border-color:var(--ac2)}
+.ic h5{font-family:'Syne',sans-serif;font-size:11.5px;font-weight:700;color:var(--tb);margin-bottom:3px}
+.ic p{font-size:11px;color:var(--td);margin:0;line-height:1.4}
+/* Quiz */
+.qq{background:var(--sf);border:1px solid var(--br);border-radius:8px;padding:16px;margin-bottom:12px;transition:border-color .3s}
+.qq.done{border-color:rgba(123,97,255,.3)}
+.qt{font-size:13px;font-weight:500;color:var(--tb);margin-bottom:10px;line-height:1.6;display:flex;gap:7px}
+.qn{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;background:var(--sf2);border:1px solid var(--br);border-radius:3px;padding:1px 5px;color:var(--ac2);flex-shrink:0;margin-top:2px}
+.opts{display:flex;flex-direction:column;gap:5px}
+.ob{display:flex;align-items:center;gap:9px;padding:8px 10px;background:var(--sf2);border:1px solid var(--br);border-radius:5px;cursor:pointer;transition:all .2s;text-align:left;color:var(--tx);font-family:'Inter',sans-serif;font-size:12.5px;width:100%}
+.ob:hover:not(:disabled){border-color:var(--ac2);background:rgba(123,97,255,.06)}
+.ol{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;width:20px;height:20px;border:1px solid var(--br);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--td);transition:all .2s}
+.ob:hover:not(:disabled) .ol{border-color:var(--ac2);color:var(--ac2)}
+.ob.ok{background:rgba(57,255,20,.06);border-color:var(--gr);color:var(--tb)}.ob.ok .ol{border-color:var(--gr);color:var(--gr)}
+.ob.ng{background:rgba(255,68,68,.06);border-color:var(--rd);color:var(--td)}.ob.ng .ol{border-color:var(--rd);color:var(--rd)}
+.ob:disabled{cursor:not-allowed}
+.exp{margin-top:7px;padding:7px 10px;background:rgba(0,229,255,.04);border-left:2px solid var(--ac);border-radius:0 4px 4px 0;font-size:11.5px;display:none}
+.exp.on{display:block;animation:fi .2s}
+/* TQ */
+.tqi{background:var(--sf);border:1px solid var(--br);border-radius:7px;padding:14px;margin-bottom:10px}
+.tqq{font-size:12.5px;font-weight:500;color:var(--tb);margin-bottom:8px}
+.tqb{padding:5px 12px;background:rgba(123,97,255,.08);border:1px solid rgba(123,97,255,.2);border-radius:4px;color:var(--ac2);font-size:11px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.tqb:hover{background:rgba(123,97,255,.16)}
+.tqa{display:none;margin-top:8px;padding:10px;background:var(--cb);border-radius:4px;font-size:11.5px;color:var(--tx);font-family:'JetBrains Mono',monospace;white-space:pre-wrap;border:1px solid var(--br)}
+.tqa.on{display:block;animation:fi .2s}
+/* Result */
+.qr{display:none;margin-top:18px;padding:20px;border-radius:8px;text-align:center;border:1px solid var(--br);background:var(--sf)}
+.qr.on{display:block;animation:fi .4s}
+.rs{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,var(--ac2),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:5px}
+.rm{font-size:14px;color:var(--tb);margin-bottom:3px}.rd2{font-size:11px;color:var(--td)}
+/* Done banner */
+.db{display:none;margin-top:20px;padding:14px 18px;background:rgba(57,255,20,.04);border:1px solid rgba(57,255,20,.15);border-radius:8px;align-items:center;gap:12px}
+.db.on{display:flex;animation:fi .5s}
+.db h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--gr);margin-bottom:1px}
+.db p{font-size:11px;color:var(--td);margin:0}
+/* Dashboard */
+#dash{display:block}
+.dh{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden}
+.dh::before{content:'';position:absolute;top:-80px;right:-80px;width:250px;height:250px;background:radial-gradient(circle,rgba(123,97,255,.12),transparent 70%);pointer-events:none}
+.dh .dt{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ac);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.dh h1{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--tb);line-height:1.15;margin-bottom:10px}
+.dh p{font-size:13px;color:var(--tx);max-width:480px;line-height:1.7;margin-bottom:18px}
+.dst{display:flex;gap:24px;font-size:12px;color:var(--td)}
+.dst strong{display:block;font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--ac);margin-bottom:1px}
+.ucg{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.ucc{background:var(--sf);border:1px solid var(--br);border-radius:9px;padding:14px;cursor:pointer;transition:all .2s;position:relative}
+.ucc:hover{border-color:var(--ac2);transform:translateY(-2px)}
+.ucn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--td);margin-bottom:5px}
+.ucc h3{font-family:'Syne',sans-serif;font-size:12.5px;font-weight:700;color:var(--tb);line-height:1.3;margin-bottom:5px}
+.uct{font-size:11px;color:var(--td);line-height:1.4}
+.ucd{display:none;position:absolute;top:10px;right:10px;font-size:12px}
+.ucc.dn .ucd{display:block}.ucc.dn{border-color:rgba(57,255,20,.15)}
+code{background:var(--cb);border:1px solid var(--br);border-radius:3px;padding:1px 4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gr)}
+/* Exam */
+.es{background:rgba(255,193,7,.04);border:1px solid rgba(255,193,7,.18);border-radius:8px;padding:18px;margin-bottom:16px}
+.es h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--am);margin-bottom:3px}
+.ess{font-size:10px;color:var(--td);margin-bottom:12px}
+.eq{padding:8px 0;border-bottom:1px solid var(--br);font-size:12.5px}
+.eq:last-child{border-bottom:none}
+.eq strong{color:var(--tb)}
+.eopt{color:var(--td);display:block;padding-left:12px;font-size:11.5px;margin-top:2px}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90}
+#mbt{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--sf);border:1px solid var(--br);border-radius:7px;padding:7px 10px;cursor:pointer;color:var(--tx);font-size:14px}
+@media(max-width:768px){#sb{transform:translateX(-100%)}#sb.op{transform:translateX(0)}#overlay.op{display:block}#mbt{display:flex;align-items:center}#main{margin-left:0;max-width:100vw}#ct{padding:20px 14px}.utit{font-size:20px}}
+</style>
+</head>
+<body>
+<button id="mbt" onclick="tglSB()">☰</button>
+<div id="overlay" onclick="tglSB()"></div>
+<nav id="sb">
+  <div class="sbh"><div class="sbl">MUJ · BCA · Sem 1</div><div class="sbt">C Programming</div></div>
+  <div class="pw">
+    <div class="pl"><span>Progress</span><span id="ptxt">0/14</span></div>
+    <div class="pb"><div class="pf" id="pfill"></div></div>
+  </div>
+  <ul class="ul" id="ul">
+    <li><a href="#" onclick="showDash()" id="n0" class="on"><span class="un">⌂</span>Overview</a></li>
+    <li><a href="#" onclick="su(1)" id="n1"><span class="un">01</span>Introduction to C</a></li>
+    <li><a href="#" onclick="su(2)" id="n2"><span class="un">02</span>Basics of C</a></li>
+    <li><a href="#" onclick="su(3)" id="n3"><span class="un">03</span>I/O Operations</a></li>
+    <li><a href="#" onclick="su(4)" id="n4"><span class="un">04</span>Operators & Expressions</a></li>
+    <li><a href="#" onclick="su(5)" id="n5"><span class="un">05</span>Flow of Control Pt.1</a></li>
+    <li><a href="#" onclick="su(6)" id="n6"><span class="un">06</span>Flow of Control Pt.2</a></li>
+    <li><a href="#" onclick="su(7)" id="n7"><span class="un">07</span>Arrays Part 1</a></li>
+    <li><a href="#" onclick="su(8)" id="n8"><span class="un">08</span>Arrays Part 2</a></li>
+    <li><a href="#" onclick="su(9)" id="n9"><span class="un">09</span>Strings Part 1</a></li>
+    <li><a href="#" onclick="su(10)" id="n10"><span class="un">10</span>Strings Part 2</a></li>
+    <li><a href="#" onclick="su(11)" id="n11"><span class="un">11</span>Functions</a></li>
+    <li><a href="#" onclick="su(12)" id="n12"><span class="un">12</span>Functions Part 2</a></li>
+    <li><a href="#" onclick="su(13)" id="n13"><span class="un">13</span>Functions Part 3</a></li>
+    <li><a href="#" onclick="su(14)" id="n14"><span class="un">14</span>Functions Part 4</a></li>
+    <li><a href="#" onclick="su(15)" id="n15"><span class="un">📝</span>Exam Paper</a></li>
+  </ul>
+</nav>
+<main id="main">
+  <div id="tnav">
+    <div class="bc">C Programming / <span id="tlbl">Overview</span></div>
+    <div class="nbs">
+      <button class="btn" id="bprev" onclick="pu()" style="display:none">← Prev</button>
+      <button class="btn btnp" id="bnext" onclick="nu()" style="display:none">Next →</button>
+    </div>
+  </div>
+  <div id="ct">
+    <div id="dash">
+      <div class="dh">
+        <div class="dt">// Complete Study Material — MUJ BCA</div>
+        <h1>C Programming<br>Full Course</h1>
+        <p>All 14 units with complete theory, programs, self-assessment questions (SAQs), terminal questions with answers, exercises, and exam paper. Everything from the PDFs.</p>
+        <div class="dst">
+          <div><strong>14</strong>Units</div>
+          <div><strong>60+</strong>Programs</div>
+          <div><strong>100+</strong>SAQs & TQs</div>
+          <div><strong>1</strong>Exam Paper</div>
+        </div>
+      </div>
+      <div class="ucg" id="ucg"></div>
+    </div>
+    <div id="uc"></div>
+  </div>
+</main><script>
+const UNITS=[
+{id:1,title:"Introduction to C Programming",topics:"History, Features, Program Structure, Simple Programs, Executing C",
+obj:["Discuss features of C programming language","Explain basic structure of a C program","Write and understand simple C programs","Understand the compilation and execution process"],
+intro:"C is a general-purpose, structured programming language developed by Dennis Ritchie at Bell Laboratories in 1972. It grew from BCPL/B language and is strongly associated with UNIX. C balances high-level readability with low-level hardware access.",
+content:`
+<div class="sh">1. Overview & History</div>
+<p>C was the offspring of the 'Basic Combined Programming Language' (BPCL) called B, developed in the 1960s at Cambridge University. Dennis Ritchie modified B at Bell Labs in 1972. The UNIX OS was coded almost entirely in C.</p>
+<div class="igrid">
+  <div class="ic"><h5>1960s</h5><p>BCPL/B at Cambridge University</p></div>
+  <div class="ic"><h5>1972</h5><p>C created by Dennis Ritchie at Bell Labs</p></div>
+  <div class="ic"><h5>1978</h5><p>K&R C book published</p></div>
+  <div class="ic"><h5>1989</h5><p>ANSI C (C89) standard</p></div>
+</div>
+<p>In C, the type of a variable determines what kinds of values it may take on. The "set of values" is finite — C's int cannot represent ALL integers. When declaring a variable, you must keep in mind the values and operations you'll need.</p>
+
+<div class="sh">2. Features of C</div>
+<p>C is characterised by: <strong>Concise syntax</strong> (large operator set), <strong>Extensible</strong> (users can add library functions), <strong>Efficient</strong> (compact object code), <strong>Portable</strong> (across machines), <strong>Modular</strong> (group of function building blocks).</p>
+
+<div class="sh">Program Structure</div>
+<table class="t">
+  <tr><th>Section</th><th>Description</th><th>Required?</th></tr>
+  <tr><td>Documentation</td><td>Comment lines describing program, author, details</td><td>No</td></tr>
+  <tr><td>Link / Preprocessor</td><td>#include directives to link library functions</td><td>As needed</td></tr>
+  <tr><td>Definition</td><td>#define symbolic constants</td><td>No</td></tr>
+  <tr><td>Global Declaration</td><td>Variables shared across all functions</td><td>No</td></tr>
+  <tr><td><strong>main() Function</strong></td><td>Mandatory — declaration + executable parts</td><td><strong>Yes</strong></td></tr>
+  <tr><td>Subprograms</td><td>User-defined functions</td><td>No</td></tr>
+</table>
+<p>All statements end with a semicolon (;). Comments use /* and */ delimiters. Program execution begins at opening brace of main and ends at closing brace.</p>
+
+<div class="sh">2.2 Simple C Programs</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">hello.c</span></div>
+<pre><span class="cm">/* First C Program */</span>
+<span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="fn">main</span>()
+{
+    <span class="fn">printf</span>(<span class="str">"Hello, world!\n"</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+<p>The <code>#include &lt;stdio.h&gt;</code> brings in Standard I/O Library definitions. <code>main</code> is the entry point — called first when program runs. <code>return 0</code> signals success to the OS.</p>
+
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">circle_area.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">float</span> radius, area;
+    <span class="fn">printf</span>(<span class="str">"Radius=?"</span>);
+    <span class="fn">scanf</span>(<span class="str">"%f"</span>, <span class="op">&</span>radius);
+    area <span class="op">=</span> <span class="num">3.14159</span> <span class="op">*</span> radius <span class="op">*</span> radius;
+    <span class="fn">printf</span>(<span class="str">"Area=%f"</span>, area);
+}</pre></div>
+
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">add_two.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">int</span> i, j, k;
+    i <span class="op">=</span> <span class="num">6</span>; j <span class="op">=</span> <span class="num">8</span>;
+    k <span class="op">=</span> i <span class="op">+</span> j;
+    <span class="fn">printf</span>(<span class="str">"sum = %d\n"</span>, k);
+}</pre></div>
+
+<div class="sh">2.3 Executing a C Program</div>
+<p>Compilation process: Source code (.c) → Preprocessing → Compilation → Assembly → Linking → Executable. GCC (GNU Compiler Collection) is commonly used: <code>gcc program.c -o program</code> then <code>./program</code></p>
+<div class="ib"><b>Compilation Steps</b><p>1) Preprocessor handles #include, #define<br>2) Compiler converts to assembly/object code<br>3) Linker links object code with libraries<br>4) Executable created</p></div>
+
+<div class="sh">Summary</div>
+<p>C is a pivotal language developed in 1972 by Dennis Ritchie. Its basic structure: preprocessor directive, function declarations, main function, user-defined functions. Programming style emphasizes readability, consistent naming, and indentation. Compilation translates source to executable.</p>`,
+saqs:[
+  {q:"Using C language, programmers can write their own library functions.",o:["True","False"],a:0,e:"True. C encourages users to write additional library functions, extending the language's capabilities."},
+  {q:"C is a ________ level programming language.",o:["Low","High","Machine","Assembly"],a:1,e:"C is a High-level programming language (though it also allows access to low-level features like bitwise ops)."},
+  {q:"The documentation section contains a set of __________ lines.",o:["executable","comment","header","declaration"],a:1,e:"The documentation section consists of comment lines (/* ... */) giving program name, author, and other details."},
+  {q:"Every C program must have one main() function.",o:["True","False"],a:0,e:"True. Every C program must have exactly one main() — it is the entry point where execution begins."},
+  {q:"The information passed to a function when called is called ______.",o:["Variables","Arguments","Keywords","Constants"],a:1,e:"Arguments (or parameters) are the information passed to a function when it is called."},
+  {q:"The main() function doesn't return any value.",o:["True","False"],a:1,e:"False. main() returns int. By convention, returning 0 indicates successful execution."},
+],
+tqs:[
+  {q:"1. Explain the history of C language.",a:"C was developed by Dennis Ritchie at Bell Laboratories in 1972. It came after B (from BCPL developed at Cambridge in 1960s). C was built alongside UNIX, which was coded almost entirely in C. ANSI C was standardized in 1989."},
+  {q:"2. What are the advantages of C language?",a:"1) Fast and efficient — compilers generate compact object code\n2) Structured — supports modular programming\n3) Portable — programs run across different machines\n4) Extensible — users can add their own library functions\n5) Rich set of operators and built-in functions\n6) Close to hardware — can manipulate bits/bytes"},
+  {q:"3. What are the major components of a C program?",a:"Documentation section, Link section (#include), Definition section (#define), Global declaration section, main() function section (mandatory), and Subprogram section (user-defined functions)."},
+  {q:"4. What significance is attached to the function main?",a:"main() is called first when the program starts running. Every C program must have exactly one main(). Program execution begins and ends in main(). It can accept command-line arguments (argc, argv) and returns int to signal success (0) or failure."},
+],
+exs:["1. Explain the basic structure of a C program with an example.","2. List the different steps in executing a C program.","3. Write a C program to convert Celsius to Fahrenheit.","4. Write a program to add, subtract, and multiply 3 numbers."]},
+
+{id:2,title:"Basics of C Programming",topics:"Data Types, Float/Double, Type Cast, char, Keywords, Variables, Constants",
+obj:["Understand role of data types in C","Declare and use variables","Apply the type cast operator","Differentiate between integer, real, character, string, backslash constants"],
+intro:"Data types classify and work with different types of data — they define how variables store information and how much memory they occupy. This unit covers all built-in types, variables, type casting, and constants.",
+content:`
+<div class="sh">2. Data Types in C</div>
+<p>Core data types: int, float, double, char. Type modifiers: short, long, unsigned, signed. Qualifiers: const, volatile.</p>
+
+<div class="sh">2.1 Floating-Point Numbers</div>
+<table class="t">
+  <tr><th>Type</th><th>Size (bits)</th><th>Range</th><th>Precision</th></tr>
+  <tr><td><code>float</code></td><td>32</td><td>3.4E-38 to 3.4E+38</td><td>6 digits</td></tr>
+  <tr><td><code>double</code></td><td>64</td><td>1.7E-308 to 1.7E+308</td><td>14 digits</td></tr>
+  <tr><td><code>long double</code></td><td>80</td><td>3.4E-4932 to 1.1E+4932</td><td>Extended</td></tr>
+</table>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.1.1 — Float/double demo</span></div>
+<pre><span class="fn">main</span>()
+{
+    <span class="type">float</span> x, p; <span class="type">double</span> y, q; <span class="type">unsigned</span> k;
+    <span class="type">int</span> m<span class="op">=</span><span class="num">54321</span>; <span class="type">long int</span> n<span class="op">=</span><span class="num">1234567890</span>;
+    x<span class="op">=</span><span class="num">1.234567890000</span>; y<span class="op">=</span><span class="num">9.87654321</span>; k<span class="op">=</span><span class="num">54321</span>; p<span class="op">=</span>q<span class="op">=</span><span class="num">1.0</span>;
+    <span class="fn">printf</span>(<span class="str">"m=%d\n"</span>,m);             <span class="cm">// -11215 (int overflow on 16-bit)</span>
+    <span class="fn">printf</span>(<span class="str">"n=%ld\n"</span>,n);            <span class="cm">// 1234567890</span>
+    <span class="fn">printf</span>(<span class="str">"x=%.12lf\n"</span>,x);        <span class="cm">// 1.234567880630</span>
+    <span class="fn">printf</span>(<span class="str">"y=%.12lf\n"</span>,y);        <span class="cm">// 9.876543210000</span>
+    <span class="fn">printf</span>(<span class="str">"k=%u p=%f q=%.12lf\n"</span>,k,p,q);
+}</pre></div>
+
+<div class="sh">2.2 Average of N Numbers</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.1.2</span></div>
+<pre><span class="pp">#define</span> N <span class="num">10</span>
+<span class="fn">main</span>()
+{
+    <span class="type">int</span> count; <span class="type">float</span> sum, average, number;
+    sum<span class="op">=</span><span class="num">0</span>; count<span class="op">=</span><span class="num">0</span>;
+    <span class="kw">while</span>(count<span class="op">&lt;</span>N) {
+        <span class="fn">scanf</span>(<span class="str">"%f"</span>,<span class="op">&</span>number);
+        sum<span class="op">=</span>sum<span class="op">+</span>number; count<span class="op">=</span>count<span class="op">+</span><span class="num">1</span>;
+    }
+    average<span class="op">=</span>sum<span class="op">/</span>N;
+    <span class="fn">printf</span>(<span class="str">"N=%d Sum=%f Average=%f"</span>,N,sum,average);
+}</pre></div>
+
+<div class="sh">2.3 Roots of Quadratic Equation</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.1.3</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;math.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">float</span> a,b,c,discriminant,root1,root2;
+    <span class="fn">scanf</span>(<span class="str">"%f %f %f"</span>,<span class="op">&</span>a,<span class="op">&</span>b,<span class="op">&</span>c);
+    discriminant<span class="op">=</span>b<span class="op">*</span>b<span class="op">-</span><span class="num">4</span><span class="op">*</span>a<span class="op">*</span>c;
+    <span class="kw">if</span>(discriminant<span class="op">&lt;</span><span class="num">0</span>) <span class="fn">printf</span>(<span class="str">"roots are imaginary\n"</span>);
+    <span class="kw">else</span> {
+        root1<span class="op">=</span>(<span class="op">-</span>b<span class="op">+</span><span class="fn">sqrt</span>(discriminant))<span class="op">/</span>(<span class="num">2</span><span class="op">*</span>a);
+        root2<span class="op">=</span>(<span class="op">-</span>b<span class="op">-</span><span class="fn">sqrt</span>(discriminant))<span class="op">/</span>(<span class="num">2</span><span class="op">*</span>a);
+        <span class="fn">printf</span>(<span class="str">"Root1=%5.2f Root2=%5.2f\n"</span>,root1,root2);
+    }
+}</pre></div>
+
+<div class="sh">2.4 Type Conversion & Mixed-Mode</div>
+<p>When operands are different types, lower type converts to higher automatically. Mixed-mode: one real + one integer → result is real. Thus <code>25/10.0 = 2.5</code> but <code>25/10 = 2</code>.</p>
+<p>Final assignment conversions: <strong>float→int</strong> = truncation; <strong>double→float</strong> = rounding; <strong>long int→int</strong> = drops excess higher-order bits.</p>
+
+<div class="sh">2.6 The Type Cast Operator</div>
+<p>Explicit conversion: <code>(type-name) expression</code>. Does NOT change the variable itself — only forces local conversion for that expression.</p>
+<table class="t">
+  <tr><th>Cast</th><th>Action</th></tr>
+  <tr><td><code>X=(int)8.5</code></td><td>Truncates to 8</td></tr>
+  <tr><td><code>A=(int)21.3/(int)4.5</code></td><td>21/4 = 5</td></tr>
+  <tr><td><code>B=(double)sum/n</code></td><td>Float division</td></tr>
+  <tr><td><code>X=(int)(y+0.5)</code></td><td>Rounding trick</td></tr>
+</table>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">char_type.c</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">char</span> c<span class="op">=</span><span class="str">'A'</span>; <span class="type">int</span> a<span class="op">=</span><span class="num">65</span>;
+    <span class="fn">printf</span>(<span class="str">"%c\n"</span>,c);   <span class="cm">// A</span>
+    <span class="fn">printf</span>(<span class="str">"%d\n"</span>,c);   <span class="cm">// 65 (ASCII value)</span>
+    <span class="fn">printf</span>(<span class="str">"%c\n"</span>,a);   <span class="cm">// A (char from ASCII)</span>
+}</pre></div>
+
+<div class="sh">2.8 Keywords</div>
+<p>32 ANSI C keywords (all lowercase):</p>
+<div style="background:var(--cb);border:1px solid var(--br);border-radius:6px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ac2);line-height:2;margin:10px 0;">auto · break · case · char · const · continue · default · do · double · else · enum · extern · float · for · goto · if · int · long · register · return · short · signed · sizeof · static · struct · switch · typedef · union · unsigned · void · volatile · while</div>
+
+<div class="sh">3. Variables & Naming Rules</div>
+<div class="igrid">
+  <div class="ic"><h5>Must start with</h5><p>Letter (a-z, A-Z) or underscore _</p></div>
+  <div class="ic"><h5>Can contain</h5><p>Letters, digits, underscores only</p></div>
+  <div class="ic"><h5>Case sensitive</h5><p>count ≠ Count ≠ COUNT</p></div>
+  <div class="ic"><h5>Cannot use</h5><p>C keywords or spaces</p></div>
+</div>
+<table class="t">
+  <tr><th>Type</th><th>Size</th><th>Range (16-bit)</th></tr>
+  <tr><td><code>int / signed int</code></td><td>16 bits</td><td>-32,768 to 32,767</td></tr>
+  <tr><td><code>unsigned int</code></td><td>16 bits</td><td>0 to 65,535</td></tr>
+  <tr><td><code>long int</code></td><td>32 bits</td><td>-2,147,483,648 to 2,147,483,647</td></tr>
+  <tr><td><code>unsigned long int</code></td><td>32 bits</td><td>0 to 4,294,967,295</td></tr>
+</table>
+
+<div class="sh">4. Constants</div>
+<table class="t">
+  <tr><th>Type</th><th>Examples</th><th>Notes</th></tr>
+  <tr><td>Integer</td><td><code>12, -546, 045(octal), 0x1A(hex)</code></td><td>Suffix: U(unsigned), L(long), UL</td></tr>
+  <tr><td>Real/Float</td><td><code>0.0045, -8.5, 7.5E9, 04e4</code></td><td>Exponential: mantissa e exponent</td></tr>
+  <tr><td>Character</td><td><code>'A', '9', ';'</code></td><td>Single char in single quotes; has ASCII value</td></tr>
+  <tr><td>String</td><td><code>"Hello!", "1947"</code></td><td>Sequence in double quotes</td></tr>
+  <tr><td>Backslash</td><td><code>'\\n','\\t','\\0','\\\\','\\'</code></td><td>Escape sequences — each is ONE char</td></tr>
+</table>
+<table class="t">
+  <tr><th>Escape</th><th>Meaning</th><th>Escape</th><th>Meaning</th></tr>
+  <tr><td><code>\\n</code></td><td>new line</td><td><code>\\t</code></td><td>horizontal tab</td></tr>
+  <tr><td><code>\\r</code></td><td>carriage return</td><td><code>\\b</code></td><td>back space</td></tr>
+  <tr><td><code>\\0</code></td><td>null</td><td><code>\\\\</code></td><td>backslash</td></tr>
+  <tr><td><code>\\'</code></td><td>single quote</td><td><code>\\f</code></td><td>form feed</td></tr>
+</table>`,
+saqs:[
+  {q:"When accuracy of float is not sufficient, use long float.",o:["True","False"],a:1,e:"False. Use 'double' (64-bit, 14 digits) not 'long float'. Long double (80-bit) extends further."},
+  {q:"A double data type uses __________ bits.",o:["32","64","80","16"],a:1,e:"double uses 64 bits giving 14 digits of precision vs float's 32-bit 6-digit precision."},
+  {q:"Lower type is automatically converted to higher type in mixed expressions.",o:["True","False"],a:0,e:"True. C applies automatic type conversion — lower type promoted to higher before operation."},
+  {q:"During final assignment, ________ to int causes dropping of excess higher order bits.",o:["float","double","long int","char"],a:2,e:"long int to int causes dropping of excess higher order bits. float to int causes truncation."},
+  {q:"The value of expression 22.0/10 is ________.",o:["2","2.2","2.0","22"],a:1,e:"22.0 is float, so 22.0/10 = 2.2 (float division). If both were int: 22/10 = 2."},
+  {q:"Casting can be used to round-off a given value.",o:["True","False"],a:0,e:"True. X=(int)(y+0.5) rounds y. If y=37.7: y+0.5=38.2, (int)38.2=38."},
+  {q:"Value of A=(int)11.35/(int)14.5 is ___.",o:["0","1","11","14"],a:0,e:"(int)11.35=11, (int)14.5=14, 11/14=0 (integer division truncates)."},
+  {q:"If X=35.2, then A=(int)(X+0.5) is ___.",o:["35","36","35.7","35.2"],a:0,e:"35.2+0.5=35.7, (int)35.7=35 (truncation)."},
+  {q:"All keywords must be written in ____________.",o:["uppercase","lowercase","mixed","any"],a:1,e:"All C keywords must be lowercase. 'If', 'INT', 'WHILE' are NOT valid keywords."},
+  {q:"'default' is not a valid keyword in C.",o:["True","False"],a:1,e:"False. 'default' IS a valid C keyword used in switch statements."},
+  {q:"Variable names in C are case sensitive.",o:["True","False"],a:0,e:"True. 'count', 'Count', and 'COUNT' are three different variables in C."},
+  {q:"A variable name in C consists of letters, numbers and _________.",o:["spaces","hyphens","underscores","dots"],a:2,e:"Variable names can only contain letters, digits (0-9), and underscores. No spaces or special chars."},
+],
+tqs:[
+  {q:"1. Distinguish between signed and unsigned integers.",a:"Signed integer: uses one bit for sign, 15 bits for magnitude → range -32,768 to 32,767 (16-bit).\nUnsigned integer: all 16 bits for magnitude → range 0 to 65,535.\nUnsigned cannot store negative values."},
+  {q:"2. State the rules for naming a variable in C.",a:"1) Must start with letter (a-z, A-Z) or underscore _\n2) Can contain letters, digits, underscores only\n3) Case-sensitive (count ≠ Count)\n4) Cannot be a C keyword\n5) No spaces or special characters\n6) No fixed length limit (but very long names may cause issues)"},
+  {q:"3. Clarify the different constants in C.",a:"Integer constants: 12, -546, 045 (octal), 0x1A (hex)\nReal constants: 3.14, 7.5E9, -8.5\nCharacter constants: 'A', '9' (single char, single quotes)\nString constants: \"Hello\" (chars in double quotes)\nBackslash constants: \\n, \\t, \\0 (escape sequences, each = 1 char)"},
+],
+exs:["1. Write a program that takes two integers and swaps them using a temporary variable.","2. Write a program that calculates area of a rectangle using constants.","3. Convert temperature from Fahrenheit to Celsius taking user input."]},
+
+{id:3,title:"I/O Operations in C",topics:"scanf(), printf(), Format Specifiers, gets, puts, Width & Precision",
+obj:["Understand and implement printf() for formatted output","Use scanf() for formatted input","Use format specifiers correctly","Understand interactive programming"],
+intro:"Input and output are essential to any program. C uses library functions — scanf() for input and printf() for output — both requiring #include <stdio.h>. They use format specifiers to handle different data types.",
+content:`
+<div class="sh">2. Formatted Input — scanf()</div>
+<p>Syntax: <code>scanf(control_string, &arg1, &arg2, ...)</code>. Arguments must be addresses (use & operator). String arrays don't need & — array name already represents address. Returns number of successfully read items.</p>
+<table class="t">
+  <tr><th>Specifier</th><th>Reads</th><th>Specifier</th><th>Reads</th></tr>
+  <tr><td><code>%d</code></td><td>decimal int</td><td><code>%o</code></td><td>octal int</td></tr>
+  <tr><td><code>%i</code></td><td>integer</td><td><code>%x</code></td><td>hexadecimal</td></tr>
+  <tr><td><code>%f</code></td><td>float</td><td><code>%s</code></td><td>string</td></tr>
+  <tr><td><code>%e %g</code></td><td>float variants</td><td><code>%c</code></td><td>char</td></tr>
+  <tr><td><code>%lf</code></td><td>double</td><td><code>%u</code></td><td>unsigned int</td></tr>
+  <tr><td><code>%p</code></td><td>pointer</td><td><code>%%</code></td><td>% sign</td></tr>
+</table>
+<div class="wb"><b>Important</b><p>Use &variable for int, float, char. Do NOT use & for string arrays — the array name already represents the address.</p></div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">io_basics.c</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">int</span> i; <span class="type">float</span> f; <span class="type">char</span> c; <span class="type">char</span> str[<span class="num">10</span>];
+    <span class="fn">scanf</span>(<span class="str">"%d %f %c %s"</span>, <span class="op">&</span>i, <span class="op">&</span>f, <span class="op">&</span>c, str); <span class="cm">// no & for string!</span>
+    <span class="fn">printf</span>(<span class="str">"%d %f %c %s"</span>, i, f, c, str);
+}</pre></div>
+
+<div class="sh">3. Formatted Output — printf()</div>
+<p>Syntax: <code>printf(control_string, arg1, arg2, ...)</code>. Arguments can be constants, variables, or expressions.</p>
+
+<div class="sh">Width & Precision Formatting</div>
+<table class="t">
+  <tr><th>Format</th><th>Example Output</th><th>Meaning</th></tr>
+  <tr><td><code>%5d</code></td><td>|   42|</td><td>Right-align, width 5</td></tr>
+  <tr><td><code>%-5d</code></td><td>|42   |</td><td>Left-align, width 5</td></tr>
+  <tr><td><code>%05d</code></td><td>|00042|</td><td>Zero-pad, width 5</td></tr>
+  <tr><td><code>%8.2f</code></td><td>|    3.14|</td><td>Width 8, 2 decimal places</td></tr>
+  <tr><td><code>%e</code></td><td>1.23e+04</td><td>Scientific notation</td></tr>
+  <tr><td><code>%%</code></td><td>%</td><td>Literal percent sign</td></tr>
+</table>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">formatted_output.c</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="fn">printf</span>(<span class="str">"|%5d|\n"</span>, <span class="num">42</span>);       <span class="cm">// |   42|</span>
+    <span class="fn">printf</span>(<span class="str">"|%-5d|\n"</span>, <span class="num">42</span>);      <span class="cm">// |42   |</span>
+    <span class="fn">printf</span>(<span class="str">"|%8.3f|\n"</span>, <span class="num">3.14159</span>); <span class="cm">// |   3.142|</span>
+    <span class="fn">printf</span>(<span class="str">"|%05d|\n"</span>, <span class="num">42</span>);      <span class="cm">// |00042|</span>
+    <span class="fn">printf</span>(<span class="str">"Score: %d%%\n"</span>, <span class="num">95</span>);  <span class="cm">// Score: 95%</span>
+}</pre></div>
+
+<div class="sh">Reading Strings with Spaces</div>
+<p>scanf("%s") stops at whitespace. Use gets() or character set format for strings with spaces:</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">string_input.c</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">char</span> str[<span class="num">80</span>];
+    <span class="cm">/* Read uppercase + spaces using character set */</span>
+    <span class="fn">scanf</span>(<span class="str">"%[ ABCDEFGHIJKLMNOPQRSTUVWXYZ]"</span>, str);
+    <span class="fn">printf</span>(<span class="str">"%s\n"</span>, str);
+}</pre></div>`,
+saqs:[
+  {q:"Which format specifier reads/prints a decimal integer?",o:["%f","%s","%d","%c"],a:2,e:"%d is the format specifier for decimal integers in both printf and scanf."},
+  {q:"Correct way to read an integer using scanf:",o:["scanf(\"%d\", num);","scanf(\"%d\", &num);","scanf(\"%i\", *num);","input(\"%d\", num);"],a:1,e:"scanf requires address using & operator: scanf(\"%d\", &num);"},
+  {q:"For a string variable in scanf, the & operator is NOT needed.",o:["True","False"],a:0,e:"True. String/array names already represent the address of the first element."},
+  {q:"printf(\"|%5d|\", 42) outputs:",o:["|42|","|   42|","|42   |","|00042|"],a:1,e:"%5d right-aligns in field width 5: |   42|"},
+  {q:"Which function reads an entire line including spaces?",o:["scanf()","getchar()","gets()","putchar()"],a:2,e:"gets() reads entire line including spaces. scanf(\"%s\") stops at whitespace."},
+  {q:"The %% in printf outputs ___.",o:["%% (two percent)","% (one percent)","empty string","error"],a:1,e:"%% is the escape sequence for a single percent sign in printf."},
+],
+tqs:[
+  {q:"1. Explain scanf() with its syntax and format specifiers.",a:"scanf(control_string, &arg1, &arg2,...) reads formatted input from keyboard. Control string contains format specifiers: %d (int), %f (float), %c (char), %s (string), %lf (double). Arguments must be addresses (&var) except for string arrays. Returns count of successfully read items. EOF returned on error."},
+  {q:"2. How do you print a float with exactly 2 decimal places?",a:"Use precision format: printf(\"%.2f\", value);\nFor width 8 with 2 decimals: printf(\"%8.2f\", value);\nFor left-aligned: printf(\"%-8.2f\", value);"},
+],
+exs:["1. Write program to read and display int, float, char, and string values.","2. Demonstrate width and precision formatting in printf.","3. Read a full line of text including spaces."]},
+
+{id:4,title:"Operators and Expressions",topics:"Arithmetic, Relational, Logical, Conditional, Library Functions, Bitwise, Increment/Decrement, sizeof, Precedence",
+obj:["Explain different categories of operators","Use operators on many operands","Distinguish precedence and associativity","Explain library functions","Write programs using different operators"],
+intro:"C supports a rich set of operators. An operator is a symbol telling the computer to perform mathematical or logical manipulations. Operators are classified into: arithmetic, unary, relational, logical, conditional, bitwise, and increment/decrement.",
+content:`
+<div class="sh">2. Arithmetic Operators</div>
+<table class="t">
+  <tr><th>Op</th><th>Name</th><th>Example</th><th>Result</th></tr>
+  <tr><td><code>+</code></td><td>Addition</td><td>5+3</td><td>8</td></tr>
+  <tr><td><code>-</code></td><td>Subtraction</td><td>5-3</td><td>2</td></tr>
+  <tr><td><code>*</code></td><td>Multiplication</td><td>5*3</td><td>15</td></tr>
+  <tr><td><code>/</code></td><td>Division</td><td>7/2</td><td>3 (truncated!)</td></tr>
+  <tr><td><code>%</code></td><td>Modulus</td><td>7%2</td><td>1 (remainder)</td></tr>
+</table>
+<div class="wb"><b>Key Rules</b><p>• Integer division truncates: 7/4=1, not 1.75. Use 7.0/4 or (float)7/4 for float result.<br>• % only works on integers — can't use with floats.<br>• Precedence: * / % before + -</p></div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.1 — Days to months</span></div>
+<pre><span class="fn">main</span>()
+{
+    <span class="type">int</span> months, days;
+    <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>days);
+    months<span class="op">=</span>days<span class="op">/</span><span class="num">30</span>; days<span class="op">=</span>days<span class="op">%</span><span class="num">30</span>;
+    <span class="fn">printf</span>(<span class="str">"Months=%d Days=%d"</span>,months,days);
+}</pre></div>
+
+<div class="sh">4. Relational & Logical Operators</div>
+<p>In C: false=0, true=any nonzero value. Relational operators return 1 (true) or 0 (false).</p>
+<table class="t">
+  <tr><th>Relational</th><th>Meaning</th><th>Logical</th><th>Meaning</th></tr>
+  <tr><td><code>&lt;</code></td><td>less than</td><td><code>&amp;&amp;</code></td><td>AND (both true)</td></tr>
+  <tr><td><code>&lt;=</code></td><td>less than or equal</td><td><code>||</code></td><td>OR (either true)</td></tr>
+  <tr><td><code>&gt;</code></td><td>greater than</td><td><code>!</code></td><td>NOT (negate)</td></tr>
+  <tr><td><code>&gt;=</code></td><td>greater than or equal</td><td></td><td></td></tr>
+  <tr><td><code>==</code></td><td>equal (NOT assignment!)</td><td></td><td></td></tr>
+  <tr><td><code>!=</code></td><td>not equal</td><td></td><td></td></tr>
+</table>
+<div class="wb"><b>Common Mistake</b><p>if(a = 0) is ASSIGNMENT! Use if(a == 0).<br>if(1 &lt; i &lt; 10) is WRONG. Use if(1 &lt; i &amp;&amp; i &lt; 10)</p></div>
+
+<div class="sh">5. Conditional Operator (?:)</div>
+<p>Ternary operator: <code>expr1 ? expr2 : expr3</code> — evaluates expr2 if true, expr3 if false.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">conditional_op.c</span></div>
+<pre>a<span class="op">=</span><span class="num">100</span>; b<span class="op">=</span><span class="num">200</span>;
+c<span class="op">=</span>(a<span class="op">&gt;</span>b)<span class="op">?</span>a<span class="op">:</span>b;      <span class="cm">// c=200</span>
+min<span class="op">=</span>(x<span class="op">&lt;</span>y)<span class="op">?</span>x<span class="op">:</span>y;  <span class="cm">// minimum</span></pre></div>
+
+<div class="sh">6. Library Functions</div>
+<table class="t">
+  <tr><th>Function</th><th>Purpose</th><th>Header</th></tr>
+  <tr><td><code>abs(i)</code></td><td>Absolute value of integer</td><td>math.h</td></tr>
+  <tr><td><code>ceil(d)</code></td><td>Round up</td><td>math.h</td></tr>
+  <tr><td><code>floor(d)</code></td><td>Round down</td><td>math.h</td></tr>
+  <tr><td><code>sqrt(d)</code></td><td>Square root</td><td>math.h</td></tr>
+  <tr><td><code>pow(d1,d2)</code></td><td>d1 raised to power d2</td><td>math.h</td></tr>
+  <tr><td><code>sin/cos/tan(d)</code></td><td>Trig functions</td><td>math.h</td></tr>
+  <tr><td><code>log(d)</code></td><td>Natural logarithm</td><td>math.h</td></tr>
+  <tr><td><code>exp(d)</code></td><td>e to the power d</td><td>math.h</td></tr>
+  <tr><td><code>toupper/tolower(c)</code></td><td>Convert case</td><td>ctype.h</td></tr>
+  <tr><td><code>rand()</code></td><td>Random integer</td><td>stdlib.h</td></tr>
+</table>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.2 — Lowercase to uppercase</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;ctype.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">int</span> lower, upper;
+    lower<span class="op">=</span><span class="fn">getchar</span>();
+    upper<span class="op">=</span><span class="fn">toupper</span>(lower);
+    <span class="fn">putchar</span>(upper);
+}</pre></div>
+
+<div class="sh">7. Bitwise Operators</div>
+<table class="t">
+  <tr><th>Op</th><th>Name</th><th>Example (5=0101, 3=0011)</th></tr>
+  <tr><td><code>&amp;</code></td><td>Bitwise AND</td><td>5&amp;3=1 (0001)</td></tr>
+  <tr><td><code>|</code></td><td>Bitwise OR</td><td>5|3=7 (0111)</td></tr>
+  <tr><td><code>^</code></td><td>Bitwise XOR</td><td>5^3=6 (0110)</td></tr>
+  <tr><td><code>~</code></td><td>Bitwise NOT</td><td>~5=-6</td></tr>
+  <tr><td><code>&lt;&lt;</code></td><td>Left shift (×2 per bit)</td><td>5&lt;&lt;1=10</td></tr>
+  <tr><td><code>&gt;&gt;</code></td><td>Right shift (÷2 per bit)</td><td>5&gt;&gt;1=2</td></tr>
+</table>
+
+<div class="sh">8. Increment & Decrement Operators</div>
+<table class="t">
+  <tr><th>Form</th><th>Name</th><th>What happens with k=2*i (i=5)?</th></tr>
+  <tr><td><code>++i</code></td><td>Pre-increment</td><td>i becomes 6 first, then k=2*6=12</td></tr>
+  <tr><td><code>i++</code></td><td>Post-increment</td><td>k=2*5=10 first, then i becomes 6</td></tr>
+  <tr><td><code>--i</code></td><td>Pre-decrement</td><td>i decremented first, then used</td></tr>
+  <tr><td><code>i--</code></td><td>Post-decrement</td><td>Used first, then decremented</td></tr>
+</table>
+<p>Shorthand operators: <code>x+=y+1</code> ≡ <code>x=x+(y+1)</code>. Also: <code>-= *= /= %=</code></p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.5 — Arithmetic operators</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">int</span> a,b,c,d;
+    a<span class="op">=</span><span class="num">10</span>; b<span class="op">=</span><span class="num">15</span>;
+    c<span class="op">=</span><span class="op">++</span>a<span class="op">-</span>b;          <span class="cm">// a=11; c=11-15=-4</span>
+    <span class="fn">printf</span>(<span class="str">"a=%d b=%d c=%d\n"</span>,a,b,c);
+    d<span class="op">=</span>b<span class="op">++</span><span class="op">+</span>a;           <span class="cm">// d=15+11=26; b becomes 16</span>
+    <span class="fn">printf</span>(<span class="str">"a=%d b=%d d=%d\n"</span>,a,b,d);
+    <span class="fn">printf</span>(<span class="str">"a/b=%d\n"</span>,a<span class="op">/</span>b);   <span class="cm">// 11/16=0</span>
+    <span class="fn">printf</span>(<span class="str">"a%%b=%d\n"</span>,a<span class="op">%</span>b);  <span class="cm">// 11%16=11</span>
+}</pre></div>
+
+<div class="sh">9. sizeof Operator</div>
+<p>Compile-time operator returning bytes an operand occupies. Used to determine lengths of arrays and structures, and for dynamic memory allocation.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.4 — sizeof</span></div>
+<pre><span class="fn">main</span>()
+{
+    <span class="type">int</span> i<span class="op">=</span><span class="num">10</span>;
+    <span class="fn">printf</span>(<span class="str">"integer: %d\n"</span>, <span class="kw">sizeof</span>(i));       <span class="cm">// 2 on 16-bit</span>
+    <span class="fn">printf</span>(<span class="str">"long int: %d\n"</span>, <span class="kw">sizeof</span>(<span class="type">long int</span>)); <span class="cm">// 4</span>
+}</pre></div>
+
+<div class="sh">10. Operator Precedence (Highest → Lowest)</div>
+<table class="t">
+  <tr><th>Operators</th><th>Associativity</th></tr>
+  <tr><td><code>() [] -&gt; .</code></td><td>left to right</td></tr>
+  <tr><td><code>! ~ + - ++ -- &amp; *</code> (unary)</td><td>right to left</td></tr>
+  <tr><td><code>* / %</code></td><td>left to right</td></tr>
+  <tr><td><code>+ -</code></td><td>left to right</td></tr>
+  <tr><td><code>&lt;&lt; &gt;&gt;</code></td><td>left to right</td></tr>
+  <tr><td><code>&lt; &lt;= &gt; &gt;=</code></td><td>left to right</td></tr>
+  <tr><td><code>== !=</code></td><td>left to right</td></tr>
+  <tr><td><code>&amp;</code></td><td>left to right</td></tr>
+  <tr><td><code>^</code></td><td>left to right</td></tr>
+  <tr><td><code>|</code></td><td>left to right</td></tr>
+  <tr><td><code>&amp;&amp;</code></td><td>left to right</td></tr>
+  <tr><td><code>||</code></td><td>left to right</td></tr>
+  <tr><td><code>?:</code></td><td>right to left</td></tr>
+  <tr><td><code>= += -= *= /= %=</code></td><td>right to left</td></tr>
+</table>`,
+saqs:[
+  {q:"Value of: 14 % 3 + 7 % 2 ?",o:["1","2","3","4"],a:2,e:"14%3=2, 7%2=1, 2+1=3."},
+  {q:"Which operator can ONLY be applied to integers?",o:["+","-","*","%"],a:3,e:"Modulus % works on integers only. Applying to float gives compilation error."},
+  {q:"Logical operators _____ and _____ test multiple conditions.",o:["& and |","&& and ||","! and ~","== and !="],a:1,e:"&& (AND) and || (OR) combine multiple boolean conditions."},
+  {q:"Is 'if(a<4<c)' correct?",o:["Correct","Incorrect"],a:1,e:"Incorrect. Parsed as (a<4)<c which compares 0 or 1 with c. Use: if(a<4 && 4<c)"},
+  {q:"Library functions are built-in functions for common operations.",o:["True","False"],a:0,e:"True. sqrt(), printf(), strlen() etc. are library functions provided with C."},
+  {q:"floor(5.8), floor(-5.8), ceil(5.8), ceil(-5.8) =",o:["5,-6,6,-5","5,-5,6,-6","6,-6,5,-5","6,-5,5,-6"],a:0,e:"floor rounds DOWN: floor(5.8)=5, floor(-5.8)=-6. ceil rounds UP: ceil(5.8)=6, ceil(-5.8)=-5."},
+  {q:"Bitwise operators work with individual bits of a variable.",o:["True","False"],a:0,e:"True. &, |, ^, ~, <<, >> operate at the bit level of integers."},
+  {q:"If flag1=5, flag2=8: flag1&flag2 =",o:["0","13","10","5"],a:0,e:"5=0101, 8=1000. AND: 0101&1000=0000=0."},
+  {q:"++ and -- are binary operators.",o:["True","False"],a:1,e:"False. They are UNARY operators — they act on a single operand."},
+  {q:"Prefix form to increment i is ___, postfix is ___.",o:["++i, i++","i++, ++i","i++, i++","++i, ++i"],a:0,e:"++i (prefix): increment first, then use. i++ (postfix): use first, then increment."},
+],
+tqs:[
+  {q:"1. If i=10, j=12: after i++; c=j+++i; d=++i+j++;",a:"After i++: i=11. c=j+++i: j++ gives 12 then j=13; c=12+11=23.\nAfter ++i: i=12. d=++i+j++: i becomes 12 (already), wait — after first block i=11, ++i makes i=12; j++=13 then j=14; d=12+13=25.\nAnswer: c=23, d=25."},
+  {q:"2. x=2,y=3,z=4: evaluate x *= -2*(y+z)/3",a:"y+z=7, -2*7=-14, -14/3=-4 (integer truncation), x*=-4 means x=2*(-4)=-8. Answer: x=-8."},
+  {q:"3. i=7, c='w': evaluate (i>=6) && (c=='w')",a:"i>=6 → 7>=6 → true (1). c=='w' → 'w'=='w' → true (1). true && true = 1. Answer: true."},
+  {q:"4. i=7, f=8.5: evaluate (i+f)%4",a:"INVALID expression. The modulus operator % cannot be applied to floating-point operands. i+f would be float (8.5 makes it float), and % requires integers. Compilation error."},
+  {q:"5. What is meant by associativity?",a:"Associativity is the order in which consecutive operations within the SAME precedence group are evaluated. Most operators: left-to-right (1-2-3=(1-2)-3=-4). Assignment operators: right-to-left (a=b=c means a=(b=c))."},
+],
+exs:["1. a=3,b=5,c=8,d=4: find x=a*b-c/d+4 and z=a-b/d*c+10","2. i=5,j=8,k=10: find x=a++-j and y=k++*j--","3. Explain precedence of operators with examples.","4. a=7,b=11: find x=(a>b)?b:a and x=(a<b)?a:b","5. Explain bitwise operators with examples."]},{id:5,title:"Flow of Control — Part 1",topics:"goto, if, if-else, Nested if, Conditional Expression, switch",
+obj:["Control execution using two-way and multipath decisions","Branch unconditionally using goto","Evaluate conditional expressions","Use switch for multi-choice selection"],
+intro:"By default, C executes statements sequentially. Control flow constructs modify this. C supports: if, switch, goto, and the conditional operator. In C: false=0, true=any nonzero value.",
+content:`
+<div class="sh">2. The goto Statement</div>
+<p>Branches unconditionally to a labelled statement. Requires a label — any valid variable name followed by colon. Forward jump: skips statements. Backward jump: creates loop.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 5.1 — goto (square roots)</span></div>
+<pre><span class="fn">main</span>()
+{
+    <span class="type">double</span> a, b;
+read:
+    <span class="fn">printf</span>(<span class="str">"enter value of a: "</span>);
+    <span class="fn">scanf</span>(<span class="str">"%f"</span>, <span class="op">&</span>a);
+    <span class="kw">if</span>(a <span class="op">&lt;</span> <span class="num">0</span>) <span class="kw">goto</span> read;  <span class="cm">// skip negative</span>
+    b<span class="op">=</span><span class="fn">sqrt</span>(a);
+    <span class="fn">printf</span>(<span class="str">"%f %f\n"</span>,a,b);
+    <span class="kw">goto</span> read;              <span class="cm">// infinite loop</span>
+}</pre></div>
+
+<div class="sh">3. The if Statement</div>
+<p>Syntax: <code>if(expression) statement</code> or with braces: <code>if(expression) { statements; }</code></p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 5.2 — Absolute value</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">void</span> <span class="fn">main</span>()
+{
+    <span class="type">int</span> number;
+    <span class="fn">scanf</span>(<span class="str">"%d"</span>, <span class="op">&</span>number);
+    <span class="kw">if</span>(number <span class="op">&lt;</span> <span class="num">0</span>)
+        number<span class="op">=</span><span class="op">-</span>number;   <span class="cm">// negate if negative</span>
+    <span class="fn">printf</span>(<span class="str">"Absolute value: %d\n"</span>, number);
+}</pre></div>
+
+<div class="sh">3.1 if-else Statement</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 5.3 & grade classifier</span></div>
+<pre><span class="cm">/* Positive or negative */</span>
+<span class="kw">if</span>(num <span class="op">&lt;</span> <span class="num">0</span>) <span class="fn">printf</span>(<span class="str">"negative"</span>);
+<span class="kw">else</span>        <span class="fn">printf</span>(<span class="str">"positive"</span>);
+
+<span class="cm">/* Grade classifier — cascaded if/else */</span>
+<span class="kw">if</span>(grade<span class="op">&gt;=</span><span class="num">90</span>)       <span class="fn">printf</span>(<span class="str">"A"</span>);
+<span class="kw">else if</span>(grade<span class="op">&gt;=</span><span class="num">80</span>) <span class="fn">printf</span>(<span class="str">"B"</span>);
+<span class="kw">else if</span>(grade<span class="op">&gt;=</span><span class="num">70</span>) <span class="fn">printf</span>(<span class="str">"C"</span>);
+<span class="kw">else if</span>(grade<span class="op">&gt;=</span><span class="num">60</span>) <span class="fn">printf</span>(<span class="str">"D"</span>);
+<span class="kw">else</span>                <span class="fn">printf</span>(<span class="str">"F"</span>);</pre></div>
+
+<div class="sh">3.2 Nesting of if Statements</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 5.4 — Largest of three</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">int</span> a,b,c,big;
+    <span class="fn">scanf</span>(<span class="str">"%d %d %d"</span>,<span class="op">&</span>a,<span class="op">&</span>b,<span class="op">&</span>c);
+    <span class="kw">if</span>(a<span class="op">&gt;</span>b)
+        <span class="kw">if</span>(a<span class="op">&gt;</span>c) big<span class="op">=</span>a;
+        <span class="kw">else</span>    big<span class="op">=</span>c;
+    <span class="kw">else if</span>(b<span class="op">&gt;</span>c)
+        big<span class="op">=</span>b;
+    <span class="kw">else</span>
+        big<span class="op">=</span>c;
+    <span class="fn">printf</span>(<span class="str">"Largest=%d"</span>,big);
+}</pre></div>
+<div class="wb"><b>Dangling else</b><p>In nested if-else, each else belongs to the nearest preceding unmatched if. Always use braces {} to make nesting explicit and avoid bugs.</p></div>
+
+<div class="sh">4. Conditional Expression</div>
+<p><code>expr1 ? expr2 : expr3</code> — if expr1 is true → expr2; else → expr3. Right-to-left associativity. Does NOT produce an lvalue.</p>
+
+<div class="sh">5. The switch Statement</div>
+<p>Substitute for long if-else chains comparing one variable to several integral values. Case values must be constant integers (or char) — NOT variables, NOT floats.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">switch_menu.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">int</span> <span class="fn">main</span>()
+{
+    <span class="type">int</span> input;
+    <span class="fn">printf</span>(<span class="str">"1.Play 2.Load 3.Exit: "</span>);
+    <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>input);
+    <span class="kw">switch</span>(input) {
+        <span class="kw">case</span> <span class="num">1</span>: <span class="fn">printf</span>(<span class="str">"Starting...\n"</span>); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="num">2</span>: <span class="fn">printf</span>(<span class="str">"Loading...\n"</span>);  <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="num">3</span>: <span class="fn">printf</span>(<span class="str">"Bye!\n"</span>);       <span class="kw">break</span>;
+        <span class="kw">default</span>: <span class="fn">printf</span>(<span class="str">"Invalid!\n"</span>);
+    }
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+<div class="ib"><b>switch Rules</b><p>• break prevents fall-through (without break, all subsequent cases execute)<br>• default handles unmatched values (optional but recommended)<br>• Case values: constant integers or char only — no variables, no floats<br>• switch is NOT unconditional — it's conditional multipath branching</p></div>`,
+saqs:[
+  {q:"goto requires a _________ to identify where to branch.",o:["variable","label","function","pointer"],a:1,e:"goto requires a label — valid variable name followed by colon, placed before the target statement."},
+  {q:"goto is an unconditional branching statement.",o:["True","False"],a:0,e:"True. goto always jumps to the label unconditionally, regardless of any condition."},
+  {q:"Brace-enclosed statements after if form a simple expression statement.",o:["True","False"],a:1,e:"False. A brace-enclosed block is a compound statement. No semicolon after the closing brace."},
+  {q:"Each else clause in a cascaded if/else chain is another _____ statement.",o:["switch","goto","if","while"],a:2,e:"Each else clause in a cascaded chain is itself another if statement."},
+  {q:"The conditional operator does not produce an lvalue.",o:["True","False"],a:0,e:"True. So 'a ? x : y = 10' is invalid."},
+  {q:"The condition of a switch statement is a _______.",o:["string","float","value","boolean"],a:2,e:"switch condition is an integral value. Case labels must also be constant integral values."},
+  {q:"switch is an unconditional branching statement.",o:["True","False"],a:1,e:"False. switch is CONDITIONAL — it compares the variable value to each case before branching."},
+],
+tqs:[
+  {q:"1. n=1: x=1;y=1; if(n>0) x=x+1; y=y-1; — what are x and y?",a:"Without braces, only x=x+1 is in the if body. y=y-1 ALWAYS executes (not part of if).\nSo: n=1>0 → true → x=2. y always: y=0.\nAnswer: x=2, y=0."},
+  {q:"2. n=0: same program — what are x and y?",a:"n=0, condition false, x stays 1. y=y-1=0 always executes.\nAnswer: x=1, y=0."},
+  {q:"3. Write program to check if number is odd or even.",a:"void main() {\n  int no;\n  printf(\"enter a number\\n\");\n  scanf(\"%d\", &no);\n  if(no%2==0)\n    printf(\"even number\\n\");\n  else\n    printf(\"odd number\\n\");\n}"},
+],
+exs:["1. Explain different types of if statements with examples.","2. Explain switch statement syntax with an example.","3. Write a program to check odd/even using switch.","4. Write a program to find smallest of 3 numbers using if-else."]},
+
+{id:6,title:"Flow of Control — Part 2",topics:"while Loop, do-while Loop, for Loop, Nested Loops, break, continue",
+obj:["Understand basic concepts of loops","Implement for, while, do-while loops","Explore nested loops","Use break and continue"],
+intro:"Loops automate repetitive tasks. while and for are entry-controlled (condition tested before). do-while is exit-controlled (condition tested after — body always executes at least once). break exits a loop; continue skips to next iteration.",
+content:`
+<div class="sh">2. The while Loop (Entry-Controlled)</div>
+<p>Syntax: <code>while(expression) statement(s)</code>. Tests condition before each iteration. If false from start, body never executes.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">while example — doubling numbers</span></div>
+<pre><span class="type">int</span> x<span class="op">=</span><span class="num">2</span>;
+<span class="kw">while</span>(x<span class="op">&lt;</span><span class="num">1000</span>) {
+    <span class="fn">printf</span>(<span class="str">"%d\n"</span>,x);
+    x<span class="op">=</span>x<span class="op">*</span><span class="num">2</span>;
+}
+<span class="cm">// Prints: 2, 4, 8, 16, 32, 64, 128, 256, 512</span></pre></div>
+
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 1 — Largest of n numbers</span></div>
+<pre><span class="fn">main</span>()
+{
+    <span class="type">int</span> num,large,n,i;
+    <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>n);
+    large<span class="op">=</span><span class="num">0</span>; i<span class="op">=</span><span class="num">0</span>;
+    <span class="kw">while</span>(i<span class="op">&lt;</span>n) {
+        <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>num);
+        <span class="kw">if</span>(large<span class="op">&lt;</span>num) large<span class="op">=</span>num;
+        i<span class="op">++</span>;
+    }
+    <span class="fn">printf</span>(<span class="str">"large=%d"</span>,large);
+}</pre></div>
+
+<div class="sh">3. The do-while Loop (Exit-Controlled)</div>
+<p>Syntax: <code>do { body; } while(expression);</code> — note the semicolon! Body executes first, then condition checked. Minimum ONE execution guaranteed.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 6.3 — Multiplication table</span></div>
+<pre><span class="fn">main</span>()
+{
+    <span class="type">int</span> rowmax<span class="op">=</span><span class="num">10</span>,colmax<span class="op">=</span><span class="num">10</span>,row,col,x;
+    row<span class="op">=</span><span class="num">1</span>;
+    <span class="kw">do</span> {
+        col<span class="op">=</span><span class="num">1</span>;
+        <span class="kw">do</span> {
+            x<span class="op">=</span>row<span class="op">*</span>col;
+            <span class="fn">printf</span>(<span class="str">"%4d"</span>,x);
+            col<span class="op">++</span>;
+        } <span class="kw">while</span>(col<span class="op">&lt;=</span>colmax);
+        <span class="fn">printf</span>(<span class="str">"\n"</span>); row<span class="op">++</span>;
+    } <span class="kw">while</span>(row<span class="op">&lt;=</span>rowmax);
+}</pre></div>
+
+<div class="sh">4. The for Loop (Entry-Controlled)</div>
+<p>Syntax: <code>for(expr1; expr2; expr3) statement(s)</code></p>
+<p>expr1=initialize (once); expr2=condition (check before each iteration); expr3=update (after each iteration). All three optional. <code>for(;;)</code> = infinite loop.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 3 — Factorial using for</span></div>
+<pre><span class="type">void</span> <span class="fn">main</span>()
+{
+    <span class="type">int</span> M,N; <span class="type">long int</span> F<span class="op">=</span><span class="num">1</span>;
+    <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>N);
+    <span class="kw">if</span>(N<span class="op">&lt;=</span><span class="num">0</span>) F<span class="op">=</span><span class="num">1</span>;
+    <span class="kw">else</span>
+        <span class="kw">for</span>(M<span class="op">=</span><span class="num">1</span>; M<span class="op">&lt;=</span>N; M<span class="op">++</span>) F<span class="op">*=</span>M;
+    <span class="fn">printf</span>(<span class="str">"factorial=%ld"</span>,F);
+}</pre></div>
+<p>for loop can always be rewritten as while: <code>for(i=0;i&lt;10;i++)</code> ≡ <code>i=0; while(i&lt;10){...i++;}</code></p>
+
+<div class="sh">4.1 Nesting of for Loops</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">nested_for.c</span></div>
+<pre><span class="kw">for</span>(i<span class="op">=</span><span class="num">1</span>;i<span class="op">&lt;</span><span class="num">10</span>;i<span class="op">++</span>)
+    <span class="kw">for</span>(j<span class="op">=</span><span class="num">1</span>;j<span class="op">&lt;</span><span class="num">5</span>;j<span class="op">++</span>)
+        <span class="fn">printf</span>(<span class="str">"%d*%d=%d\n"</span>,i,j,i<span class="op">*</span>j);</pre></div>
+
+<div class="sh">5. break & continue</div>
+<div class="igrid">
+  <div class="ic"><h5>break</h5><p>Exits innermost loop/switch immediately. Execution continues after the loop. Works in: for, while, do-while, switch.</p></div>
+  <div class="ic"><h5>continue</h5><p>Skips remaining body of current iteration. Goes to next iteration. Works in: for, while, do-while. NOT in switch.</p></div>
+</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">break.c — stops at 5</span></div>
+<pre><span class="kw">for</span>(x<span class="op">=</span><span class="num">1</span>;x<span class="op">&lt;=</span><span class="num">10</span>;x<span class="op">++</span>) {
+    <span class="kw">if</span>(x<span class="op">==</span><span class="num">5</span>) <span class="kw">break</span>;
+    <span class="fn">printf</span>(<span class="str">"%d"</span>,x);  <span class="cm">// prints 1 2 3 4</span>
+}</pre></div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">continue.c — skips 5</span></div>
+<pre><span class="kw">for</span>(x<span class="op">=</span><span class="num">1</span>;x<span class="op">&lt;=</span><span class="num">10</span>;x<span class="op">++</span>) {
+    <span class="kw">if</span>(x<span class="op">==</span><span class="num">5</span>) <span class="kw">continue</span>;
+    <span class="fn">printf</span>(<span class="str">"%d\n"</span>,x); <span class="cm">// prints 1,2,3,4,6,7,8,9,10</span>
+}</pre></div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 6 — Sum integers until 'q'</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">int</span> <span class="fn">main</span>(<span class="type">void</span>)
+{
+    <span class="type">long</span> num, sum<span class="op">=</span><span class="num">0L</span>; <span class="type">int</span> status;
+    status<span class="op">=</span><span class="fn">scanf</span>(<span class="str">"%ld"</span>,<span class="op">&</span>num);
+    <span class="kw">while</span>(status<span class="op">==</span><span class="num">1</span>) {
+        sum<span class="op">+=</span>num;
+        status<span class="op">=</span><span class="fn">scanf</span>(<span class="str">"%ld"</span>,<span class="op">&</span>num);
+    }
+    <span class="fn">printf</span>(<span class="str">"Sum: %ld\n"</span>,sum);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>`,
+saqs:[
+  {q:"A ______________ loop starts out like an if statement.",o:["for","while","do-while","switch"],a:1,e:"A while loop starts like an if — checks condition, if true executes body, then checks again."},
+  {q:"while is an entry-controlled loop.",o:["True","False"],a:0,e:"True. The while loop tests condition BEFORE each iteration. If false initially, body never runs."},
+  {q:"On using ________, body always executes at least once.",o:["while","for","do-while","goto"],a:2,e:"do-while — body executes first, condition checked at end. Minimum 1 execution guaranteed."},
+  {q:"do-while is an entry-controlled loop.",o:["True","False"],a:1,e:"False. do-while is EXIT-controlled — condition tested at the EXIT (end) of the loop."},
+  {q:"for loop is an exit-controlled loop.",o:["True","False"],a:1,e:"False. for loop is ENTRY-controlled — condition tested before each iteration."},
+  {q:"Control variable of for loop doesn't have to be integer.",o:["True","False"],a:0,e:"True. The control variable can be float, char, or other types. The three expressions can be anything."},
+],
+tqs:[
+  {q:"1. Output: i=0,x=0; while(i<20){if(i%5==0){x+=i;printf('%d\\t',i);}i++;}printf('\\nx=%d',x);",a:"i divisible by 5: 0,5,10,15\nOutput: 0\t5\t10\t15\nx=30"},
+  {q:"2. Output: i=0,x=0; do{if(i%5==0){x++;printf('%d\\t',x);}++i;}while(i<20);",a:"x increments when i%5==0 (i=0,5,10,15): x=1,2,3,4\nOutput: 1\t2\t3\t4\nx=4"},
+],
+exs:["1. Compute sum of digits of a number using while loop.","2. Read positive integer and print binary equivalent using do-while.","3. Write program using do-while to calculate first n Fibonacci numbers."]},
+
+{id:7,title:"Arrays — Part 1",topics:"1D Arrays, Declaration, Initialization, Access, Passing Arrays to Functions",
+obj:["Declare, initialize and process one-dimensional arrays","Understand array initialization with declaration and using loops","Pass arrays to functions","Understand memory storage of arrays"],
+intro:"An array is a collection of similar type elements in contiguous memory, sharing one name. Arrays enable looping and arithmetic on groups of data. C arrays are zero-indexed — first element is at index 0.",
+content:`
+<div class="sh">2. One Dimensional Arrays</div>
+<p><code>int a[10];</code> — declares array 'a' with 10 integers, indexed a[0] to a[9]. There is NO element a[10]!</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">array_basics.c</span></div>
+<pre>a[<span class="num">0</span>]<span class="op">=</span><span class="num">10</span>; a[<span class="num">1</span>]<span class="op">=</span><span class="num">20</span>; a[<span class="num">2</span>]<span class="op">=</span>a[<span class="num">0</span>]<span class="op">+</span>a[<span class="num">1</span>]; <span class="cm">// 30</span>
+
+<span class="cm">/* Set all to 0 */</span>
+<span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>; i<span class="op">&lt;</span><span class="num">10</span>; i<span class="op">++</span>) a[i]<span class="op">=</span><span class="num">0</span>;
+
+<span class="cm">/* Copy array */</span>
+<span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>; i<span class="op">&lt;</span><span class="num">10</span>; i<span class="op">++</span>) b[i]<span class="op">=</span>a[i];</pre></div>
+<div class="wb"><b>Cannot do directly</b><p>a=0; is WRONG. b=a; is WRONG. Must copy element-by-element using loops.</p></div>
+
+<div class="sh">Array Initialization</div>
+<div class="igrid">
+  <div class="ic"><h5>Full init</h5><p><code>int a[5]={10,20,30,40,50};</code></p></div>
+  <div class="ic"><h5>Partial init</h5><p><code>int a[5]={10,20};</code> → {10,20,0,0,0}</p></div>
+  <div class="ic"><h5>Auto-size</h5><p><code>int a[]={1,2,3};</code> → size=3</p></div>
+  <div class="ic"><h5>Zero all</h5><p><code>int a[100]={0};</code></p></div>
+</div>
+
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.1 — Dice roll simulation</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;stdlib.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">int</span> i,d1,d2,a[<span class="num">13</span>]; <span class="cm">/* uses [2..12] */</span>
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">2</span>;i<span class="op">&lt;=</span><span class="num">12</span>;i<span class="op">++</span>) a[i]<span class="op">=</span><span class="num">0</span>;
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span><span class="num">100</span>;i<span class="op">++</span>) {
+        d1<span class="op">=</span><span class="fn">rand</span>()<span class="op">%</span><span class="num">6</span><span class="op">+</span><span class="num">1</span>; d2<span class="op">=</span><span class="fn">rand</span>()<span class="op">%</span><span class="num">6</span><span class="op">+</span><span class="num">1</span>;
+        a[d1<span class="op">+</span>d2]<span class="op">++</span>;
+    }
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">2</span>;i<span class="op">&lt;=</span><span class="num">12</span>;i<span class="op">++</span>)
+        <span class="fn">printf</span>(<span class="str">"%d: %d\n"</span>,i,a[i]);
+}</pre></div>
+
+<div class="sh">2.1 Passing Arrays to Functions</div>
+<p>Array name used as argument passes the ADDRESS of the first element (not a copy). Formal argument declared as array with empty brackets — no size specified (must pass separately).</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 2.2 — Average (array to function)</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="fn">main</span>()
+{
+    <span class="type">int</span> n,i; <span class="type">float</span> avg,list[<span class="num">100</span>];
+    <span class="type">float</span> <span class="fn">average</span>(<span class="type">int</span>,<span class="type">float</span>[]); <span class="cm">// prototype</span>
+    <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>n);
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>n;i<span class="op">++</span>) <span class="fn">scanf</span>(<span class="str">"%f"</span>,<span class="op">&</span>list[i]);
+    avg<span class="op">=</span><span class="fn">average</span>(n,list); <span class="cm">// pass array without []</span>
+    <span class="fn">printf</span>(<span class="str">"Average=%f\n"</span>,avg);
+}
+<span class="type">float</span> <span class="fn">average</span>(<span class="type">int</span> a, <span class="type">float</span> x[]) <span class="cm">// empty [] in formal arg</span>
+{
+    <span class="type">float</span> sum<span class="op">=</span><span class="num">0</span>; <span class="type">int</span> i;
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>a;i<span class="op">++</span>) sum<span class="op">+=</span>x[i];
+    <span class="kw">return</span> sum<span class="op">/</span>a;
+}</pre></div>
+<div class="ib"><b>Key Points</b><p>• Arrays always passed by reference — function can modify the original<br>• Array name without brackets = pointer to first element<br>• Size information is lost — always pass size separately<br>• C lacks bounds checking — accessing out-of-bounds is undefined behaviour</p></div>`,
+saqs:[
+  {q:"In C, array subscript starts from __________",o:["0","1","-1","Depends"],a:0,e:"C arrays are zero-indexed. First element is at index 0, last at index N-1."},
+  {q:"An array name is a pointer.",o:["True","False"],a:0,e:"True. Array name represents the address of the first element, acting as a constant pointer."},
+  {q:"Is c=a+b; valid if a,b,c are int arrays of size 5?",o:["Yes","No — compilation error","Yes but wrong output","Depends on compiler"],a:1,e:"No — compilation error. You cannot add or assign arrays directly. Must do element-by-element."},
+  {q:"Correct way to declare a 1D array in C:",o:["int array[10];","int array[]={1,2,3};","int array()={1,2,3};","Both A and B are correct"],a:3,e:"Both int array[10]; and int array[]={1,2,3}; are valid declarations."},
+],
+tqs:[
+  {q:"1. Write program: sum of square of a number, 10 times.",a:"#include<stdio.h>\nmain() {\n  int i=0,sum=0,x;\n  printf(\"Enter a number:\");\n  scanf(\"%d\",&x);\n  while(i<10) { sum+=x*x; i++; }\n  printf(\"Sum=%d\",sum);\n}"},
+  {q:"2. Write program using loops for array processing.",a:"#include<stdio.h>\n#define SIZE 10\nint main(void) {\n  int index,score[SIZE],sum=0;\n  float average;\n  for(index=0;index<SIZE;index++) scanf(\"%d\",&score[index]);\n  for(index=0;index<SIZE;index++) sum+=score[index];\n  average=(float)sum/SIZE;\n  printf(\"Sum=%d Average=%.2f\\n\",sum,average);\n  return 0;\n}"},
+],
+exs:["1. Count vowels and consonants in a string.","2. Find maximum element in array.","3. Reverse array elements."]},
+
+{id:8,title:"Arrays — Part 2",topics:"Bubble Sort, Selection Sort, Insertion Sort, Multidimensional Arrays, Memory Layout",
+obj:["Understand Bubble Sort, Selection Sort, Insertion Sort","Implement sorting algorithms","Declare and use multidimensional arrays","Understand row-major memory layout"],
+intro:"Sorting arranges elements in specific order (ascending/descending). This unit covers three fundamental algorithms and 2D/3D arrays. Memory layout: 2D arrays stored linearly in row-major order.",
+content:`
+<div class="sh">2.1 Bubble Sort</div>
+<p>Compares adjacent elements, swaps if out of order. After each pass, largest unsorted element 'bubbles' to end. After i passes, last i elements are sorted.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">bubble_sort.c</span></div>
+<pre><span class="type">void</span> <span class="fn">bubbleSort</span>(<span class="type">int</span> arr[], <span class="type">int</span> n) {
+    <span class="type">int</span> i,j,temp;
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>n<span class="op">-</span><span class="num">1</span>;i<span class="op">++</span>)
+        <span class="kw">for</span>(j<span class="op">=</span><span class="num">0</span>;j<span class="op">&lt;</span>n<span class="op">-</span>i<span class="op">-</span><span class="num">1</span>;j<span class="op">++</span>)
+            <span class="kw">if</span>(arr[j]<span class="op">&gt;</span>arr[j<span class="op">+</span><span class="num">1</span>]) {
+                temp<span class="op">=</span>arr[j]; arr[j]<span class="op">=</span>arr[j<span class="op">+</span><span class="num">1</span>]; arr[j<span class="op">+</span><span class="num">1</span>]<span class="op">=</span>temp;
+            }
+}</pre></div>
+
+<div class="sh">2.2 Selection Sort</div>
+<p>Divides into sorted + unsorted parts. Finds minimum in unsorted part, swaps with first unsorted element. Sorted portion grows by one each pass.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">selection_sort.c</span></div>
+<pre><span class="type">void</span> <span class="fn">selectionSort</span>(<span class="type">int</span> arr[], <span class="type">int</span> n) {
+    <span class="type">int</span> i,j,min_idx,temp;
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>n<span class="op">-</span><span class="num">1</span>;i<span class="op">++</span>) {
+        min_idx<span class="op">=</span>i;
+        <span class="kw">for</span>(j<span class="op">=</span>i<span class="op">+</span><span class="num">1</span>;j<span class="op">&lt;</span>n;j<span class="op">++</span>)
+            <span class="kw">if</span>(arr[j]<span class="op">&lt;</span>arr[min_idx]) min_idx<span class="op">=</span>j;
+        temp<span class="op">=</span>arr[min_idx]; arr[min_idx]<span class="op">=</span>arr[i]; arr[i]<span class="op">=</span>temp;
+    }
+}</pre></div>
+
+<div class="sh">2.3 Insertion Sort</div>
+<p>Builds sorted array one element at a time. Picks each element and inserts into correct position — like sorting playing cards. Efficient for small or nearly-sorted data.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">insertion_sort.c</span></div>
+<pre><span class="type">void</span> <span class="fn">insertionSort</span>(<span class="type">int</span> arr[], <span class="type">int</span> n) {
+    <span class="type">int</span> i,key,j;
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">1</span>;i<span class="op">&lt;</span>n;i<span class="op">++</span>) {
+        key<span class="op">=</span>arr[i]; j<span class="op">=</span>i<span class="op">-</span><span class="num">1</span>;
+        <span class="kw">while</span>(j<span class="op">&gt;=</span><span class="num">0</span> <span class="op">&amp;&amp;</span> arr[j]<span class="op">&gt;</span>key) {
+            arr[j<span class="op">+</span><span class="num">1</span>]<span class="op">=</span>arr[j]; j<span class="op">--</span>;
+        }
+        arr[j<span class="op">+</span><span class="num">1</span>]<span class="op">=</span>key;
+    }
+}</pre></div>
+
+<div class="sh">3. Multidimensional Arrays</div>
+<p>Declaration: <code>int arr[3][3];</code> — 3 rows × 3 columns. Access: <code>arr[row][col]</code></p>
+<p>Memory layout: stored LINEARLY in row-major order. [[0,1,2],[3,4,5],[6,7,8]] stored in memory as: 0,1,2,3,4,5,6,7,8.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">2D array init & access</span></div>
+<pre><span class="type">int</span> arr_2d[<span class="num">3</span>][<span class="num">3</span>]<span class="op">=</span>{{<span class="num">0</span>,<span class="num">1</span>,<span class="num">2</span>},{<span class="num">3</span>,<span class="num">4</span>,<span class="num">5</span>},{<span class="num">6</span>,<span class="num">7</span>,<span class="num">8</span>}};
+<span class="fn">printf</span>(<span class="str">"%d"</span>,arr_2d[<span class="num">1</span>][<span class="num">2</span>]); <span class="cm">// Outputs: 5</span>
+
+<span class="type">int</span> arr_3d[<span class="num">2</span>][<span class="num">2</span>][<span class="num">2</span>]<span class="op">=</span>{{{<span class="num">0</span>,<span class="num">1</span>},{<span class="num">2</span>,<span class="num">3</span>}},{{<span class="num">4</span>,<span class="num">5</span>},{<span class="num">6</span>,<span class="num">7</span>}}};
+<span class="fn">printf</span>(<span class="str">"%d"</span>,arr_3d[<span class="num">0</span>][<span class="num">1</span>][<span class="num">0</span>]); <span class="cm">// Outputs: 2</span></pre></div>
+
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">matrix_add.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">int</span> <span class="fn">main</span>()
+{
+    <span class="type">int</span> a[<span class="num">5</span>][<span class="num">5</span>],b[<span class="num">5</span>][<span class="num">5</span>],c[<span class="num">5</span>][<span class="num">5</span>],i,j,m,n;
+    <span class="fn">scanf</span>(<span class="str">"%d%d"</span>,<span class="op">&</span>m,<span class="op">&</span>n);
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>m;i<span class="op">++</span>) <span class="kw">for</span>(j<span class="op">=</span><span class="num">0</span>;j<span class="op">&lt;</span>n;j<span class="op">++</span>) <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>a[i][j]);
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>m;i<span class="op">++</span>) <span class="kw">for</span>(j<span class="op">=</span><span class="num">0</span>;j<span class="op">&lt;</span>n;j<span class="op">++</span>) <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>b[i][j]);
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>m;i<span class="op">++</span>) <span class="kw">for</span>(j<span class="op">=</span><span class="num">0</span>;j<span class="op">&lt;</span>n;j<span class="op">++</span>) c[i][j]<span class="op">=</span>a[i][j]<span class="op">+</span>b[i][j];
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>m;i<span class="op">++</span>){ <span class="kw">for</span>(j<span class="op">=</span><span class="num">0</span>;j<span class="op">&lt;</span>n;j<span class="op">++</span>) <span class="fn">printf</span>(<span class="str">"%d\t"</span>,c[i][j]); <span class="fn">printf</span>(<span class="str">"\n"</span>); }
+}</pre></div>
+<div class="ib"><b>2D array in function prototype</b><p><code>void process(int [][6]);</code> — first dimension can be empty, but ALL others must be specified.</p></div>`,
+saqs:[
+  {q:"Which algorithm repeatedly compares adjacent elements and swaps them?",o:["Bubble Sort","Selection Sort","Insertion Sort","Merge Sort"],a:0,e:"Bubble Sort compares adjacent elements and swaps. Larger elements 'bubble' to the end."},
+  {q:"Which algorithm divides into sorted/unsorted, repeatedly picking minimum?",o:["Bubble Sort","Selection Sort","Insertion Sort","Quick Sort"],a:1,e:"Selection Sort: sorted subarray grows as minimum of unsorted part is moved to front."},
+  {q:"Which algorithm builds sorted array by inserting elements one at a time?",o:["Bubble Sort","Selection Sort","Insertion Sort","Heap Sort"],a:2,e:"Insertion Sort — like sorting playing cards, picks each element and inserts in correct position."},
+  {q:"First subscript in 2D array declaration specifies number of ________.",o:["Columns","Rows","Elements","Dimensions"],a:1,e:"int arr[3][4] — 3 is the number of ROWS, 4 is columns."},
+  {q:"A 2D array is an array of 1D arrays.",o:["True","False"],a:0,e:"True. int arr[3][4] can be viewed as 3 arrays (rows), each with 4 elements."},
+  {q:"How are multi-dimensional arrays stored in memory?",o:["Randomly","Linearly (row-major)","Dispersed","Column-major"],a:1,e:"Row-major order — all elements of row 0 first, then row 1, etc. This is how C stores arrays."},
+  {q:"A 3×3 2D array needs how many contiguous memory locations?",o:["3","6","9","12"],a:2,e:"3×3=9 total elements, each occupying one memory location."},
+],
+tqs:[
+  {q:"1. Write C program to sort array using Insertion Sort.",a:"#include<stdio.h>\nvoid insertionSort(int arr[],int n){\n  int i,key,j;\n  for(i=1;i<n;i++){\n    key=arr[i]; j=i-1;\n    while(j>=0&&arr[j]>key){arr[j+1]=arr[j];j--;}\n    arr[j+1]=key;\n  }\n}\nint main(){\n  int arr[]={12,11,13,5,6}; int n=5;\n  insertionSort(arr,n);\n  for(int i=0;i<n;i++) printf(\"%d \",arr[i]);\n  return 0;\n}"},
+  {q:"2. Discuss memory layout of multi-dimensional arrays.",a:"Multi-dimensional arrays stored linearly in row-major order. For 3×3 array [[0,1,2],[3,4,5],[6,7,8]]: memory = 0,1,2,3,4,5,6,7,8. Row 0 stored first, row 1 next, etc. Element [i][j] at offset i*cols+j from start. Enables efficient pointer arithmetic and cache-friendly access."},
+  {q:"3. How does Bubble Sort differ from Selection Sort and Insertion Sort?",a:"Bubble Sort: compares adjacent pairs, swaps throughout each pass — many swaps.\nSelection Sort: finds minimum per pass, one swap per pass — fewer swaps.\nInsertion Sort: picks each element, shifts larger ones right to insert — works like sorting cards.\nAll three: O(n²) worst case. Insertion Sort best for nearly-sorted data."},
+],
+exs:[]},{id:9,title:"Strings — Part 1",topics:"String Declaration, Null Terminator, strcpy, strcmp, strcat, strlen, atoi, atof, itoa",
+obj:["Understand string initialization","String input and output","Null termination","Built-in string handling functions"],
+intro:"Strings in C are character arrays terminated by null character '\\0'. C has no built-in string type. The standard library (string.h) provides manipulation functions. Null terminator marks where string ends.",
+content:`
+<div class="sh">2. Strings</div>
+<p>Strings are char arrays ending with '\\0' (null char, value 0). C automatically creates '\\0'-terminated arrays for string literals.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">String declarations</span></div>
+<pre><span class="cm">/* Auto-sized (14 = 13 chars + '\\0') */</span>
+<span class="type">char</span> s[]<span class="op">=</span><span class="str">"Hello, world!"</span>;
+
+<span class="cm">/* Manual size — must include room for '\\0' */</span>
+<span class="type">char</span> name[<span class="num">20</span>];   <span class="cm">// holds 19 chars + '\\0'</span>
+
+<span class="cm">/* Character array equivalent */</span>
+<span class="type">char</span> s2[<span class="num">6</span>]<span class="op">=</span>{<span class="str">'H'</span>,<span class="str">'e'</span>,<span class="str">'l'</span>,<span class="str">'l'</span>,<span class="str">'o'</span>,<span class="str">'\0'</span>};</pre></div>
+<div class="wb"><b>Important</b><p>string[0]='H'; is valid (char replacement). string[0]="H"; is WRONG ("H" is a string, not char). Always declare string arrays with room for '\\0'.</p></div>
+
+<div class="sh">3. Built-In String Functions (#include &lt;string.h&gt;)</div>
+<table class="t">
+  <tr><th>Function</th><th>Purpose</th><th>Returns</th></tr>
+  <tr><td><code>strcpy(dest, src)</code></td><td>Copy src into dest</td><td>dest</td></tr>
+  <tr><td><code>strcmp(s1, s2)</code></td><td>Compare: 0=equal, &lt;0 or &gt;0</td><td>int</td></tr>
+  <tr><td><code>strcat(dest, src)</code></td><td>Append src to end of dest</td><td>dest</td></tr>
+  <tr><td><code>strlen(s)</code></td><td>Length (NOT counting '\\0')</td><td>int</td></tr>
+  <tr><td><code>strncpy(d,s,n)</code></td><td>Copy at most n chars</td><td>dest</td></tr>
+</table>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">strings_demo.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;string.h&gt;</span>
+<span class="type">char</span> s1[]<span class="op">=</span><span class="str">"Hello, world!"</span>;
+<span class="type">char</span> s2[<span class="num">20</span>]; <span class="type">char</span> s3[<span class="num">20</span>]<span class="op">=</span><span class="str">"Hello, "</span>; <span class="type">char</span> s4[]<span class="op">=</span><span class="str">"world!"</span>;
+
+<span class="cm">/* Copy */</span>
+<span class="fn">strcpy</span>(s2,s1);    <span class="cm">// s2 = "Hello, world!"</span>
+
+<span class="cm">/* Compare */</span>
+<span class="kw">if</span>(<span class="fn">strcmp</span>(<span class="str">"this is"</span>,<span class="str">"a test"</span>)<span class="op">==</span><span class="num">0</span>)
+    <span class="fn">printf</span>(<span class="str">"equal\n"</span>);
+<span class="kw">else</span>
+    <span class="fn">printf</span>(<span class="str">"different\n"</span>); <span class="cm">// this prints</span>
+
+<span class="cm">/* Concatenate */</span>
+<span class="fn">strcat</span>(s3,s4);   <span class="cm">// s3 = "Hello, world!"</span>
+
+<span class="cm">/* Length */</span>
+<span class="type">int</span> len<span class="op">=</span><span class="fn">strlen</span>(<span class="str">"abc"</span>); <span class="cm">// 3 (excludes '\\0')</span></pre></div>
+
+<div class="sh">Custom Implementations (Understanding the Functions)</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">mystrcpy, mystrlen</span></div>
+<pre><span class="fn">mystrcpy</span>(<span class="type">char</span> dest[], <span class="type">char</span> src[])
+{
+    <span class="type">int</span> i<span class="op">=</span><span class="num">0</span>;
+    <span class="kw">while</span>(src[i]<span class="op">!=</span><span class="str">'\0'</span>) { dest[i]<span class="op">=</span>src[i]; i<span class="op">++</span>; }
+    dest[i]<span class="op">=</span><span class="str">'\0'</span>;  <span class="cm">// null-terminate destination</span>
+}
+
+<span class="type">int</span> <span class="fn">mystrlen</span>(<span class="type">char</span> str[])
+{
+    <span class="type">int</span> i;
+    <span class="kw">for</span>(i<span class="op">=</span><span class="num">0</span>; str[i]<span class="op">!=</span><span class="str">'\0'</span>; i<span class="op">++</span>) {} <span class="cm">// empty body</span>
+    <span class="kw">return</span> i;
+}</pre></div>
+
+<div class="sh">Numeric Conversions</div>
+<table class="t">
+  <tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+  <tr><td><code>atoi(str)</code></td><td>String → integer</td><td><code>atoi("123") = 123</code></td></tr>
+  <tr><td><code>atof(str)</code></td><td>String → float</td><td><code>atof("3.14") = 3.14f</code></td></tr>
+  <tr><td><code>itoa(n,str,base)</code></td><td>Integer → string</td><td><code>itoa(123,str,10)</code></td></tr>
+</table>
+<div class="wb"><b>Key Distinction</b><p>char '1' ≠ int 1 ('1' has ASCII value 49). Digit char to int: c-'0'. Int to digit char: i+'0'. String "123" ≠ integer 123 — use atoi() to convert.</p></div>`,
+saqs:[
+  {q:"char str1[10]; str1=\"Hello\"; — will this compile?",o:["Yes","No — compilation error"],a:1,e:"Compilation error. Cannot assign string literal to array this way. Use strcpy(str1, \"Hello\");"},
+  {q:"Library function to copy one string to another is _______.",o:["strcat","strcmp","strcpy","strlen"],a:2,e:"strcpy(destination, source) copies src into dest including the null terminator."},
+  {q:"atoi can be used for any string.",o:["True","False"],a:1,e:"False. atoi only works for strings representing valid integers. Use atof() for floats."},
+  {q:"Function to find length of string in C:",o:["strlen()","strlength()","length()","strcount()"],a:0,e:"strlen(s) returns count of chars before '\\0', not counting the null terminator."},
+  {q:"strcmp() returns ___ if two strings are equal.",o:["0","1","-1","True"],a:0,e:"strcmp returns 0 when identical, <0 when first<second, >0 when first>second."},
+  {q:"Function to compare two strings in C:",o:["strcompare()","strcmp()","compare()","strcoll()"],a:1,e:"strcmp(s1, s2) compares strings lexicographically, returns 0 if equal."},
+],
+tqs:[
+  {q:"1. Define null-terminated string and its significance.",a:"A null-terminated string in C is a char array where the last character is '\\0' (null, value 0). Significance: C string functions (strlen, strcpy, printf with %s) use '\\0' to know where the string ends. Without it, functions would read beyond the string into unpredictable memory, causing bugs or crashes."},
+  {q:"2. Difference between null-terminated string and character array.",a:"A char array is simply a sequence of chars: char a[5]={'H','i','!','+','X'};\nA null-terminated STRING is a char array with '\\0' marking the end: char b[5]={'H','i','!','\\0'};\nString functions only work correctly with null-terminated strings. strlen(a) on the first would give unpredictable results."},
+],
+exs:["1. Count vowels and consonants in a string.","2. Reverse a string.","3. Check if string is palindrome.","4. Find string length without strlen."]},
+
+{id:10,title:"Strings — Part 2",topics:"strstr, strchr, strtok, Case Conversion, String Modification, sprintf, sscanf",
+obj:["Locate substrings/characters using strstr, strchr","Tokenize strings using strtok","Convert case using toupper/tolower","Use sprintf and sscanf for formatting/parsing"],
+intro:"Advanced string operations: searching substrings, tokenizing (splitting), converting case, modifying content, and formatting strings using sprintf/sscanf. These enable powerful text processing.",
+content:`
+<div class="sh">2.1 String Searching & Extraction</div>
+<table class="t">
+  <tr><th>Function</th><th>Purpose</th><th>Returns</th></tr>
+  <tr><td><code>strstr(s, sub)</code></td><td>Find first occurrence of substring</td><td>Pointer to match, or NULL</td></tr>
+  <tr><td><code>strchr(s, c)</code></td><td>Find first occurrence of character</td><td>Pointer to char, or NULL</td></tr>
+  <tr><td><code>strrchr(s, c)</code></td><td>Find LAST occurrence of character</td><td>Pointer to char, or NULL</td></tr>
+  <tr><td><code>strtok(s, delim)</code></td><td>Tokenize — split by delimiter</td><td>Pointer to token, or NULL</td></tr>
+  <tr><td><code>strncpy(d,s+n,len)</code></td><td>Extract substring</td><td>dest</td></tr>
+</table>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">strstr_strchr.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string.h&gt;</span>
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">char</span> str[]<span class="op">=</span><span class="str">"hello world"</span>;
+    <span class="type">char</span> <span class="op">*</span>sub<span class="op">=</span><span class="fn">strstr</span>(str,<span class="str">"world"</span>);
+    <span class="kw">if</span>(sub) <span class="fn">printf</span>(<span class="str">"Found at: %ld\n"</span>,sub<span class="op">-</span>str); <span class="cm">// 6</span>
+    <span class="type">char</span> <span class="op">*</span>ch<span class="op">=</span><span class="fn">strchr</span>(str,<span class="str">'o'</span>);
+    <span class="kw">if</span>(ch) <span class="fn">printf</span>(<span class="str">"'o' at: %ld\n"</span>,ch<span class="op">-</span>str); <span class="cm">// 4</span>
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">strtok.c — Tokenizing</span></div>
+<pre><span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">char</span> str[]<span class="op">=</span><span class="str">"apple,banana,orange"</span>;
+    <span class="type">char</span> <span class="op">*</span>tok<span class="op">=</span><span class="fn">strtok</span>(str,<span class="str">","</span>);   <span class="cm">// first call: pass string</span>
+    <span class="kw">while</span>(tok<span class="op">!=</span><span class="op">NULL</span>) {
+        <span class="fn">printf</span>(<span class="str">"%s\n"</span>,tok);
+        tok<span class="op">=</span><span class="fn">strtok</span>(<span class="op">NULL</span>,<span class="str">","</span>);   <span class="cm">// subsequent: pass NULL</span>
+    }
+}  <span class="cm">// Output: apple, banana, orange</span></pre></div>
+<div class="wb"><b>strtok Warning</b><p>strtok MODIFIES the original string by inserting '\\0'. Subsequent calls must pass NULL as first argument to continue tokenizing the same string.</p></div>
+
+<div class="sh">2.2 String Case Conversion (#include &lt;ctype.h&gt;)</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">case_conversion.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;ctype.h&gt;</span>
+<span class="type">char</span> str[]<span class="op">=</span><span class="str">"Hello World"</span>;
+<span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>; str[i]; i<span class="op">++</span>)
+    str[i]<span class="op">=</span><span class="fn">toupper</span>(str[i]);
+<span class="fn">printf</span>(<span class="str">"%s\n"</span>,str); <span class="cm">// HELLO WORLD</span>
+<span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>; str[i]; i<span class="op">++</span>)
+    str[i]<span class="op">=</span><span class="fn">tolower</span>(str[i]);
+<span class="fn">printf</span>(<span class="str">"%s\n"</span>,str); <span class="cm">// hello world</span></pre></div>
+
+<div class="sh">2.3 String Modification</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">string_mod.c</span></div>
+<pre><span class="type">char</span> str[]<span class="op">=</span><span class="str">"Hello, World!"</span>;
+str[<span class="num">7</span>]<span class="op">=</span><span class="str">'P'</span>;  <span class="cm">// Replace 'W' with 'P'</span>
+<span class="cm">/* Remove spaces */</span>
+<span class="type">int</span> src<span class="op">=</span><span class="num">0</span>,dst<span class="op">=</span><span class="num">0</span>;
+<span class="kw">while</span>(str[src]){
+    <span class="kw">if</span>(str[src]<span class="op">!=</span><span class="str">' '</span>) str[dst<span class="op">++</span>]<span class="op">=</span>str[src];
+    src<span class="op">++</span>;
+}
+str[dst]<span class="op">=</span><span class="str">'\0'</span>;
+<span class="fn">strcat</span>(str,<span class="str">" Welcome"</span>); <span class="cm">// append</span></pre></div>
+
+<div class="sh">2.4 sprintf, sscanf</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">sprintf_sscanf.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">char</span> buf[<span class="num">100</span>];
+    <span class="type">int</span> a<span class="op">=</span><span class="num">10</span>, b<span class="op">=</span><span class="num">20</span>;
+    <span class="fn">sprintf</span>(buf,<span class="str">"Sum of %d and %d is %d"</span>,a,b,a<span class="op">+</span>b);
+    <span class="fn">printf</span>(<span class="str">"%s\n"</span>,buf);  <span class="cm">// Sum of 10 and 20 is 30</span>
+
+    <span class="fn">snprintf</span>(buf,<span class="kw">sizeof</span>(buf),<span class="str">"Safe: %d"</span>,a); <span class="cm">// size-limited</span>
+
+    <span class="type">char</span> data[]<span class="op">=</span><span class="str">"Name: John Age: 25"</span>;
+    <span class="type">char</span> name[<span class="num">20</span>]; <span class="type">int</span> age;
+    <span class="fn">sscanf</span>(data,<span class="str">"Name: %s Age: %d"</span>,name,<span class="op">&</span>age);
+    <span class="fn">printf</span>(<span class="str">"Name=%s Age=%d\n"</span>,name,age);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>`,
+saqs:[
+  {q:"Function to read formatted input FROM A STRING:",o:["sscanf()","scanf()","fscanf()","sprint()"],a:0,e:"sscanf() reads formatted input from a string. scanf() reads from keyboard."},
+  {q:"Function to tokenize string based on delimiters:",o:["strsep()","strtok()","strspn()","strcspn()"],a:1,e:"strtok() tokenizes. First call: pass the string. Subsequent calls: pass NULL."},
+  {q:"Function to find first occurrence of SUBSTRING:",o:["strstr()","strchr()","strtok()","strcspn()"],a:0,e:"strstr(haystack, needle) finds first occurrence of substring. Returns pointer or NULL."},
+  {q:"Function to calculate length of string:",o:["strlength()","lengthstr()","strlen()","strcount()"],a:2,e:"strlen(s) counts chars before '\\0', not counting null terminator."},
+  {q:"Functions for character case conversion in C:",o:["toupper() and tolower()","convertcase()","changecase()","switchcase()"],a:0,e:"toupper(c) and tolower(c) from <ctype.h> convert individual characters."},
+  {q:"What does strtok modify in the original string?",o:["Nothing","Inserts spaces","Inserts null chars","Removes characters"],a:2,e:"strtok inserts null characters '\\0' at delimiter positions, splitting the string in place."},
+],
+tqs:[
+  {q:"1. Difference between strchr() and strstr().",a:"strchr(s, c): finds first occurrence of single CHARACTER c in string s. Returns pointer to char.\nstrstr(s, sub): finds first occurrence of SUBSTRING sub in string s. Returns pointer to start of match.\nBoth return NULL if not found. strchr is for one char; strstr is for a whole substring."},
+  {q:"2. Explain toupper() and tolower() with example.",a:"Both in <ctype.h>. Work on individual characters.\ntoupper('a')='A'. tolower('Z')='z'. Non-letters returned unchanged.\nTo convert whole string: for(int i=0; str[i]; i++) str[i]=toupper(str[i]);"},
+],
+exs:["1. Programs: strlen, strcat, strcpy, strcmp demos.","2. Reverse a string using a loop.","3. Find substring using strstr.","4. Convert string to uppercase."]},
+
+{id:11,title:"Functions",topics:"Function Definition, Parameters, Return Values, Call by Value, Function Prototypes",
+obj:["Explain importance of functions","Implement formal and actual arguments","Explain function prototypes","Understand return types"],
+intro:"Functions are the most important tool against software complexity. A function is a self-contained program segment executing a well-defined task. Every C program has at least one function (main). Functions promote modularity, reusability, readability, and maintainability.",
+content:`
+<div class="sh">2. Function Basics</div>
+<p>General form: <code>return_type name(type param1, type param2, ...)</code></p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Example 11.1 — Simple function</span></div>
+<pre><span class="type">int</span> <span class="fn">multbyfour</span>(<span class="type">int</span> x) {
+    <span class="kw">return</span> x <span class="op">*</span> <span class="num">4</span>;
+}
+
+<span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="kw">extern</span> <span class="type">int</span> <span class="fn">multbyfour</span>(<span class="type">int</span>);   <span class="cm">// prototype</span>
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> i<span class="op">=</span><span class="num">5</span>, j;
+    j<span class="op">=</span><span class="fn">multbyfour</span>(i);           <span class="cm">// actual arg: i</span>
+    <span class="fn">printf</span>(<span class="str">"%d\n"</span>, j);          <span class="cm">// 20</span>
+    <span class="fn">printf</span>(<span class="str">"%d\n"</span>, <span class="fn">multbyfour</span>(<span class="num">5</span>)); <span class="cm">// direct use</span>
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+<table class="t">
+  <tr><th>Type</th><th>Where</th><th>Example</th></tr>
+  <tr><td><strong>Formal parameters</strong></td><td>Function definition</td><td><code>int max(int a, int b)</code> — a,b are formal</td></tr>
+  <tr><td><strong>Actual arguments</strong></td><td>Call site</td><td><code>max(x, y)</code> — x,y are actual</td></tr>
+</table>
+<div class="ib"><b>Call by Value</b><p>C is call-by-value — function receives COPIES. Changing parameter inside function does NOT change original. Exception: arrays (pass by reference — address of first element).</p></div>
+
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 11.1 — Largest of three</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="type">int</span> <span class="fn">max</span>(<span class="type">int</span> a, <span class="type">int</span> b) {
+    <span class="kw">return</span> (a<span class="op">&gt;=</span>b)<span class="op">?</span>a<span class="op">:</span>b;
+}
+<span class="fn">main</span>() {
+    <span class="type">int</span> x,y,z,w;
+    <span class="fn">scanf</span>(<span class="str">"%d %d %d"</span>,<span class="op">&</span>x,<span class="op">&</span>y,<span class="op">&</span>z);
+    w<span class="op">=</span><span class="fn">max</span>(x,y);
+    <span class="fn">printf</span>(<span class="str">"maximum=%d\n"</span>,<span class="fn">max</span>(z,w));
+}</pre></div>
+
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Example 11.2 — void function</span></div>
+<pre><span class="type">void</span> <span class="fn">max</span>(<span class="type">int</span> x, <span class="type">int</span> y) {
+    <span class="type">int</span> m<span class="op">=</span>(x<span class="op">&gt;=</span>y)<span class="op">?</span>x<span class="op">:</span>y;
+    <span class="fn">printf</span>(<span class="str">"Larger: %d\n"</span>,m);
+    <span class="kw">return</span>;  <span class="cm">// empty return</span>
+}</pre></div>
+
+<div class="sh">3. Function Prototypes</div>
+<p>Declares function name, return type, and parameter types BEFORE its definition. Lets compiler verify calls are correct. keyword <code>extern</code> is optional in prototypes.</p>
+<p>Forms: <code>int sample(int, int);</code> or <code>int sample(int a, int b);</code> (names optional)</p>
+<p><code>void demo(void);</code> — no return, no arguments.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">Program 11.3 — Prototype optional when defined first</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="cm">/* Defined BEFORE main — prototype optional */</span>
+<span class="type">char</span> <span class="fn">lower_to_upper</span>(<span class="type">char</span> ch) {
+    <span class="kw">return</span> (ch<span class="op">&gt;=</span><span class="str">'a'</span><span class="op">&amp;&amp;</span>ch<span class="op">&lt;=</span><span class="str">'z'</span>)<span class="op">?</span>(<span class="str">'A'</span><span class="op">+</span>ch<span class="op">-</span><span class="str">'a'</span>)<span class="op">:</span>ch;
+}
+<span class="fn">main</span>() {
+    <span class="type">char</span> lower, upper;
+    <span class="fn">scanf</span>(<span class="str">"%c"</span>,<span class="op">&</span>lower);
+    upper<span class="op">=</span><span class="fn">lower_to_upper</span>(lower);
+    <span class="fn">printf</span>(<span class="str">"Upper: %c\n"</span>,upper);
+}</pre></div>`,
+saqs:[
+  {q:"main() is optional in a C program.",o:["True","False"],a:1,e:"False. Every C program must have exactly one main() function — the program entry point."},
+  {q:"If function defined elsewhere, prototype must start with ___.",o:["static","inline","extern","register"],a:2,e:"The keyword 'extern' precedes the prototype when function is defined in another file."},
+  {q:"Arguments in function definition are called _______.",o:["actual","formal","real","call"],a:1,e:"Formal parameters: in the definition. Actual arguments: at the call site."},
+  {q:"Return type, name, formal parameters separated by ___.",o:["semicolons","commas","nothing","colons"],a:1,e:"Commas separate parameters: int fun(int a, float b)"},
+  {q:"Function prototype also called _____________.",o:["Function definition","Function declaration","Function body","Function call"],a:1,e:"A function prototype = function declaration. Declares name, return type, parameter types before definition."},
+  {q:"Function prototypes are always optional.",o:["True","False"],a:1,e:"False. Prototypes are REQUIRED when calling a function defined later in the file."},
+  {q:"Library function prototypes are in their _________ files.",o:["source","binary","header","object"],a:2,e:"Prototypes for printf/scanf are in stdio.h, for sqrt in math.h, for strcpy in string.h."},
+],
+tqs:[
+  {q:"1. What is the purpose of a function prototype?",a:"A function prototype (declaration) tells the compiler: the function's name, return type, and parameter types BEFORE the function is called. This allows: calling functions defined later in the file, the compiler to check argument count and types, and generation of correct calling code. The #include <stdio.h> provides prototypes for printf, scanf etc."},
+  {q:"2. What is call by value in C?",a:"Call by value: function receives COPIES of the argument values. Changes to parameters inside the function do NOT affect the original variables. Example: if main has int i=5 and calls f(i), inside f the parameter x gets value 5, but changing x doesn't change i. Exception: arrays are passed by reference (address)."},
+  {q:"3. Difference between formal and actual parameters.",a:"Formal parameters: variable names in the function definition header. Example: int max(int a, int b) — a and b are formal.\nActual arguments: values/expressions passed at the call site. Example: max(x, y) — x and y are actual. C copies actual values to formal parameters (call by value)."},
+],
+exs:["1. Does order of function definitions matter? Explain.","2. Write function to swap two numbers using pass by value. What is the drawback?","3. Write function to raise float to integer power.","4. Express Y=(x1+x2+...+xn) in recursive form."]},
+
+{id:12,title:"Functions — Part 2",topics:"Recursive Functions, Function Pointers, Inline Functions, Arrays in Functions, Types of Recursion",
+obj:["Explain types of functions","Function pointers and their purpose","Inline functions and benefits","Techniques for passing/returning arrays","Define recursion"],
+intro:"Advanced function concepts: Recursive functions (call themselves to solve subproblems), Function pointers (treat functions as data), Inline functions (expand at call site). Also covers passing/returning arrays and recursion types.",
+content:`
+<div class="sh">2. Types of Functions</div>
+
+<div class="ssh">1. Recursive Functions</div>
+<p>Call themselves directly or indirectly. Used for problems breakable into smaller similar subproblems. Applications: factorial, Fibonacci, tree traversal.</p>
+
+<div class="ssh">2. Function Pointers</div>
+<p>Point to functions instead of data. Allow passing functions as arguments, storing in arrays/structs, calling dynamically at runtime. Used in: callbacks, customizable sort comparators.</p>
+<p>Declaration: <code>int (*fp)(int, int);</code> — pointer to function taking 2 ints, returning int.</p>
+
+<div class="ssh">3. Inline Functions</div>
+<p><code>inline</code> keyword suggests compiler to expand function body at call site — eliminates call/return overhead. Best for small, frequently called functions. Compiler may ignore suggestion.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">inline_function.c</span></div>
+<pre><span class="kw">inline</span> <span class="type">int</span> <span class="fn">add</span>(<span class="type">int</span> a, <span class="type">int</span> b) { <span class="kw">return</span> a<span class="op">+</span>b; }
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="fn">printf</span>(<span class="str">"Result: %d\n"</span>, <span class="fn">add</span>(<span class="num">5</span>,<span class="num">10</span>)); <span class="cm">// 15</span>
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+
+<div class="sh">3. Passing & Returning Arrays</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">calculateSum.c</span></div>
+<pre><span class="type">int</span> <span class="fn">calculateSum</span>(<span class="type">int</span> arr[], <span class="type">int</span> size) {
+    <span class="type">int</span> sum<span class="op">=</span><span class="num">0</span>;
+    <span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>size;i<span class="op">++</span>) sum<span class="op">+=</span>arr[i];
+    <span class="kw">return</span> sum;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> numbers[]<span class="op">=</span>{<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>,<span class="num">5</span>};
+    <span class="type">int</span> size<span class="op">=</span><span class="kw">sizeof</span>(numbers)<span class="op">/</span><span class="kw">sizeof</span>(numbers[<span class="num">0</span>]);
+    <span class="fn">printf</span>(<span class="str">"Sum: %d\n"</span>,<span class="fn">calculateSum</span>(numbers,size));
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+<p>Returning arrays: C cannot directly return arrays. Return a pointer to a static array:</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">return_array.c</span></div>
+<pre><span class="type">int</span><span class="op">*</span> <span class="fn">createArray</span>(<span class="type">int</span> size) {
+    <span class="kw">static</span> <span class="type">int</span> arr[<span class="num">5</span>]<span class="op">=</span>{<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>,<span class="num">5</span>};
+    <span class="kw">return</span> arr;  <span class="cm">// pointer to static array</span>
+}</pre></div>
+
+<div class="sh">4. Recursion</div>
+<p>Function calls itself repeatedly until stopping condition met. Two requirements: (1) problem written recursively, (2) stopping condition (base case) must exist.</p>
+<p>Factorial: <code>fact(n) = { 1 if n=0; n×fact(n-1) otherwise }</code></p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">factorial_recursive.c</span></div>
+<pre><span class="pp">#include</span><span class="str">&lt;stdio.h&gt;</span>
+<span class="type">long int</span> <span class="fn">fact</span>(<span class="type">int</span> n) {
+    <span class="kw">if</span>(n<span class="op">==</span><span class="num">0</span>) <span class="kw">return</span>(<span class="num">1</span>);         <span class="cm">// Base case</span>
+    <span class="kw">else</span>    <span class="kw">return</span>(n<span class="op">*</span><span class="fn">fact</span>(n<span class="op">-</span><span class="num">1</span>)); <span class="cm">// Recursive case</span>
+}
+<span class="fn">main</span>() { <span class="type">int</span> n; <span class="fn">scanf</span>(<span class="str">"%d"</span>,<span class="op">&</span>n); <span class="fn">printf</span>(<span class="str">"n!=%ld\n"</span>,<span class="fn">fact</span>(n)); }</pre></div>
+
+<div class="sh">Types of Recursion</div>
+<div class="igrid">
+  <div class="ic"><h5>Direct</h5><p>Function calls itself directly: f() { f(); }</p></div>
+  <div class="ic"><h5>Indirect</h5><p>Two functions call each other: A calls B, B calls A</p></div>
+  <div class="ic"><h5>Nested</h5><p>Call self with result of another recursive call</p></div>
+  <div class="ic"><h5>Tail</h5><p>Recursive call is LAST operation — compiler can optimize</p></div>
+</div>
+<table class="t">
+  <tr><th>Recursion</th><th>Iteration</th></tr>
+  <tr><td>Calls functions, uses call stack</td><td>Uses loops (for/while/do-while)</td></tr>
+  <tr><td>Elegant for naturally recursive problems</td><td>Better for known iteration count</td></tr>
+  <tr><td>May have call overhead</td><td>Generally more efficient in memory/speed</td></tr>
+  <tr><td>Risk of stack overflow</td><td>No stack overflow risk</td></tr>
+</table>`,
+saqs:[
+  {q:"inline keyword in C suggests:",o:["Must be called explicitly","Expand function at call site","Must be in main","Must use function pointers"],a:1,e:"inline suggests (but does not force) the compiler to expand the function body at each call site."},
+  {q:"If function too complex to inline, compiler:",o:["Raises warning","Inlines anyway","May ignore inline suggestion","Raises error"],a:2,e:"inline is a suggestion only. Compiler may ignore it if the function is too complex."},
+  {q:"Passing array to function passes:",o:["Full copy of array","Only first element","Address of first element","Size of array"],a:2,e:"Arrays passed by reference — function receives address (pointer) to first element. No copy."},
+  {q:"Arrays returned from functions as:",o:["Single value","Individual elements","Pointer to first element","String"],a:2,e:"Return a pointer (dataType*) to first element. Often use static arrays to ensure persistence."},
+  {q:"Lifetime of statically allocated returned array:",o:["Until end of function","Until next call","Until end of program","Until free()"],a:2,e:"Static arrays persist for the entire program lifetime. Dynamically allocated (malloc) arrays persist until free()."},
+  {q:"Base case in recursion:",o:["Optional","Max depth definition","Condition that terminates recursion","Calls other recursive functions"],a:2,e:"Base case is the STOPPING condition. Without it, recursion is infinite → stack overflow."},
+  {q:"Recursion in C is:",o:["A loop construct","Function calling itself directly or indirectly","Runtime error","Error handling technique"],a:1,e:"Recursion: a function calls itself (directly or indirectly) to solve problem by breaking into subproblems."},
+],
+tqs:[
+  {q:"1. Primary characteristic of recursive functions.",a:"A recursive function calls itself with a modified version of its input, until reaching a base case that stops recursion. Two conditions must be satisfied: (1) problem must be expressible recursively, (2) a stopping condition (base case) must exist to prevent infinite recursion."},
+  {q:"2. When appropriate to use inline functions?",a:"Appropriate for: small functions called very frequently (like in tight loops), utility functions where call overhead is significant (getters, setters, small math ops). NOT appropriate for: large/complex functions, recursive functions, functions with static variables. Excessive inlining increases code size without performance gains."},
+  {q:"3. Name two types of recursion.",a:"1) Direct Recursion: function calls itself — e.g., factorial(n) calls factorial(n-1)\n2) Tail Recursion: recursive call is the LAST operation in the function, enabling compiler optimization (tail call elimination, same as iteration in memory usage)"},
+],
+exs:[]},
+
+{id:13,title:"Functions — Part 3",topics:"Functions with Operators, Decision Statements, Loop Operators",
+obj:["Simulate operator overloading using functions","Write functions with decision statements","Implement functions using loop operators"],
+intro:"Functions interact with operators, decisions, and loops. While C doesn't support operator overloading (unlike C++), functions can simulate it. Decision statements and loops within functions make them flexible and reusable.",
+content:`
+<div class="sh">2. Function with Operators</div>
+<p>C doesn't support operator overloading, but functions can simulate operator-like behavior for custom types.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">operators_demo.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">void</span> <span class="fn">unaryOp</span>() {
+    <span class="type">int</span> x<span class="op">=</span><span class="num">10</span>;
+    <span class="fn">printf</span>(<span class="str">"++x: %d\n"</span>,<span class="op">++</span>x);  <span class="cm">// 11</span>
+    <span class="fn">printf</span>(<span class="str">"--x: %d\n"</span>,<span class="op">--</span>x);  <span class="cm">// 10</span>
+}
+<span class="type">void</span> <span class="fn">bitwiseOp</span>() {
+    <span class="type">int</span> a<span class="op">=</span><span class="num">10</span>,b<span class="op">=</span><span class="num">5</span>;
+    <span class="fn">printf</span>(<span class="str">"a&b=%d a|b=%d a^b=%d ~a=%d\n"</span>,a<span class="op">&</span>b,a<span class="op">|</span>b,a<span class="op">^</span>b,<span class="op">~</span>a);
+}
+<span class="type">void</span> <span class="fn">logicalOp</span>() {
+    <span class="type">int</span> x<span class="op">=</span><span class="num">10</span>,y<span class="op">=</span><span class="num">5</span>;
+    <span class="fn">printf</span>(<span class="str">"&&:%d ||:%d !x:%d\n"</span>,x<span class="op">&amp;&amp;</span>y,x<span class="op">||</span>y,<span class="op">!</span>x);
+}
+<span class="type">void</span> <span class="fn">ternaryOp</span>() {
+    <span class="type">int</span> a<span class="op">=</span><span class="num">10</span>,b<span class="op">=</span><span class="num">5</span>;
+    <span class="type">int</span> max<span class="op">=</span>(a<span class="op">&gt;</span>b)<span class="op">?</span>a<span class="op">:</span>b;
+    <span class="fn">printf</span>(<span class="str">"Max: %d\n"</span>,max); <span class="cm">// 10</span>
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="fn">unaryOp</span>(); <span class="fn">bitwiseOp</span>(); <span class="fn">logicalOp</span>(); <span class="fn">ternaryOp</span>();
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+
+<div class="sh">3. Function with Decision Statements</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">maxOfThree.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">int</span> <span class="fn">maxOfThree</span>(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c) {
+    <span class="kw">if</span>(a<span class="op">&gt;=</span>b<span class="op">&amp;&amp;</span>a<span class="op">&gt;=</span>c) <span class="kw">return</span> a;
+    <span class="kw">else if</span>(b<span class="op">&gt;=</span>a<span class="op">&amp;&amp;</span>b<span class="op">&gt;=</span>c) <span class="kw">return</span> b;
+    <span class="kw">else</span> <span class="kw">return</span> c;
+}
+<span class="type">void</span> <span class="fn">checkEvenOdd</span>(<span class="type">int</span> num) {
+    <span class="kw">if</span>(num<span class="op">%</span><span class="num">2</span><span class="op">==</span><span class="num">0</span>) <span class="fn">printf</span>(<span class="str">"%d is even.\n"</span>,num);
+    <span class="kw">else</span>          <span class="fn">printf</span>(<span class="str">"%d is odd.\n"</span>,num);
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="fn">printf</span>(<span class="str">"Max: %d\n"</span>,<span class="fn">maxOfThree</span>(<span class="num">10</span>,<span class="num">20</span>,<span class="num">15</span>)); <span class="cm">// 20</span>
+    <span class="fn">checkEvenOdd</span>(<span class="num">5</span>);  <span class="fn">checkEvenOdd</span>(<span class="num">10</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+
+<div class="sh">4. Function with Loop Operators</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">factorial_loop.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">int</span> <span class="fn">factorial</span>(<span class="type">int</span> n) {
+    <span class="type">int</span> result<span class="op">=</span><span class="num">1</span>;
+    <span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">1</span>;i<span class="op">&lt;=</span>n;i<span class="op">++</span>) result<span class="op">*=</span>i;
+    <span class="kw">return</span> result;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="fn">printf</span>(<span class="str">"5! = %d\n"</span>,<span class="fn">factorial</span>(<span class="num">5</span>)); <span class="cm">// 120</span>
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>`,
+saqs:[
+  {q:"Logical AND operator in C:",o:["&&","||","&","|"],a:0,e:"&& is logical AND. Returns 1 if BOTH operands are true (nonzero)."},
+  {q:"Operator for logical negation in C:",o:["+","-","!","~"],a:2,e:"! is logical NOT. ~is bitwise NOT. !0=1, !5=0 (any nonzero → 0)."},
+  {q:"Functions with decision statements allow:",o:["Repeating code","Customizing behavior based on conditions","Declaring arrays","Printing output"],a:1,e:"Decision statements (if/else/switch) let functions behave differently based on input conditions."},
+  {q:"Keyword for decision statement in C:",o:["decision","if","choose","pick"],a:1,e:"'if' introduces a decision statement. Part of C's control flow constructs."},
+  {q:"Purpose of loop operators within functions:",o:["Define variables","Perform math","Execute code repeatedly based on conditions","Print output"],a:2,e:"Loop operators (for/while/do-while) execute code repeatedly — enabling iteration, accumulation, and repetitive processing."},
+  {q:"Which loop executes body at least once regardless of condition:",o:["for","while","do-while","break"],a:2,e:"do-while always executes body once because condition is checked AFTER the body."},
+],
+tqs:[
+  {q:"1. How do loop operators enable repetitive code in functions?",a:"Loop operators encapsulated in functions package repetitive tasks as reusable units. Example: factorial(n) uses a for loop internally. The caller simply calls factorial(5) without knowing the loop. This promotes abstraction, code reuse, and separation of concerns."},
+  {q:"2. Discuss functions with arrays as arguments and returning results.",a:"Arrays passed as pointers (address of first element). Size must be passed separately. Functions can modify elements directly (pass by reference). To return: return pointer to static array, or pass destination array as argument. Example: void sort(int arr[], int n) sorts in place; changes visible in caller."},
+],
+exs:["1. Write function using while loop to print primes up to n.","2. Write function with switch returning month name.","3. Write function with nested loops to print multiplication table."]},
+
+{id:14,title:"Functions — Part 4",topics:"Functions with Arrays, Sorting with Functions, doubleArray, All Three Sorts",
+obj:["Pass arrays to functions","Implement bubble, selection, insertion sort using functions","Write array manipulation functions","Understand modular array processing"],
+intro:"Functions with arrays enable modular, reusable code by separating array manipulation from main. Sorting algorithms encapsulated in functions can be reused across programs. Functions make complex array operations manageable.",
+content:`
+<div class="sh">2. Function with Arrays</div>
+<p>Syntax: <code>void funcName(int arr[], int size)</code> — pass array with size separately.<br>Return: <code>int* funcName(int arr[], int size)</code> — return pointer to array.</p>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">doubleArray.c — Array modified in function</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">void</span> <span class="fn">doubleArray</span>(<span class="type">int</span> array[], <span class="type">int</span> size) {
+    <span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>size;i<span class="op">++</span>) array[i]<span class="op">*=</span><span class="num">2</span>;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> arr[]<span class="op">=</span>{<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>,<span class="num">5</span>};
+    <span class="type">int</span> n<span class="op">=</span><span class="kw">sizeof</span>(arr)<span class="op">/</span><span class="kw">sizeof</span>(arr[<span class="num">0</span>]);
+    <span class="fn">printf</span>(<span class="str">"Original: "</span>);
+    <span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>n;i<span class="op">++</span>) <span class="fn">printf</span>(<span class="str">"%d "</span>,arr[i]);
+    <span class="fn">doubleArray</span>(arr,n);  <span class="cm">// modifies ORIGINAL array</span>
+    <span class="fn">printf</span>(<span class="str">"\nModified: "</span>);
+    <span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>n;i<span class="op">++</span>) <span class="fn">printf</span>(<span class="str">"%d "</span>,arr[i]);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+
+<div class="sh">All Three Sorting Algorithms</div>
+<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">sorting_all.c</span></div>
+<pre><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="type">void</span> <span class="fn">bubbleSort</span>(<span class="type">int</span> arr[], <span class="type">int</span> n) {
+    <span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>n<span class="op">-</span><span class="num">1</span>;i<span class="op">++</span>)
+        <span class="kw">for</span>(<span class="type">int</span> j<span class="op">=</span><span class="num">0</span>;j<span class="op">&lt;</span>n<span class="op">-</span>i<span class="op">-</span><span class="num">1</span>;j<span class="op">++</span>)
+            <span class="kw">if</span>(arr[j]<span class="op">&gt;</span>arr[j<span class="op">+</span><span class="num">1</span>]){<span class="type">int</span> t<span class="op">=</span>arr[j];arr[j]<span class="op">=</span>arr[j<span class="op">+</span><span class="num">1</span>];arr[j<span class="op">+</span><span class="num">1</span>]<span class="op">=</span>t;}
+}
+<span class="type">void</span> <span class="fn">selectionSort</span>(<span class="type">int</span> arr[], <span class="type">int</span> n) {
+    <span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>n<span class="op">-</span><span class="num">1</span>;i<span class="op">++</span>){
+        <span class="type">int</span> m<span class="op">=</span>i;
+        <span class="kw">for</span>(<span class="type">int</span> j<span class="op">=</span>i<span class="op">+</span><span class="num">1</span>;j<span class="op">&lt;</span>n;j<span class="op">++</span>) <span class="kw">if</span>(arr[j]<span class="op">&lt;</span>arr[m]) m<span class="op">=</span>j;
+        <span class="type">int</span> t<span class="op">=</span>arr[i];arr[i]<span class="op">=</span>arr[m];arr[m]<span class="op">=</span>t;
+    }
+}
+<span class="type">void</span> <span class="fn">insertionSort</span>(<span class="type">int</span> arr[], <span class="type">int</span> n) {
+    <span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">1</span>;i<span class="op">&lt;</span>n;i<span class="op">++</span>){
+        <span class="type">int</span> k<span class="op">=</span>arr[i],j<span class="op">=</span>i<span class="op">-</span><span class="num">1</span>;
+        <span class="kw">while</span>(j<span class="op">&gt;=</span><span class="num">0</span><span class="op">&amp;&amp;</span>arr[j]<span class="op">&gt;</span>k){arr[j<span class="op">+</span><span class="num">1</span>]<span class="op">=</span>arr[j];j<span class="op">--</span>;}
+        arr[j<span class="op">+</span><span class="num">1</span>]<span class="op">=</span>k;
+    }
+}
+<span class="type">void</span> <span class="fn">print</span>(<span class="type">int</span> arr[], <span class="type">int</span> n){<span class="kw">for</span>(<span class="type">int</span> i<span class="op">=</span><span class="num">0</span>;i<span class="op">&lt;</span>n;i<span class="op">++</span>)<span class="fn">printf</span>(<span class="str">"%d "</span>,arr[i]);<span class="fn">printf</span>(<span class="str">"\n"</span>);}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> arr[]<span class="op">=</span>{<span class="num">64</span>,<span class="num">25</span>,<span class="num">12</span>,<span class="num">22</span>,<span class="num">11</span>}; <span class="type">int</span> n<span class="op">=</span><span class="num">5</span>;
+    <span class="fn">printf</span>(<span class="str">"Original: "</span>); <span class="fn">print</span>(arr,n);
+    <span class="fn">bubbleSort</span>(arr,n);
+    <span class="fn">printf</span>(<span class="str">"Bubble: "</span>); <span class="fn">print</span>(arr,n);
+    <span class="type">int</span> a2[]<span class="op">=</span>{<span class="num">64</span>,<span class="num">25</span>,<span class="num">12</span>,<span class="num">22</span>,<span class="num">11</span>}; <span class="fn">selectionSort</span>(a2,n);
+    <span class="fn">printf</span>(<span class="str">"Selection: "</span>); <span class="fn">print</span>(a2,n);
+    <span class="type">int</span> a3[]<span class="op">=</span>{<span class="num">64</span>,<span class="num">25</span>,<span class="num">12</span>,<span class="num">22</span>,<span class="num">11</span>}; <span class="fn">insertionSort</span>(a3,n);
+    <span class="fn">printf</span>(<span class="str">"Insertion: "</span>); <span class="fn">print</span>(a3,n);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>`,
+saqs:[
+  {q:"Syntax to pass array to function:",o:["void f(arrayType arr[],int size)","void f(arrayType *arr,int size)","void f(arrayType arr[],size)","void f(size,arrayType arr[])"],a:0,e:"void functionName(dataType arrayName[], int arraySize) — array passed with empty brackets, size separately."},
+  {q:"Parameter specifying array size in function:",o:["arrayType","arrayName","arraySize","functionType"],a:2,e:"arraySize (or any int parameter) specifies the size — it cannot be inferred from the array pointer alone."},
+  {q:"How is array returned from function in C:",o:["return with elements comma-separated","By returning pointer to array","Global variable","Pass as parameter"],a:1,e:"Return a pointer (dataType*) to the array. Often use static arrays to ensure they persist after function returns."},
+  {q:"Sorting algorithm efficient for small or nearly-sorted arrays:",o:["Merge Sort","Quick Sort","Insertion Sort","Selection Sort"],a:2,e:"Insertion Sort is adaptive — O(n) best case for nearly-sorted arrays. Very efficient for small datasets."},
+],
+tqs:[
+  {q:"1. Implement and explain Insertion Sort.",a:"void insertionSort(int arr[], int n) {\n  int i, key, j;\n  for(i=1; i<n; i++) {\n    key=arr[i]; j=i-1;\n    while(j>=0 && arr[j]>key) {\n      arr[j+1]=arr[j]; j--;\n    }\n    arr[j+1]=key;\n  }\n}\nWorking: picks each element (key), shifts larger elements right to make room, inserts key in correct position. Like sorting playing cards in hand."},
+  {q:"2. Explain Bubble Sort.",a:"Bubble Sort repeatedly steps through array, compares adjacent elements, swaps if wrong order (arr[j] > arr[j+1]). After each pass, the largest unsorted element moves to its final position at the end. Inner loop reduces by 1 each outer pass (j < n-i-1). Continues until no swaps needed. Time: O(n²) worst case."},
+],
+exs:["1. Implement insertion sort and explain step by step.","2. Write a program demonstrating all three sorting algorithms."]},
+
+{id:15,title:"Exam Paper",topics:"Section A: MCQ, Section B: Short Answers, Section C: Long Answers",
+obj:["Practice MCQ-style questions","Prepare short answers (200-250 words)","Prepare long answers (400-500 words)","Understand exam question patterns"],
+intro:"CProgramming_MQP AUG2024 — Model Question Paper. This is the actual exam format from the course materials. Use this to test your exam readiness.",
+content:``,
+saqs:[],tqs:[],exs:[],isExam:true},
+];
+
+const DONE=new Set(); const SCORES={};
+let CUR=0;
+
+function codeBlock(label,code){return`<div class="cw"><div class="ch"><div class="ds"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div><span class="cl">${label}</span></div><pre>${code}</pre></div>`;}
+
+function buildUnit(u){
+  if(u.isExam) return buildExam();
+  let h=`<div class="utag">Unit ${String(u.id).padStart(2,'0')}</div>
+  <div class="utit">${u.title}</div>
+  <div class="uint">${u.intro}</div>
+  <div class="obj"><h4>Learning Objectives</h4><ul>${u.obj.map(o=>`<li>${o}</li>`).join('')}</ul></div>
+  <div class="tabs">
+    <button class="tb on" onclick="swTab(this,'tc-content-${u.id}')">📖 Content</button>
+    <button class="tb" onclick="swTab(this,'tc-saq-${u.id}')">🧩 SAQ Quiz</button>
+    <button class="tb" onclick="swTab(this,'tc-tq-${u.id}')">📝 Terminal Qs</button>
+    <button class="tb" onclick="swTab(this,'tc-ex-${u.id}')">✏️ Exercises</button>
+  </div>
+  <div id="tc-content-${u.id}" class="tc on">${u.content}</div>
+  <div id="tc-saq-${u.id}" class="tc">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--td);margin-bottom:16px">${u.saqs.length} SELF-ASSESSMENT QUESTIONS — CLICK AN OPTION TO CHECK</div>
+    <div id="saq-wrap-${u.id}">${buildSAQs(u)}</div>
+    <div class="qr" id="qr-${u.id}">
+      <div class="rs" id="rs-${u.id}">-</div>
+      <div class="rm" id="rm-${u.id}">-</div>
+      <div class="rd2" id="rd2-${u.id}">-</div>
+    </div>
+    <div class="db" id="db-${u.id}">
+      <div style="font-size:24px">🎉</div>
+      <div><h4>Unit ${u.id} Complete!</h4><p>Score ≥60% — great work.</p></div>
+      ${u.id<14?`<button class="btn btnp" style="margin-left:auto" onclick="su(${u.id+1})">Next →</button>`:`<span style="color:var(--gr);margin-left:auto;font-weight:700">🏆 Done!</span>`}
+    </div>
+  </div>
+  <div id="tc-tq-${u.id}" class="tc">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--td);margin-bottom:16px">TERMINAL QUESTIONS — CLICK TO REVEAL ANSWERS</div>
+    ${u.tqs.map((t,i)=>`<div class="tqi"><div class="tqq">${t.q}</div><button class="tqb" onclick="tglTQ(this)">Show Answer</button><div class="tqa">${t.a}</div></div>`).join('')}
+    ${u.tqs.length===0?'<p style="color:var(--td);font-size:13px">No terminal questions for this unit.</p>':''}
+  </div>
+  <div id="tc-ex-${u.id}" class="tc">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--td);margin-bottom:16px">EXERCISES</div>
+    ${u.exs.map(e=>`<div class="tqi"><div class="tqq">${e}</div></div>`).join('')}
+    ${u.exs.length===0?'<p style="color:var(--td);font-size:13px">Refer to unit exercises in the PDF for additional practice.</p>':''}
+  </div>`;
+  return h;
+}
+
+function buildSAQs(u){
+  if(!u.saqs.length) return '<p style="color:var(--td);font-size:13px">No SAQs for this unit.</p>';
+  return u.saqs.map((q,qi)=>`
+    <div class="qq" id="q-${u.id}-${qi}">
+      <div class="qt"><span class="qn">Q${qi+1}</span>${q.q}</div>
+      <div class="opts">${q.o.map((o,oi)=>`
+        <button class="ob" id="ob-${u.id}-${qi}-${oi}" onclick="chk(${u.id},${qi},${oi})">
+          <span class="ol">${['A','B','C','D'][oi]}</span>${o}
+        </button>`).join('')}</div>
+      <div class="exp" id="exp-${u.id}-${qi}">💡 ${q.e}</div>
+    </div>`).join('');
+}
+
+function buildExam(){
+  return`<div class="utag">Exam Paper</div>
+  <div class="utit">CProgramming Model Question Paper<br><span style="font-size:16px;color:var(--td)">AUG 2024</span></div>
+  <div class="uint">This is the actual Model Question Paper from the course. Use it for exam preparation. Answers can be found by reviewing the unit content.</div>
+  
+  <div class="es">
+    <h3>Section A — Multiple Choice Questions</h3>
+    <div class="ess">2 Marks each · Answer ALL questions</div>
+    <div class="eq"><strong>1.</strong> In C programming, which symbol denotes a comment?
+      <span class="eopt">a) *</span><span class="eopt">b) **</span><span class="eopt">c) #</span><span class="eopt" style="color:var(--gr)">d) /* */  ✓</span></div>
+    <div class="eq"><strong>2.</strong> Every C program must have one ________ function.
+      <span class="eopt" style="color:var(--gr)">a) main()  ✓</span><span class="eopt">b) printf()</span><span class="eopt">c) scan()</span><span class="eopt">d) none</span></div>
+    <div class="eq"><strong>3.</strong> What does scanf() do in C?
+      <span class="eopt" style="color:var(--gr)">a) Reads formatted input from standard input  ✓</span><span class="eopt">b) Writes to standard output</span><span class="eopt">c) Writes to file</span><span class="eopt">d) Reads from file</span></div>
+    <div class="eq"><strong>4.</strong> Result of "x -= 3;" if x is initially 8?
+      <span class="eopt" style="color:var(--gr)">a) 5  ✓</span><span class="eopt">b) 2</span><span class="eopt">c) 11</span><span class="eopt">d) 12</span></div>
+    <div class="eq"><strong>5.</strong> Purpose of continue statement in a loop?
+      <span class="eopt">a) Terminate the loop</span><span class="eopt" style="color:var(--gr)">b) Skip current iteration, continue with next  ✓</span><span class="eopt">c) Exit from loop</span><span class="eopt">d) None</span></div>
+    <div class="eq"><strong>6.</strong> What will this do? int i=0; while(1){ i++; }
+      <span class="eopt" style="color:var(--gr)">a) Loop runs indefinitely, increasing i  ✓</span><span class="eopt">b) Executes once</span><span class="eopt">c) Doesn't execute</span><span class="eopt">d) Compile error</span></div>
+    <div class="eq"><strong>7.</strong> Process by which a function calls itself repeatedly:
+      <span class="eopt">a) Sub program</span><span class="eopt">b) Sub function</span><span class="eopt">c) Module</span><span class="eopt" style="color:var(--gr)">d) Recursion  ✓</span></div>
+    <div class="eq"><strong>8.</strong> What does atoi("1234") return?
+      <span class="eopt">a) 1</span><span class="eopt" style="color:var(--gr)">b) 1234  ✓</span><span class="eopt">c) "1234"</span><span class="eopt">d) Error</span></div>
+    <div class="eq"><strong>9.</strong> How many values can a C function return at a time?
+      <span class="eopt" style="color:var(--gr)">a) 1  ✓</span><span class="eopt">b) 2</span><span class="eopt">c) 3</span><span class="eopt">d) As many as needed</span></div>
+    <div class="eq"><strong>10.</strong> In Bubble Sort (ascending), after each pass, largest element goes to:
+      <span class="eopt">a) First</span><span class="eopt" style="color:var(--gr)">b) Last  ✓</span><span class="eopt">c) Middle</span><span class="eopt">d) Anywhere</span></div>
+  </div>
+
+  <div class="es">
+    <h3>Section B — Short Answers</h3>
+    <div class="ess">5 Marks each · Approx 200-250 words · Answer ANY FOUR</div>
+    <div class="eq"><strong>1.</strong> Examine the characteristics of C programming language. <span style="color:var(--td);font-size:11px">[See Unit 1]</span></div>
+    <div class="eq"><strong>2.</strong> Discuss the significance of the const keyword in C programming. <span style="color:var(--td);font-size:11px">[Unit 2 — Constants]</span></div>
+    <div class="eq"><strong>3.</strong> Describe the syntax and usage of the if-else statement in C. <span style="color:var(--td);font-size:11px">[Unit 5]</span></div>
+    <div class="eq"><strong>4.</strong> Describe strcpy() function with an example. <span style="color:var(--td);font-size:11px">[Unit 9]</span></div>
+    <div class="eq"><strong>5.</strong> Explain the importance of function prototypes in C. <span style="color:var(--td);font-size:11px">[Unit 11]</span></div>
+    <div class="eq"><strong>6.</strong> Discuss Bubble Sort algorithm and its working principle. <span style="color:var(--td);font-size:11px">[Unit 8]</span></div>
+  </div>
+
+  <div class="es">
+    <h3>Section C — Long Answers</h3>
+    <div class="ess">10 Marks each · Approx 400-500 words · Answer ANY THREE</div>
+    <div class="eq"><strong>1.</strong> Explain purpose and structure of switch-case with a detailed example. <span style="color:var(--td);font-size:11px">[Unit 5]</span></div>
+    <div class="eq"><strong>2.</strong> Explain arrays in C. Write program to initialize integer array and calculate sum. <span style="color:var(--td);font-size:11px">[Units 7-8]</span></div>
+    <div class="eq"><strong>3.</strong> Explain various string handling functions in C with examples. <span style="color:var(--td);font-size:11px">[Units 9-10]</span></div>
+    <div class="eq"><strong>4.</strong> Explain function prototypes in C. Write prototype and definition for function calculating square of a number. Discuss importance. <span style="color:var(--td);font-size:11px">[Unit 11]</span></div>
+  </div>
+  <div class="ib"><b>Exam Tips</b><p>• Section B: Start with definition, explain with example code, and summarise.<br>• Section C: Structure as intro → theory → example program → explanation → conclusion.<br>• Always include at least one code example in long answers.<br>• Use the unit content tabs to review topics quickly before exams.</p></div>`;
+}
+
+function chk(uid,qi,sel){
+  const u=UNITS.find(x=>x.id===uid);
+  const q=u.saqs[qi];
+  const qid=`${uid}-${qi}`;
+  q.o.forEach((_,oi)=>{
+    const b=document.getElementById(`ob-${qid}-${oi}`);
+    b.disabled=true;
+    if(oi===q.a) b.classList.add('ok');
+    else if(oi===sel&&sel!==q.a) b.classList.add('ng');
+  });
+  document.getElementById(`exp-${qid}`).classList.add('on');
+  document.getElementById(`q-${uid}-${qi}`).classList.add('done');
+  if(!SCORES[uid]) SCORES[uid]={ans:0,ok:0};
+  SCORES[uid].ans++;
+  if(sel===q.a) SCORES[uid].ok++;
+  if(SCORES[uid].ans===u.saqs.length) showResult(uid);
+}
+
+function showResult(uid){
+  const s=SCORES[uid];
+  const pct=Math.round(s.ok/s.ans*100);
+  const qr=document.getElementById(`qr-${uid}`);
+  document.getElementById(`rs-${uid}`).textContent=pct+'%';
+  let msg,sub;
+  if(pct===100){msg="Perfect! 🌟";sub="Outstanding — all correct!"}
+  else if(pct>=80){msg="Great Work! 🎯";sub=`${s.ok}/${s.ans} correct. Solid understanding!`}
+  else if(pct>=60){msg="Good Effort 📚";sub=`${s.ok}/${s.ans} correct. Review the missed ones.`}
+  else{msg="Keep Practising 💪";sub=`${s.ok}/${s.ans} correct. Re-read the material.`}
+  document.getElementById(`rm-${uid}`).textContent=msg;
+  document.getElementById(`rd2-${uid}`).textContent=sub;
+  qr.classList.add('on');
+  if(pct>=60){
+    DONE.add(uid);
+    document.getElementById(`db-${uid}`).classList.add('on');
+    document.getElementById(`n${uid}`).classList.add('dn');
+    const uc=document.getElementById(`ucc-${uid}`);
+    if(uc){uc.classList.add('dn');}
+    updateProgress();
+  }
+}
+
+function swTab(btn,tcId){
+  const panel=btn.closest('.pn');
+  panel.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  panel.querySelectorAll('.tc').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(tcId).classList.add('on');
+}
+
+function tglTQ(btn){
+  const ans=btn.nextElementSibling;
+  ans.classList.toggle('on');
+  btn.textContent=ans.classList.contains('on')?'Hide Answer':'Show Answer';
+}
+
+function updateProgress(){
+  const d=DONE.size; const pct=Math.round(d/14*100);
+  document.getElementById('pfill').style.width=pct+'%';
+  document.getElementById('ptxt').textContent=`${d}/14`;
+}
+
+function showDash(){
+  document.getElementById('dash').style.display='block';
+  document.querySelectorAll('.pn').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ul li a').forEach(a=>a.classList.remove('on'));
+  document.getElementById('n0').classList.add('on');
+  document.getElementById('tlbl').textContent='Overview';
+  document.getElementById('bprev').style.display='none';
+  document.getElementById('bnext').style.display='none';
+  CUR=0; closeSB(); window.scrollTo(0,0); return false;
+}
+
+function su(id){
+  document.getElementById('dash').style.display='none';
+  document.querySelectorAll('.pn').forEach(p=>p.classList.remove('on'));
+  const p=document.getElementById(`pn-${id}`);
+  if(p) p.classList.add('on');
+  document.querySelectorAll('.ul li a').forEach(a=>a.classList.remove('on'));
+  document.getElementById(`n${id}`).classList.add('on');
+  const u=UNITS.find(x=>x.id===id);
+  document.getElementById('tlbl').textContent=u?u.title:'Exam Paper';
+  document.getElementById('bprev').style.display=id>1?'inline-block':'none';
+  document.getElementById('bnext').style.display=id<15?'inline-block':'none';
+  CUR=id; closeSB(); window.scrollTo(0,0); return false;
+}
+
+function pu(){if(CUR>1)su(CUR-1);}
+function nu(){if(CUR<15)su(CUR+1);}
+function tglSB(){document.getElementById('sb').classList.toggle('op');document.getElementById('overlay').classList.toggle('op');}
+function closeSB(){document.getElementById('sb').classList.remove('op');document.getElementById('overlay').classList.remove('op');}
+
+// Build everything on load
+window.addEventListener('load',()=>{
+  const uc=document.getElementById('uc');
+  UNITS.forEach(u=>{
+    const div=document.createElement('div');
+    div.className='pn';
+    div.id=`pn-${u.id}`;
+    div.innerHTML=buildUnit(u);
+    uc.appendChild(div);
+  });
+  const grid=document.getElementById('ucg');
+  UNITS.filter(u=>u.id<=14).forEach(u=>{
+    const card=document.createElement('div');
+    card.className='ucc';
+    card.id=`ucc-${u.id}`;
+    card.onclick=()=>su(u.id);
+    card.innerHTML=`<div class="ucd">✅</div><div class="ucn">UNIT ${String(u.id).padStart(2,'0')}</div><h3>${u.title}</h3><div class="uct">${u.topics}</div>`;
+    grid.appendChild(card);
+  });
+  const examCard=document.createElement('div');
+  examCard.className='ucc';
+  examCard.style.borderColor='rgba(255,193,7,.25)';
+  examCard.onclick=()=>su(15);
+  examCard.innerHTML=`<div class="ucn">EXAM PAPER</div><h3>Model Question Paper</h3><div class="uct">MCQ, Short Answers, Long Answers — AUG 2024</div>`;
+  grid.appendChild(examCard);
+});
+</script></body></html>
