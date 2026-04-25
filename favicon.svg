@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f1420"/>
+      <stop offset="100%" stop-color="#161c2a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#7b61ff"/>
+    </linearGradient>
+    <filter id="f" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+
+  <!-- Subtle border -->
+  <rect width="63" height="63" x=".5" y=".5" rx="13.5" fill="none" stroke="#1e2840" stroke-width="1"/>
+
+  <!-- Code brackets with gradient -->
+  <!-- Left < -->
+  <polyline points="20,20 11,32 20,44" fill="none" stroke="url(#glow)" stroke-width="4.5"
+    stroke-linecap="round" stroke-linejoin="round" filter="url(#f)"/>
+  <!-- Right > -->
+  <polyline points="44,20 53,32 44,44" fill="none" stroke="url(#glow)" stroke-width="4.5"
+    stroke-linecap="round" stroke-linejoin="round" filter="url(#f)"/>
+  <!-- Slash -->
+  <line x1="37" y1="17" x2="27" y2="47" stroke="url(#glow)" stroke-width="3.5"
+    stroke-linecap="round" filter="url(#f)" opacity="0.85"/>
+</svg>
