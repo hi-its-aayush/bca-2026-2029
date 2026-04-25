@@ -53,16 +53,9 @@ Modules will be added semester by semester as coursework progresses (2026–2029
 - **GitHub Pages** — Hosting the live portal
 - **Google Fonts** — Syne, JetBrains Mono, Inter
 
----
-
-## 🚀 Run Locally
-
-```bash
-git clone https://github.com/hi-its-aayush/bca-2026-2029.git
-cd bca-2026-2029
-# Open index.html in any modern browser
-```
 
 ---
 
 *Built by **Aayush Acharya** — modules appear here as studies advance.* 🚀
+© 2026 Aayush Acharya. All rights reserved. 
+Content may not be reproduced without permission.
