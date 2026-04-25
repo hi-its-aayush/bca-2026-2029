@@ -364,3 +364,42 @@ code { background: var(--cb); border: 1px solid var(--br); border-radius: 3px; p
   #ct { padding: 20px 14px; }
   .utit { font-size: 20px; }
 }
+
+/* ── Smooth Scroll ── */
+html { scroll-behavior: smooth; }
+
+/* ── Dark / Light Mode ── */
+body.light-mode {
+  --bg:  #f0f4f8;
+  --sf:  #ffffff;
+  --sf2: #e8edf3;
+  --br:  #c8d4e0;
+  --ac:  #0077aa;
+  --ac2: #5b3fd6;
+  --gr:  #1a7a00;
+  --am:  #a07000;
+  --rd:  #cc2200;
+  --tx:  #1a2535;
+  --td:  #4a5a6a;
+  --tb:  #0d1520;
+  --cb:  #e4ecf4;
+}
+
+/* Theme toggle button */
+.btn-theme {
+  margin-left: 8px;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--br);
+  background: transparent;
+  cursor: pointer;
+  color: var(--tx);
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.btn-theme:hover { border-color: var(--ac); }
+
+/* Root page light mode adjustments */
+body.light-mode .ucc { box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+body.light-mode pre { color: #2d3748; }

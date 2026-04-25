@@ -38,7 +38,7 @@
   <div id="tnav">
     <a href="../../../index.html" class="btn" style="text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;flex-shrink:0;">&#8592; All Courses</a>
     <div class="bc">Fundamentals of Mathematics &mdash; DCA1105 / <span id="tlbl">Overview</span></div>
-    <div class="nbs">
+    <div class="nbs"><button class="btn-theme" id="themeBtn" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
       <button class="btn" id="bprev" onclick="pu()" style="display:none">&larr; Prev</button>
       <button class="btn btnp" id="bnext" onclick="nu()" style="display:none">Next &rarr;</button>
     </div>
@@ -223,6 +223,32 @@ function tglSB(){
 }
 document.addEventListener('DOMContentLoaded',()=>{showDash();});
 
+</script>
+
+<script>
+/* ── Theme toggle ── */
+function toggleTheme(){
+  document.body.classList.toggle('light-mode');
+  const btn=document.getElementById('themeBtn');
+  const isLight=document.body.classList.contains('light-mode');
+  if(btn) btn.textContent=isLight?'🌑':'🌙';
+  localStorage.setItem('bca-theme',isLight?'light':'dark');
+}
+(function(){
+  if(localStorage.getItem('bca-theme')==='light'){
+    document.body.classList.add('light-mode');
+    document.addEventListener('DOMContentLoaded',function(){
+      const b=document.getElementById('themeBtn');
+      if(b) b.textContent='🌑';
+    });
+  }
+})();
+/* ── Keyboard navigation ── */
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+  if(e.key==='ArrowRight'&&typeof nu==='function') nu();
+  if(e.key==='ArrowLeft'&&typeof pu==='function') pu();
+});
 </script>
 </body>
 </html>

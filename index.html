@@ -9,6 +9,7 @@
 <body class="root-page">
 
 <main id="root-main">
+  <div style="display:flex;justify-content:flex-end;margin-bottom:-30px;"><button class="btn-theme" onclick="toggleTheme()" id="themeBtn" title="Toggle dark/light mode">🌙</button></div>
   <div class="dh">
     <h1>BCA Knowledge Base</h1>
     <p>Aayush Acharya's academic portal for MUJ Online BCA (2026-2029). Interactive modules for every semester.</p>
@@ -123,6 +124,25 @@
 <script>
 function showModal(t,j){document.getElementById('m-title').innerText=t;document.getElementById('m-text').innerText=j;document.getElementById('modal-ov').style.display='flex';}
 function closeModal(){document.getElementById('modal-ov').style.display='none';}
+</script>
+
+<script>
+function toggleTheme(){
+  document.body.classList.toggle('light-mode');
+  const btn = document.getElementById('themeBtn');
+  const isLight = document.body.classList.contains('light-mode');
+  btn.textContent = isLight ? '🌑' : '🌙';
+  localStorage.setItem('bca-theme', isLight ? 'light' : 'dark');
+}
+(function(){
+  if(localStorage.getItem('bca-theme')==='light'){
+    document.body.classList.add('light-mode');
+    document.addEventListener('DOMContentLoaded',function(){
+      const b=document.getElementById('themeBtn');
+      if(b) b.textContent='🌑';
+    });
+  }
+})();
 </script>
 </body>
 </html>
