@@ -16,7 +16,7 @@
   --gr:  #39ff14;
   --am:  #ffc107;
   --rd:  #ff4444;
-  --tx:  #c8d6f0;
+  --tx:  #d8e6ff;
   --td:  #5a6a8a;
   --tb:  #e8f0ff;
   --cb:  #090c12;
@@ -31,8 +31,8 @@ body {
   background: var(--bg);
   color: var(--tx);
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.85;
 }
 
 /* ── Root page body ── */
@@ -71,7 +71,7 @@ body.subject-page {
   color: var(--tb);
   margin-bottom: 10px;
 }
-.dh > p { font-size: 14px; color: var(--td); max-width: 600px; }
+.dh > p { font-size: 15px; color: var(--td); max-width: 600px; }
 
 .sem-sec { margin-bottom: 50px; }
 .sem-h {
@@ -192,7 +192,7 @@ body.subject-page {
 
 .sbh { padding: 16px; border-bottom: 1px solid var(--br); position: sticky; top: 0; background: var(--sf); z-index: 2; }
 .sbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--ac); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; }
-.sbt { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800; color: var(--tb); }
+.sbt { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; color: var(--tb); }
 
 .pw { padding: 10px 16px; border-bottom: 1px solid var(--br); }
 .pl { display: flex; justify-content: space-between; font-size: 10px; color: var(--td); margin-bottom: 4px; font-family: 'JetBrains Mono', monospace; }
@@ -224,15 +224,15 @@ body.subject-page {
 .btn-home:hover { border-color: var(--ac); color: var(--ac); }
 
 /* Content area */
-#ct { padding: 32px; max-width: 880px; }
+#ct { padding: 40px 48px; max-width: 960px; margin: 0 auto; }
 .pn { display: none; }
 .pn.on { display: block; animation: fi .3s; }
 @keyframes fi { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
 /* Unit header */
 .utag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: var(--ac2); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 7px; }
-.utit { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--tb); line-height: 1.15; margin-bottom: 14px; }
-.uint { font-size: 13.5px; line-height: 1.8; margin-bottom: 22px; padding: 14px 18px; background: var(--sf); border-left: 3px solid var(--ac); border-radius: 0 7px 7px 0; }
+.utit { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; color: var(--tb); line-height: 1.2; margin-bottom: 16px; }
+.uint { font-size: 14.5px; line-height: 1.9; margin-bottom: 26px; padding: 16px 20px; background: var(--sf); border-left: 3px solid var(--ac); border-radius: 0 7px 7px 0; max-width: 70ch; }
 .obj { background: rgba(123,97,255,.07); border: 1px solid rgba(123,97,255,.2); border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; }
 .obj h4 { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; color: var(--ac2); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
 .obj li { padding: 3px 0; font-size: 12.5px; display: flex; gap: 7px; list-style: none; }
@@ -247,10 +247,10 @@ body.subject-page {
 .tc.on { display: block; animation: fi .2s; }
 
 /* Content typography */
-.sh { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--tb); margin: 24px 0 10px; display: flex; align-items: center; gap: 10px; }
+.sh { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--tb); margin: 32px 0 12px; display: flex; align-items: center; gap: 10px; }
 .sh::after { content: ''; flex: 1; height: 1px; background: var(--br); }
-.ssh { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--ac); margin: 18px 0 8px; }
-.pn p { margin-bottom: 10px; color: var(--tx); font-size: 13.5px; line-height: 1.8; }
+.ssh { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--ac); margin: 18px 0 8px; }
+.pn p { margin-bottom: 12px; color: var(--tx); font-size: 14.5px; line-height: 1.9; max-width: 70ch; }
 
 /* Code blocks */
 .cw { background: var(--cb); border: 1px solid var(--br); border-radius: 7px; margin: 12px 0; overflow: hidden; }
@@ -319,7 +319,7 @@ code { background: var(--cb); border: 1px solid var(--br); border-radius: 3px; p
 .qr { display: none; margin-top: 18px; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid var(--br); background: var(--sf); }
 .qr.on { display: block; animation: fi .4s; }
 .rs { font-family: 'Syne', sans-serif; font-size: 44px; font-weight: 800; background: linear-gradient(135deg, var(--ac2), var(--ac)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 5px; }
-.rm { font-size: 14px; color: var(--tb); margin-bottom: 3px; }
+.rm { font-size: 15px; color: var(--tb); margin-bottom: 3px; }
 .rd2 { font-size: 11px; color: var(--td); }
 
 /* Done banner */
@@ -339,7 +339,7 @@ code { background: var(--cb); border: 1px solid var(--br); border-radius: 3px; p
 
 /* Exam section */
 .es { background: rgba(255,193,7,.04); border: 1px solid rgba(255,193,7,.18); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
-.es h3 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--am); margin-bottom: 3px; }
+.es h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--am); margin-bottom: 3px; }
 .ess { font-size: 10px; color: var(--td); margin-bottom: 12px; }
 .eq { padding: 8px 0; border-bottom: 1px solid var(--br); font-size: 12.5px; }
 .eq:last-child { border-bottom: none; }
@@ -348,7 +348,7 @@ code { background: var(--cb); border: 1px solid var(--br); border-radius: 3px; p
 
 /* Mobile sidebar toggle */
 #overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 90; }
-#mbt { display: none; position: fixed; top: 12px; left: 12px; z-index: 200; background: var(--sf); border: 1px solid var(--br); border-radius: 7px; padding: 7px 10px; cursor: pointer; color: var(--tx); font-size: 14px; }
+#mbt { display: none; position: fixed; top: 12px; left: 12px; z-index: 200; background: var(--sf); border: 1px solid var(--br); border-radius: 7px; padding: 7px 10px; cursor: pointer; color: var(--tx); font-size: 15px; }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
